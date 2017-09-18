@@ -16,3 +16,4 @@ Heroku app : https://webdev-shamnani-vinayak.herokuapp.com/
 
 ### Assignment Links
 [Assignment 1](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment1)
+[Assignment 2](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment2)
