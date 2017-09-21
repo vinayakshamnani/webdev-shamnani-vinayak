@@ -96,7 +96,7 @@ a:hover
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px;
-  margin: 5px;
+  /*margin: 5px;*/
 }
 
 .custom-widget h1, h3 {
