@@ -87,6 +87,11 @@ a:hover
 
 }
 
+.custom-widget-toolbar img  iframe
+{
+  right: 10px;
+}
+
 .custom-widget .col-xs-12 {
   border: 1px solid #ddd;
   border-radius: 4px;
