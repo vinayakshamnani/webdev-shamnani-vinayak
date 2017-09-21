@@ -95,7 +95,7 @@ a:hover
 .custom-widget .col-xs-12 {
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 10px;
+  /*padding: 10px;*/
   margin: 5px;
 }
 
