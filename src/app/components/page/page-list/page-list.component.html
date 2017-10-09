@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-custom">
   <div class="container-fluid">
     <a class="navbar-brand"
-       href="../website/website-list.html">
+       [routerLink]="['/user/:uid/website']">
             <span
               class="glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color">
 
@@ -12,7 +12,7 @@
                 Pages
         </span>
     <a class="navbar-brand pull-right"
-       href="page-new.html">
+       [routerLink]="['/user/:uid/website/:wid/page/new']">
             <span
               class="glyphicon glyphicon-plus glyph-color">
 
@@ -27,7 +27,7 @@
     <div class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <div class="col-xs-8">
-          <a href="../widget/widget-list.html"
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
              class="colored-link">
                         <span class="c1-text-bold">
                             Blog Post
@@ -35,7 +35,7 @@
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="page-edit.html"
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
              class="c1-color-black glyphicon-size">
                         <span
                           class="glyphicon glyphicon-cog pull-right colored-link">
@@ -50,7 +50,7 @@
       <div class="row">
         <div class="col-xs-8">
           <a
-            href="../widget/widget-list.html"
+            [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
             class="colored-link">
                         <span class="c1-text-bold">
                             Blogs
@@ -58,7 +58,7 @@
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="page-edit.html"
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
              class="c1-color-black glyphicon-size">
                         <span
                           class="glyphicon glyphicon-cog pull-right colored-link">
@@ -73,7 +73,7 @@
       <div class="row">
         <div class="col-xs-8">
           <a
-            href="../widget/widget-list.html"
+            [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
             class="colored-link">
                         <span class="c1-text-bold">
                            Home
@@ -81,7 +81,7 @@
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="page-edit.html"
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
              class="c1-color-black glyphicon-size">
                         <span
                           class="glyphicon glyphicon-cog pull-right colored-link">
@@ -96,7 +96,7 @@
       <div class="row">
         <div class="col-xs-8">
           <a
-            href="../widget/widget-list.html"
+            [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
             class="colored-link">
                         <span class="c1-text-bold">
                             About
@@ -104,7 +104,7 @@
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="page-edit.html"
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
              class="c1-color-black glyphicon-size">
                         <span
                           class="glyphicon glyphicon-cog pull-right colored-link">
@@ -119,7 +119,7 @@
       <div class="row">
         <div class="col-xs-8">
           <a
-            href="../widget/widget-list.html"
+            [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
             class="colored-link">
                         <span class="c1-text-bold">
                             Contact Us
@@ -127,7 +127,7 @@
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="page-edit.html"
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
              class="c1-color-black glyphicon-size">
                         <span
                           class="glyphicon glyphicon-cog pull-right colored-link">
@@ -143,7 +143,7 @@
 
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fuild">
-    <a href="../user/profile.html"
+    <a [routerLink]="['/user/:uid']"
        class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
             <span class="glyphicon glyphicon-user glyph-color">
 

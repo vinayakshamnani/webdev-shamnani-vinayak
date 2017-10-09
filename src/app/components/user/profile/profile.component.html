@@ -9,7 +9,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link">
+      <a [routerLink]="['/user/:uid']" class="navbar-link">
         <span class="glyphicon glyphicon-ok glyph-color"></span>
       </a>
     </p>
@@ -47,9 +47,9 @@
     </div>
   </form>
   <a class="btn btn-primary btn-block"
-     href="../website/website-list.html">Websites</a>
+     [routerLink]="['/user/:uid/website']">Websites</a>
   <a class="btn btn-danger btn-block bottom-margin"
-     href="login.html" >Logout</a>
+     [routerLink]="['/login']" >Logout</a>
 
 </div>
 
@@ -57,10 +57,12 @@
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
+      <a [routerLink]="['/user/:uid']" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
         <span class="glyphicon glyphicon-user glyph-color"></span>
       </a>
     </p>
 
   </div>
 </nav>
+
+
