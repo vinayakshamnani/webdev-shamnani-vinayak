@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+
+  <meta charset="UTF-8">
+  <title>YouTube Widget</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../styles_in.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<nav class="navbar-custom navbar-fixed-top">
+  <div class="row">
+    <div class="col-xs-12">
+      <a class="navbar-brand" href="widget-list.html"><span
+        class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
+      <span class="navbar-brand">
+                <strong>Widget Edit</strong>
+            </span>
+      <a class="navbar-brand pull-right" href="widget-list.html"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid top-margin">
+  <div class="row">
+    <div class="col-xs-12">
+      <form>
+        <div class="form-group">
+          <label for="name" >
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Name"
+            value="Colbert"
+            required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="text"
+                 class="c1-text-bold">
+            Text
+          </label>
+          <input
+            type="text"
+            id="text"
+            class="form-control"
+            placeholder="Title"
+            data-toggle="tooltip"
+            title="Enter Widget Text"
+            value="Colbert Reveals What Letterman Taught Him" required>
+        </div>
+        <div class="form-group">
+          <label for="url" class="c1-text-bold">
+            URL
+          </label>
+          <input type="text"
+                 id="url"
+                 class="form-control"
+                 placeholder="URL"
+                 data-toggle="tooltip"
+                 title="Enter Widget URL"
+                 value="https://www.youtube.com/watch?v=Zr22PtGd1So"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="width"
+                 class="c1-text-bold">
+            Width
+          </label>
+          <select id="width"
+                  class="form-control"
+                  data-toggle="tooltip"
+                  title="Enter Widget width" required>
+            <option value="50">
+              50%
+            </option>
+
+            <option value="100" selected>
+              100%
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <a href="widget-list.html"
+             class="btn btn-lg btn-block btn-danger"
+             type="submit">
+            Delete
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-custom navbar-fixed-bottom">
+  <div class="container-fuild">
+    <a href="../user/profile.html"
+       class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
+            <span class="glyphicon glyphicon-user glyph-color">
+            </span>
+    </a>
+  </div>
+</nav>
+</body>
