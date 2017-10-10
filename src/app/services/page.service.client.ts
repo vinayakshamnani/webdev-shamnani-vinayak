@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 
-export class UserService {
+export class PageService {
   constructor() { }
   pages = [
     { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },

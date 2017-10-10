@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 
-export class UserService {
+export class WidgetService {
   constructor() { }
   widgets = [
     { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
