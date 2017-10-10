@@ -20,7 +20,7 @@
          class="form-control bottom-buffer"
          #password="ngModel" required/>
     <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password! </span>
-  <a class="btn btn-primary btn-block bottom-buffer" [routerLink]="['/user/:uid']" >Login</a>
+  <button class="btn btn-primary btn-block bottom-buffer" type="submit" [disabled]="!f.valid">Login</button>
   <a class="btn btn-success btn-block bottom-buffer" [routerLink]="['/register']" >Register</a>
 </form>
 </div>
