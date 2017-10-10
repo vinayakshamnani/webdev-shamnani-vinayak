@@ -628,6 +628,7 @@ var LoginComponent = (function () {
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         var user = this.userService.findUserByCredentials(this.username, this.password);
+        console.log('The userid is ' + user._id);
         if (user) {
             this.router.navigate(['user', user._id]);
         }
