@@ -19,23 +19,14 @@
 </nav>
 
 
-<div class="container-fluid center-container top-margin">
-  <div class="list-group">
-    <div class="list-group-item border-black flex-column align-items-start">
-      <div class="row" *ngFor="let w of websites">
-        <div class="col-xs-8" >
-          <a [routerLink]="['/user/',userId,'website',w._id,'page']" class="colored-link">
-            <span class="c1-text-bold">{{w.name}}</span>
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a [routerLink]="['/user/',userId,'website',w._id]"><span
-            class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<div class="container-fluid top-margin">
+  <ul class="list-group" >
+    <li class="list-group-item" *ngFor="let x of websites">
+      <a [routerLink]="['/user/',userId,'website',x._id,'page']"><span class="c1-text-bold colored-link">{{x.name}}</span></a>
+      <a [routerLink]="['/user/',userId,'website',x._id]">
+        <span class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
+    </li>
+  </ul>
 </div>
 
 

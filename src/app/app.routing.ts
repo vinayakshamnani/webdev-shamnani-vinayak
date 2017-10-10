@@ -23,7 +23,7 @@ import {WidgetListComponent} from './components/widget/widget-list/widget-list.c
 
 
 const APP_ROUTES: Routes = [
-  {path: '', component : HomeComponent},
+  {path: '', component : LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user/:uid', component: ProfileComponent},

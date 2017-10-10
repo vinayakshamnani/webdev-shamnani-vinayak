@@ -2,17 +2,18 @@
   <div class="row ">
     <div class="col-xs-4 hidden-xs">
       <a class="navbar-brand"
-         href="website-list.html">
+         [routerLink]="['/user/',userId,'website']">
                 <span
-                  class="glyphicon glyphicon-chevron-leftpull-left glyph-color">
+                  class="glyphicon glyphicon-chevron-left pull-left glyph-color">
                 </span>
       </a>
+
       <span
         class="navbar-brand">
                 Websites
             </span>
       <a class="navbar-brand pull-right navbar-custom"
-         [routerLink]="['/user/:uid/website/new']">
+         [routerLink]="['/user/',userId,'website','new']">
                 <span
                   class="glyphicon glyphicon-plus">
                 </span>
@@ -24,7 +25,7 @@
       <a class="navbar-brand visible-xs"
          [routerLink]="['/user/:uid/website']">
                 <span
-                  class="glyphicon glyphicon-chevron-left pull-left">
+                  class="glyphicon glyphicon-chevron-left pull-left glyph-color">
                 </span>
       </a>
       <span
@@ -40,94 +41,35 @@
   </div>
 </nav>
 
+<div class="body row container-fluid top-margin">
+  <div class="col-sm-4 hidden-xs">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let x of websites">
+        <a class="colored-link" [routerLink]="['/user/',userId,'website',x._id,'page']"><b>{{x.name}}</b> </a>
+        <a class="colored-link" [routerLink]="['/user/',userId,'website',x._id]"> <span class="pull-right glyphicon glyphicon-cog"></span></a>
+      </li>
+    </ul>
+  </div>
 
-<div class="container-fluid full-height top-margin">
-  <div class="row full-height">
-    <div class="col-xs-4 hidden-xs overflow right-border full-height">
-      <div class="list-group">
-        <div class="list-group-item flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10 ">
-                            <span class="#">
-                                <a [routerLink]="['/user/:uid/website/:wid/page']" class="c1-text-bold colored-link">Address Book App</a>
-                            </span>
-            </div>
-            <div class="col-xs-2">
-              <a href="#" class="black-link"><span
-                class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link"></span></a>
-            </div>
-          </div>
-        </div>
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10 ">
-                            <span class="#">
-                                <a [routerLink]="['/user/:uid/website/:wid/page']" class=" colored-link">Blogger</a>
-                            </span>
-            </div>
-            <div class="col-xs-2">
-              <a href="#" class="black-link"><span
-                class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link"></span></a>
-            </div>
-          </div>
-        </div>
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10">
-                            <span class="#">
-                                <a [routerLink]="['/user/:uid/website/:wid/page']" class="colored-link">Blogging App</a>
-                            </span>
-            </div>
-            <div class="col-xs-2">
-              <a href="#" class="black-link"><span
-                class="glyphicon glyphicon-size glyphicon-cog pull-right colored-link"></span></a>
-            </div>
-          </div>
-        </div>
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10 ">
-                            <span class="#">
-                                <a [routerLink]="['/user/:uid/website/:wid/page']" class="colored-link">Script Testing App</a>
-                            </span>
-            </div>
-            <div class="col-xs-2">
-              <a href="#" class="black-link"><span
-                class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link"></span></a>
-            </div>
-          </div>
-        </div>
-
-
+  <div class="col-sm-8 ">
+    <form>
+      <div class="form-group">
+        <label for="inputName">Name</label>
+        <input [(ngModel)]='name' name ="name"
+               type="text" class="form-control" id="inputName" placeholder="Website Name">
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-8 overflow full-height">
-      <form class="#">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" class="form-control" placeholder="Name" value="Blogger" required autofocus>
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" rows="6" class="form-control" placeholder="Description"
-                    required>Blogger is a blog-publishing website that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was acquired by Google in 2003. Generally, the blogs are hosted by Google as a subdomain of blogspot.com, and they can also be hosted in the registered custom domain of the blogger. A user can have up to 100 blogs per account.
 
-
-
-          </textarea>
-        </div>
-        <div class="form-group">
-          <a [routerLink]="['/user/:uid/website']"
-             class="btn btn-lg btn-block btn-danger"
-             type="submit">
-            Delete
-          </a>
-        </div>
-      </form>
-    </div>
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea [(ngModel)]='descr' name ="desc"
+                  class="form-control" rows="5" id="desc" placeholder="Website Description"></textarea>
+      </div>
+      <a (click)="delete()"  [routerLink]="['/user/',userId,'website']" class="btn btn-danger btn-block">Delete</a>
+    </form>
   </div>
 </div>
-<nav class="navbar navbar-fixed-bottom navbar-custom">
+
+  <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fuild">
     <a [routerLink]="['/user/:uid/']" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
       <span class="glyphicon glyphicon-user glyph-color"></span>
