@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute} from '@angular/router';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-profile',
@@ -9,27 +10,28 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   userId: string;
-  user:{};
+  user = {};
   username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
+  @ViewChild('f') profileForm: NgForm;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.userId = params['uid'];
+      this.user = this.userService.findUserById(this.userId);
+      this.username = this.user['username'];
     });
 
-    this.user = this.userService.findUserById(this.userId);
-    this.username = this.user['username'];
-    this.email = this.user['email'];
-    this.firstName = this.user['firstName'];
-    this.lastName = this.user['lastName'];
+
   }
     update() {
-    this.userService.updateUser(this.userId, this.user);
-  }
+      this.user['username'] = this.profileForm.value.username;
+      this.user['email'] = this.profileForm.value.email;
+      this.user['firstName'] = this.profileForm.value.firstName;
+      this.user['lastName'] = this.profileForm.value.lastName;
+      this.userService.updateUser(this.userId, this.user);
+
+    }
   }
 

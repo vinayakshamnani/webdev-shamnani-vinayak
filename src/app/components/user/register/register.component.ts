@@ -4,6 +4,7 @@ import {UserService} from '../../../services/user.service.client';
 import {NgForm} from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,28 +16,31 @@ export class RegisterComponent implements OnInit {
   verifypwd: string;
   errorFlag: boolean;
   userExistsFlag: boolean;
-  errorMessage: 'Passwords do not match';
-  userExistsMessage: 'Username not available. Choose a different username.';
+  errorMessage = 'Passwords do not match';
+  userExistsMessage = 'Username not available. Choose a different username.';
   @ViewChild('f') registrationForm: NgForm;
-  newUser: {};
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
 
-  register(){
+  register() {
+    let user = {};
     this.username = this.registrationForm.value.username;
     this.password = this.registrationForm.value.password;
     this.verifypwd = this.registrationForm.value.verifypwd;
-    const user = this.userService.findUserByUsername(this.username);
-    if(user) {
+
+    const user2 = this.userService.findUserByUsername(user['username']);
+    if (user2) {
       this.userExistsFlag = true;
     } else if (this.password !== this.verifypwd) {
       this.errorFlag = true;
     } else {
-      const addUser = {_id: "", username: this.username, password: this.password, firstName: '', lastName: '', email: ''}
-      const id: string = this.userService.createUser(addUser);
-      this.router.navigate(['/user/', id]);
+      user['username'] = this.username;
+      user['password'] = this.password;
+      user = this.userService.createUser(user);
+      this.router.navigate(['user', user['_id']]);
+      console.log('User created! New JSON: ' + this.userService.users);
     }
   }
 

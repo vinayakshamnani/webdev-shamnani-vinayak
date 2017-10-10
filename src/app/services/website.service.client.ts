@@ -28,7 +28,12 @@ export class WebsiteService {
     'deleteWebsite': this.deleteWebsite,
   };
   createWebsite(userId: string, website: any) {
-    website._id = Math.random();
+    let id = Math.floor(Math.random() * 10000);
+    // Ids must be unique
+    while (this.findWebsiteById(id.toString())) {
+      id = id * 2;
+    }
+    website._id = id.toString();
     website.developerId = userId;
     this.websites.push(website);
     return website;
@@ -56,10 +61,10 @@ export class WebsiteService {
     }
   }
   deleteWebsite(websiteId: string) {
-    for (let x = 0; x < this.websites.length; x++) {
-      if (this.websites[x]._id === websiteId) {
-        delete this.websites[websiteId];
-      }
+    const websiteIndex = this.websites.findIndex(i => i._id === websiteId);
+    if (this.websites[websiteIndex]) {
+      this.websites.splice(websiteIndex, 1);
     }
+    return this.websites[websiteIndex];
   }
 }

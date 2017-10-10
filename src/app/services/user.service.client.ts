@@ -3,16 +3,15 @@ import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
-
 @Injectable()
 
 export class UserService {
   constructor() { }
   users = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder'  , email: 'alice@wonderland.com'},
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley'  , email: 'bob@bob.com'},
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia'  , email: 'charly@charly.com'},
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi' , email: 'jannunzi@gmail.com'}
+    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder' },
+    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley' },
+    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia' },
+    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi'}
   ];
   api = {
     'createUser'             : this.createUser,
@@ -23,11 +22,17 @@ export class UserService {
     'deleteUser'             : this.deleteUser,
   };
   createUser(user: any) {
-    user._id = Math.random();
+    let id = Math.floor(Math.random() * 10000);
+    // Ids must be unique
+    while (this.findUserById(id.toString())) {
+      id = id * 2;
+    }
+    user._id = id.toString();
     this.users.push(user);
     return user;
   }
-  findUserById(userId: string) {
+
+  findUserById(userId: string){
     for(let x = 0; x < this.users.length; x++) {
       if (this.users[x]._id === userId) {return this.users[x]; }
     }
@@ -48,17 +53,17 @@ findUserByCredentials(username: string, password: string) {
 
 updateUser(userId: string, user: any) {
   for (let x = 0; x < this.users.length; x++) {
-    if (this.users[x]._id ===userId) {
-      this.users[x] = user;
-    }
+    if (this.users[x]._id === userId) { this.users[x] = user;
+      console.log('Successfully updated. The new JSON is ' + JSON.stringify(this.users));}
   }
   }
+
   deleteUser(userId: string) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        delete this.users[userId];
-      }
+    const userIndex = this.users.findIndex(i => i._id === userId);
+    if (this.users[userIndex]) {
+      this.users.splice(userIndex, 1);
     }
+    return this.users[userIndex];
   }
 }
 

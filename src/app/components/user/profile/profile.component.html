@@ -9,7 +9,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a (click)="update()" [routerLink]="['/user', userId]" class="navbar-link">
+      <a (click) = "update()" [routerLink]="['/user', userId]" class="navbar-link">
         <span class="glyphicon glyphicon-ok glyph-color"></span>
       </a>
     </p>
@@ -19,38 +19,38 @@
 
 
 <div class="container top-margin">
-  <form>
+  <form #f="ngForm">
     <div class="form-group">
       <label for="username">Username</label>
-      <input [(ngModel)]="username" name="username" type="text" class="form-control bottom-buffer" id="username" placeholder="vshamnani">
+      <input [(ngModel)]="user['username']" name="username" type="text" class="form-control bottom-buffer" id="username" placeholder="vshamnani" readonly>
     </div>
-  </form>
 
-  <form>
+
+
     <div class="form-group">
       <label for="email">Email address</label>
-      <input [(ngModel)]="email" name="email" type="email" class="form-control bottom-buffer" id="email" placeholder="shamnani.v@husky.neu.edu">
+      <input name="email" type="email" class="form-control bottom-buffer" id="email" placeholder="shamnani.v@husky.neu.edu">
     </div>
-  </form>
 
-  <form>
+
+
     <div class="form-group">
       <label for="first-name">First Name</label>
-      <input [(ngModel)]="firstName" name="firstName" type="text" class="form-control bottom-buffer" id="first-name" placeholder="Vinayak">
+      <input [(ngModel)]="user['firstName']" name="firstName" type="text" class="form-control bottom-buffer" id="first-name" placeholder="Vinayak">
     </div>
-  </form>
 
-  <form>
+
+
     <div class="form-group">
       <label for="last-name">Last Name</label>
-      <input [(ngModel)]="lastName" name="lastName"type="text" class="form-control bottom-buffer" id="last-name" placeholder="Shamnani">
+      <input [(ngModel)]="user['lastName']" name="lastName"type="text" class="form-control bottom-buffer" id="last-name" placeholder="Shamnani">
     </div>
-  </form>
+
   <a class="btn btn-primary btn-block"
      [routerLink]="['/user/',userId,'website']">Websites</a>
   <a class="btn btn-danger btn-block bottom-margin"
      [routerLink]="['/login']" >Logout</a>
-
+  </form>
 </div>
 
 
