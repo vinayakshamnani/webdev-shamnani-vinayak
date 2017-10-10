@@ -47,7 +47,7 @@
     </div>
   </form>
   <a class="btn btn-primary btn-block"
-     [routerLink]="['user',userId,'website']">Websites</a>
+     [routerLink]="['/user/',userId,'website']">Websites</a>
   <a class="btn btn-danger btn-block bottom-margin"
      [routerLink]="['/login']" >Logout</a>
 
@@ -57,7 +57,7 @@
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user',userId]" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
+      <a [routerLink]="['/user/',userId]" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
         <span class="glyphicon glyphicon-user glyph-color"></span>
       </a>
     </p>

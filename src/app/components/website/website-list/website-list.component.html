@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-custom">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a [routerLink]="['/user/:uid']"
+      <a [routerLink]="['/user/',userId]"
          class="navbar-link font-little-large">
                 <span class="glyphicon glyphicon-chevron-left glyph-color">
                 </span>
@@ -12,7 +12,7 @@
             Websites
         </span>
 
-    <a [routerLink]="['/user/:uid/website/new']" class="navbar-link navbar-text pull-right cl-icon-padding">
+    <a [routerLink]="['/user/',userId,'website','new']" class="navbar-link navbar-text pull-right cl-icon-padding">
       <span class="glyphicon glyphicon-plus glyph-color"></span>
     </a>
   </div>
@@ -22,74 +22,27 @@
 <div class="container-fluid center-container top-margin">
   <div class="list-group">
     <div class="list-group-item border-black flex-column align-items-start">
-      <div class="row">
+      <div class="row" *ngFor="let w of websites">
         <div class="col-xs-8" >
-          <a [routerLink]="['/user/:uid/website/:wid/page']" class="colored-link">
-            <span class="c1-text-bold">Address Book App</span>
+          <a [routerLink]="['/user/',userId,'website',w._id,'page']" class="colored-link">
+            <span class="c1-text-bold">{{w.name}}</span>
           </a>
         </div>
         <div class="col-xs-4">
-          <a [routerLink]="['/user/:uid/website/:wid']"><span
+          <a [routerLink]="['/user/',userId,'website',w._id]"><span
             class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
         </div>
       </div>
 
     </div>
-    <div class="list-group-item border-black flex-column align-items-start">
-      <div class="row">
-        <div class="col-xs-8" >
-          <a [routerLink]="['/user/:uid/website/:wid/page']" class="colored-link">
-            <span class="c1-text-bold">Blogger</span>
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a [routerLink]="['/user/:uid/website/:wid']">
-            <span
-              class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
-        </div>
-      </div>
-
-    </div>
-
-
-
-    <div class="list-group-item border-black list-group-item-action flex-column align-items-start">
-      <div class="row">
-        <div class="col-xs-8">
-          <a [routerLink]="['/user/:uid/website/:wid/page']" class="colored-link">
-            <span class="c1-text-bold">Blogging App</span>
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a [routerLink]="['/user/:uid/website/:wid']" ><span
-            class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="list-group-item border-black list-group-item-action flex-column align-items-start">
-      <div class="row">
-        <div class="col-xs-8">
-          <a [routerLink]="['/user/:uid/website/:wid/page']" class="colored-link">
-            <span class="c1-text-bold">Script Testing App</span>
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a [routerLink]="['/user/:uid/website/:wid']" ><span
-            class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 </div>
 
 
+
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fuild">
-    <a [routerLink]="['/user/:uid']" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
+    <a [routerLink]="['/user/',userId]" class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
       <span class="glyphicon glyphicon-user glyph-color"></span>
     </a>
   </div>
