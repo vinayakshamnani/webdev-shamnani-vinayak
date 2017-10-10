@@ -9,7 +9,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/user/:uid']" class="navbar-link">
+      <a (click)="update()" [routerLink]="['user', userId]" class="navbar-link">
         <span class="glyphicon glyphicon-ok glyph-color"></span>
       </a>
     </p>
@@ -22,14 +22,14 @@
   <form>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control bottom-buffer" id="username" placeholder="vshamnani" readonly>
+      <input [(ngModel)]="username" name="username" type="text" class="form-control bottom-buffer" id="username" placeholder="vshamnani">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control bottom-buffer" id="email" placeholder="shamnani.v@husky.neu.edu">
+      <input  name="email" type="email" class="form-control bottom-buffer" id="email" placeholder="shamnani.v@husky.neu.edu">
     </div>
   </form>
 
