@@ -12,6 +12,8 @@ export class ProfileComponent implements OnInit {
   user:{};
   username: string;
   email: string;
+  firstName: string;
+  lastName: string;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
@@ -23,6 +25,8 @@ export class ProfileComponent implements OnInit {
     this.user = this.userService.findUserById(this.userId);
     this.username = this.user['username'];
     this.email = this.user['email'];
+    this.firstName = this.user['firstName'];
+    this.lastName = this.user['lastName'];
   }
     update() {
     this.userService.updateUser(this.userId, this.user);
