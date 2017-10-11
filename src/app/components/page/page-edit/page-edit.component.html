@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-4 hidden-xs">
       <a class="navbar-brand"
-         [routerLink]="['/user/:uid/website/:wid/page']">
+         [routerLink]="['/user/',userId, 'website', websiteId, 'page']">
                 <span
                   class="glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color">
                 </span>
@@ -12,7 +12,7 @@
                 Pages
             </span>
       <a class="navbar-brand c1-text-bold font-little-large c1-color-black pull-right"
-         [routerLink]="['/user/:uid/website/:wid/page/new']">
+         [routerLink]="['/user/',userId, 'website', websiteId, 'page', 'new']">
                 <span
                   class="glyphicon glyphicon-plus glyph-color">
 
@@ -22,7 +22,7 @@
 
     <div class="col-xs-12 col-sm-8">
       <a class="navbar-brand visible-xs"
-         [routerLink]="['/user/:uid/website/:wid/page']">
+         [routerLink]="['/user/',userId, 'website', websiteId, 'page']">
                 <span
                   class="glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left">
                 </span>
@@ -33,7 +33,7 @@
             </span>
 
       <a class="navbar-brand pull-right c1-text-bold font-little-large c1-color-black"
-         [routerLink]="['/user/:uid/website/:wid/page']">
+         [routerLink]="['/user/',userId, 'website', websiteId, 'page']" (click)="update()">
                 <span class="glyphicon glyphicon-ok glyph-color">
                 </span>
       </a>
@@ -44,120 +44,20 @@
 <div class="container-fluid top-margin full-height">
   <div class="row full-height">
     <div class="col-xs-4 hidden-xs overflow right-border full-height">
-      <div class="list-group">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let x of pages">
+          <a [routerLink]="['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']">
+            <span class="c1-text-bold colored-link">{{x.name}}</span>
+          </a>
+          <a [routerLink]="['/user', userId,'website', x.websiteId, 'page', x._id]">
+            <span class="glyphicon glyphicon-cog pull-right colored-link"></span>
+          </a>
+        </li>
+        </ul>
 
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10 ">
-                            <span>
-                                <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
-                                   class="c1-text-bold colored-link">
-                                    Blog Post
-                                </a>
-                            </span>
-            </div>
-
-            <div class="col-xs-2">
-              <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
-                 class="black-link">
-                                <span
-                                  class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link">
-                                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10 ">
-                            <span>
-                                <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
-                                   class="c1-text-bold colored-link">
-                                    Blogs
-                                </a>
-                            </span>
-            </div>
-
-            <div class="col-xs-2">
-              <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
-                 class="black-link">
-                                <span
-                                  class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link">
-                                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10">
-                            <span>
-                                <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
-                                   class="c1-text-bold colored-link">
-                                    Home
-                                </a>
-                            </span>
-            </div>
-
-            <div class="col-xs-2">
-              <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
-                 class="black-link">
-                                <span
-                                  class="glyphicon glyphicon-size glyphicon-cog pull-right colored-link">
-                                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10 ">
-                            <span>
-                                <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
-                                   class="c1-text-bold colored-link">
-                                    About
-                                </a>
-                            </span>
-            </div>
-            <div class="col-xs-2">
-              <a [routerLink]="['/user/:uid/website/:wid/page/:pid']" class="black-link">
-                                <span
-                                  class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link">
-
-                                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col-xs-10">
-                            <span class="">
-                                <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"
-                                   class="c1-text-bold colored-link">
-                                    Contact Us
-                                </a>
-                            </span>
-            </div>
-            <div class="col-xs-2">
-              <a [routerLink]="['/user/:uid/website/:wid/page/:pid']"
-                 class="black-link">
-                                <span
-                                  class="glyphicon glyphicon-cog glyphicon-size pull-right colored-link">
-
-                                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
     <div class="col-xs-12 col-sm-8 overflow full-height">
-      <form class="form-signin">
+      <form class="form-signin" #f="ngForm">
         <div class="form-group">
           <label for="name"
                  class="c1-text-bold font-little-large c1-color-black">
@@ -166,23 +66,42 @@
           <input type="text"
                  id="name"
                  class="form-control"
-                 placeholder="Name" value="Blog Post" required autofocus>
+                 placeholder="Name"
+                 name="name"
+                 value="Blog Post"
+                 [(ngModel)]="page['name']" required autofocus>
         </div>
         <div class="form-group">
           <label for="title"
-                 class="c1-text-bold font-little-large c1-color-black">
+                 class="c1-text-bold font-little-large c1-color-black"
+          >
             Title
           </label>
           <input type="text"
                  id="title"
                  class="form-control"
                  placeholder="Title"
+                 name="title"
                  required>
         </div>
         <div class="form-group">
-          <a [routerLink]="['/user/:uid/website/:wid/page']"
+          <label for="title"
+                 class="c1-text-bold font-little-large c1-color-black"
+          >
+            Description
+          </label>
+          <input type="text"
+                 id="descr"
+                 class="form-control"
+                 placeholder="Description"
+                 name="descr"
+                 [(ngModel)]="page['description']"
+                 required>
+        </div>
+        <div class="form-group">
+          <a [routerLink]="['/user/',userId, 'website', websiteId, 'page']"
              class="btn btn-lg btn-block btn-danger"
-             type="submit">
+             type="submit" (click) = "delete()">
             Delete
           </a>
         </div>
@@ -193,7 +112,7 @@
 
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fuild">
-    <a [routerLink]="['/user/:uid']"
+    <a [routerLink]="['/user/',userId]"
        class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
             <span class="glyphicon glyphicon-user glyph-color">
 

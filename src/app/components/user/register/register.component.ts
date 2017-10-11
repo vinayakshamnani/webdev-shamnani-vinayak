@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
       user['password'] = this.password;
       user = this.userService.createUser(user);
       this.router.navigate(['user', user['_id']]);
-      console.log('User created! New JSON: ' + this.userService.users);
     }
   }
 

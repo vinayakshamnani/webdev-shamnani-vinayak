@@ -22,8 +22,12 @@ export class PageService {
     'deletePage'             : this.deletePage,
   };
   createPage(websiteId: string, page: any) {
-    page._id = Math.random();
-    page.websiteId = websiteId;
+    let id = Math.floor(Math.random() * 10000);
+    // Ids must be unique
+    while (this.findPageById(id.toString())) {
+      id = id * 2;
+    }
+    page._id = id.toString();
     this.pages.push(page);
     return page;
   }
@@ -52,10 +56,10 @@ export class PageService {
     }
   }
   deletePage(pageId: string) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        delete this.pages[pageId];
-      }
+    const pageIndex = this.pages.findIndex(i => i._id === pageId);
+    if (this.pages[pageIndex]) {
+      this.pages.splice(pageIndex, 1);
     }
+    return this.pages[pageIndex];
   }
 }

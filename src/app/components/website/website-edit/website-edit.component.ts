@@ -37,8 +37,6 @@ export class WebsiteEditComponent implements OnInit {
   }
   delete() {
     this.websiteService.deleteWebsite(this.websiteId);
-    console.log('Deleted website id '+this.websiteId);
-    console.log('New website JSON is '+ JSON.stringify(this.websiteService.websites));
   }
 
 }

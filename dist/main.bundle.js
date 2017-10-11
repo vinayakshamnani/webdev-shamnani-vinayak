@@ -312,7 +312,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user/:uid/website/:wid/page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user/:uid/website/:wid/page/new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user/:uid/website/:wid/page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         [routerLink]=\"['/user/:uid/website/:wid/page']\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <div class=\"list-group\">\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10 \">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Blog Post\n                                </a>\n                            </span>\n            </div>\n\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10 \">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Blogs\n                                </a>\n                            </span>\n            </div>\n\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10\">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Home\n                                </a>\n                            </span>\n            </div>\n\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-size glyphicon-cog pull-right colored-link\">\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10 \">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    About\n                                </a>\n                            </span>\n            </div>\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\" class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10\">\n                            <span class=\"\">\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Contact Us\n                                </a>\n                            </span>\n            </div>\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\" value=\"Blog Post\" required autofocus>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page']\"\n             class=\"btn btn-lg btn-block btn-danger\"\n             type=\"submit\">\n            Delete\n          </a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/:uid']\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page', 'new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\" (click)=\"update()\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n            <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n          </a>\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n            <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n          </a>\n        </li>\n        </ul>\n\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\" #f=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"\n                 name=\"name\"\n                 value=\"Blog Post\"\n                 [(ngModel)]=\"page['name']\" required autofocus>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\"\n          >\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 name=\"title\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\"\n          >\n            Description\n          </label>\n          <input type=\"text\"\n                 id=\"descr\"\n                 class=\"form-control\"\n                 placeholder=\"Description\"\n                 name=\"descr\"\n                 [(ngModel)]=\"page['description']\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <a [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\"\n             class=\"btn btn-lg btn-block btn-danger\"\n             type=\"submit\" (click) = \"delete()\">\n            Delete\n          </a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/',userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -322,6 +322,9 @@ module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageEditComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -332,22 +335,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var PageEditComponent = (function () {
-    function PageEditComponent() {
+    function PageEditComponent(activatedRoute, pageService) {
+        this.activatedRoute = activatedRoute;
+        this.pageService = pageService;
     }
     PageEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websiteId = params['wid'];
+            _this.pageId = params['pid'];
+            _this.pages = _this.pageService.findPageByWebsiteId(_this.websiteId);
+            _this.page = _this.pageService.findPageById(_this.pageId);
+        });
+    };
+    PageEditComponent.prototype.update = function () {
+        this.page['name'] = this.editForm.value.name;
+        this.page['description'] = this.editForm.value.descr;
+        this.pageService.updatePage(this.pageId, this.page);
+    };
+    PageEditComponent.prototype.delete = function () {
+        this.pageService.deletePage(this.pageId);
     };
     return PageEditComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], PageEditComponent.prototype, "editForm", void 0);
 PageEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-page-edit',
         template: __webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */]) === "function" && _c || Object])
 ], PageEditComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=page-edit.component.js.map
 
 /***/ }),
@@ -373,7 +402,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\"\n       [routerLink]=\"['/user/:uid/website']\">\n            <span\n              class=\"glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color\">\n\n            </span>\n    </a>\n    <span\n      class=\"navbar-brand\">\n                Pages\n        </span>\n    <a class=\"navbar-brand pull-right\"\n       [routerLink]=\"['/user/:uid/website/:wid/page/new']\">\n            <span\n              class=\"glyphicon glyphicon-plus glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid overflow center-container top-margin\">\n  <div class=\"list-group\">\n    <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n      <div class=\"row\">\n        <div class=\"col-xs-8\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n             class=\"colored-link\">\n                        <span class=\"c1-text-bold\">\n                            Blog Post\n                        </span>\n          </a>\n        </div>\n        <div class=\"col-xs-4\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n             class=\"c1-color-black glyphicon-size\">\n                        <span\n                          class=\"glyphicon glyphicon-cog pull-right colored-link\">\n\n                        </span>\n          </a>\n        </div>\n      </div>\n\n    </div>\n    <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n      <div class=\"row\">\n        <div class=\"col-xs-8\">\n          <a\n            [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n            class=\"colored-link\">\n                        <span class=\"c1-text-bold\">\n                            Blogs\n                        </span>\n          </a>\n        </div>\n        <div class=\"col-xs-4\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n             class=\"c1-color-black glyphicon-size\">\n                        <span\n                          class=\"glyphicon glyphicon-cog pull-right colored-link\">\n\n                        </span>\n          </a>\n        </div>\n      </div>\n\n    </div>\n    <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n      <div class=\"row\">\n        <div class=\"col-xs-8\">\n          <a\n            [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n            class=\"colored-link\">\n                        <span class=\"c1-text-bold\">\n                           Home\n                        </span>\n          </a>\n        </div>\n        <div class=\"col-xs-4\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n             class=\"c1-color-black glyphicon-size\">\n                        <span\n                          class=\"glyphicon glyphicon-cog pull-right colored-link\">\n\n                        </span>\n          </a>\n        </div>\n      </div>\n\n    </div>\n    <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n      <div class=\"row\">\n        <div class=\"col-xs-8\">\n          <a\n            [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n            class=\"colored-link\">\n                        <span class=\"c1-text-bold\">\n                            About\n                        </span>\n          </a>\n        </div>\n        <div class=\"col-xs-4\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n             class=\"c1-color-black glyphicon-size\">\n                        <span\n                          class=\"glyphicon glyphicon-cog pull-right colored-link\">\n\n                        </span>\n          </a>\n        </div>\n      </div>\n\n    </div>\n    <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n      <div class=\"row\">\n        <div class=\"col-xs-8\">\n          <a\n            [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n            class=\"colored-link\">\n                        <span class=\"c1-text-bold\">\n                            Contact Us\n                        </span>\n          </a>\n        </div>\n        <div class=\"col-xs-4\">\n          <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n             class=\"c1-color-black glyphicon-size\">\n                        <span\n                          class=\"glyphicon glyphicon-cog pull-right colored-link\">\n\n                        </span>\n          </a>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/:uid']\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\"\n       [routerLink]=\"['/user/',userId, 'website']\">\n            <span\n              class=\"glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color\">\n\n            </span>\n    </a>\n    <span\n      class=\"navbar-brand\">\n                Pages\n        </span>\n    <a class=\"navbar-brand pull-right\"\n       [routerLink]=\"['/user/',userId, 'website', webId, 'page', 'new']\">\n            <span\n              class=\"glyphicon glyphicon-plus glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid overflow center-container top-margin\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n        <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n      </a>\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -383,6 +412,8 @@ module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -393,10 +424,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var PageListComponent = (function () {
-    function PageListComponent() {
+    function PageListComponent(route, pageService) {
+        this.route = route;
+        this.pageService = pageService;
     }
     PageListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.pageId = params['pid'];
+            _this.pages = _this.pageService.findPageByWebsiteId(_this.webId);
+        });
     };
     return PageListComponent;
 }());
@@ -406,9 +448,10 @@ PageListComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageService */]) === "function" && _b || Object])
 ], PageListComponent);
 
+var _a, _b;
 //# sourceMappingURL=page-list.component.js.map
 
 /***/ }),
@@ -434,7 +477,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user/:uid/website/:wid/page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user/:uid/website/:wid/page/new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user/:uid/website/:wid/page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         [routerLink]=\"['/user/:uid/website/:wid/page']\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <div class=\"list-group\">\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10 \">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Blog Post\n                                </a>\n                            </span>\n            </div>\n\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10 \">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Blogs\n                                </a>\n                            </span>\n            </div>\n\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10\">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Home\n                                </a>\n                            </span>\n            </div>\n\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-size glyphicon-cog pull-right colored-link\">\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10 \">\n                            <span>\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    About\n                                </a>\n                            </span>\n            </div>\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\" class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n        <div class=\"list-group-item list-group-item-action flex-column align-items-start\">\n          <div class=\"row\">\n            <div class=\"col-xs-10\">\n                            <span class=\"\">\n                                <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid/widget']\"\n                                   class=\"c1-text-bold colored-link\">\n                                    Contact Us\n                                </a>\n                            </span>\n            </div>\n            <div class=\"col-xs-2\">\n              <a [routerLink]=\"['/user/:uid/website/:wid/page/:pid']\"\n                 class=\"black-link\">\n                                <span\n                                  class=\"glyphicon glyphicon-cog glyphicon-size pull-right colored-link\">\n\n                                </span>\n              </a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"  required autofocus>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 required>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/:uid']\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page', 'new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a (click)=\"add()\" class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n            <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n          </a>\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n            <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\" #f=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"\n                 name=\"name\"\n                 #name=\"\"\n                 required autofocus>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 name=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"descr\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"descr\"\n                 name=\"descr\"\n                 class=\"form-control\"\n                 placeholder=\"Description\"\n                 required>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -444,6 +487,9 @@ module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -454,22 +500,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var PageNewComponent = (function () {
-    function PageNewComponent() {
+    function PageNewComponent(activatedRoute, pageService) {
+        this.activatedRoute = activatedRoute;
+        this.pageService = pageService;
     }
     PageNewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websiteId = params['wid'];
+            _this.pages = _this.pageService.findPageByWebsiteId(_this.websiteId);
+        });
+    };
+    PageNewComponent.prototype.add = function () {
+        console.log('Inside add function');
+        var page = {};
+        this.name = this.newForm.value.name;
+        this.descr = this.newForm.value.descr;
+        console.log('Form values ' + this.name + this.descr);
+        page['name'] = this.name;
+        page['description'] = this.descr;
+        this.pageService.createPage(this.websiteId, page);
+        console.log('Page added with name and descr' + this.name + this.descr);
+        console.log('new JSON array' + JSON.stringify(this.pageService.pages));
     };
     return PageNewComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], PageNewComponent.prototype, "newForm", void 0);
 PageNewComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-page-new',
         template: __webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageService */]) === "function" && _c || Object])
 ], PageNewComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=page-new.component.js.map
 
 /***/ }),
@@ -814,7 +888,6 @@ var RegisterComponent = (function () {
             user['password'] = this.password;
             user = this.userService.createUser(user);
             this.router.navigate(['user', user['_id']]);
-            console.log('User created! New JSON: ' + this.userService.users);
         }
     };
     return RegisterComponent;
@@ -908,8 +981,6 @@ var WebsiteEditComponent = (function () {
     };
     WebsiteEditComponent.prototype.delete = function () {
         this.websiteService.deleteWebsite(this.websiteId);
-        console.log('Deleted website id ' + this.websiteId);
-        console.log('New website JSON is ' + JSON.stringify(this.websiteService.websites));
     };
     return WebsiteEditComponent;
 }());
@@ -1482,8 +1553,12 @@ var PageService = (function () {
         };
     }
     PageService.prototype.createPage = function (websiteId, page) {
-        page._id = Math.random();
-        page.websiteId = websiteId;
+        var id = Math.floor(Math.random() * 10000);
+        // Ids must be unique
+        while (this.findPageById(id.toString())) {
+            id = id * 2;
+        }
+        page._id = id.toString();
         this.pages.push(page);
         return page;
     };
@@ -1511,11 +1586,11 @@ var PageService = (function () {
         }
     };
     PageService.prototype.deletePage = function (pageId) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x]._id === pageId) {
-                delete this.pages[pageId];
-            }
+        var pageIndex = this.pages.findIndex(function (i) { return i._id === pageId; });
+        if (this.pages[pageIndex]) {
+            this.pages.splice(pageIndex, 1);
         }
+        return this.pages[pageIndex];
     };
     return PageService;
 }());
