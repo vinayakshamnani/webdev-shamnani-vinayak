@@ -22,6 +22,7 @@ export class PageListComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.pages = this.pageService.findPageByWebsiteId(this.webId);
+      console.log('Page List array is ' + JSON.stringify(this.pages));
     });
 
   }

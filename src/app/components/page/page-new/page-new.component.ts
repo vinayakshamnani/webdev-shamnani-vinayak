@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PageService} from '../../../services/page.service.client';
 import {NgForm} from '@angular/forms';
 
@@ -18,7 +18,7 @@ export class PageNewComponent implements OnInit {
   @ViewChild('f') newForm: NgForm;
   pages: {};
 
-  constructor(private activatedRoute: ActivatedRoute, private pageService: PageService) { }
+  constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -36,6 +36,7 @@ export class PageNewComponent implements OnInit {
     page['name'] = this.name;
     page['description'] = this.descr;
     this.pageService.createPage(this.websiteId, page);
+    this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
     console.log('Page added with name and descr' + this.name + this.descr);
     console.log('new JSON array' + JSON.stringify(this.pageService.pages));
   }

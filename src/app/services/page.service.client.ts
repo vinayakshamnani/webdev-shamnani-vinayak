@@ -28,6 +28,7 @@ export class PageService {
       id = id * 2;
     }
     page._id = id.toString();
+    page.websiteId = websiteId;
     this.pages.push(page);
     return page;
   }
