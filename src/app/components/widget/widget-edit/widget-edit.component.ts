@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {WidgetType} from '../../../model/widgettype.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {WidgetService} from '../../../services/widget.service.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -6,10 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./widget-edit.component.css']
 })
 export class WidgetEditComponent implements OnInit {
-
-  constructor() { }
+  widget: any;
+  widgetId: string;
+  userId: string;
+  websiteId: string;
+  pageId: string;
+  header = 'HEADING';
+  image = 'IMAGE';
+  youtube = 'YOUTUBE';
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.userId = params['uid'];
+      this.websiteId = params['wid'];
+      this.pageId = params['pid'];
+      this.widgetId = params['wgid'];
+      this.widget = this.widgetService.findWidgetById(this.widgetId);
+      console.log('Widget is : ' + this.widget);
+    });
   }
 
 }

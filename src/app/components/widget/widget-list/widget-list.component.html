@@ -1,11 +1,11 @@
 <nav class="navbar navbar-fixed-top navbar-custom">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/user/:uid/website/:wid/page']"><span
+    <a class="navbar-brand" [routerLink]="['/user/', userId, 'website', websiteId, 'page']"><span
       class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
     <span class="navbar-brand">
               Widgets
             </span>
-    <a class="navbar-brand pull-right" [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']"><span
+    <a class="navbar-brand pull-right" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']"><span
       class="glyphicon glyphicon-plus glyph-color"></span></a>
 
 
@@ -14,65 +14,60 @@
 
 
 
-<div class="row custom-widget top-margin bottom-margin">
+
+  <div *ngFor="let widget of widgets">
+
+    <div [ngSwitch]="widget.widgetType">
+<div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'HEADING'">
   <div class="col-xs-12">
-    <div class="custom-widget-toolbar">
+    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
       <a class="colored-link" href="#"><span
         class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
-      <a class="glyph-color" href="widget-heading.html"><span
-        class="glyphicon glyphicon-cog pull-right"></span></a>
+      <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+      <span class= " glyphicon glyphicon-cog pull-right"></span></a>
     </div>
-    <h1>M5 crash: Four dead in Gloucestershire</h1>
+    <h1>{{widget.text}}</h1>
   </div>
-  <div class="col-xs-12">
-    <div class="custom-widget-toolbar">
-      <a  href="#"><span
-        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
-      <a href="#"><span class="glyphicon glyphicon-cog pull-right glyph-color"></span></a>
-    </div>
-    <h3>83-year-old pushes burglary suspect off roof, ends police standoff</h3>
-  </div>
-  <div class="col-xs-12">
-    <div class="custom-widget-toolbar">
-      <a href="#"><span
-        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
-      <a  href="widget-image.html"><span
-        class="glyphicon glyphicon-cog pull-right glyph-color"></span></a>
-    </div>
-    <img class="img-responsive"
-         src="https://static.pexels.com/photos/311012/pexels-photo-311012.jpeg">
-  </div>
-  <div class="col-xs-12">
-    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
-      <a href="#"><span
-        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
-      <a href="#"><span
-        class="glyphicon glyphicon-cog pull-right glyph-color"></span></a>
-    </div>
-    <h4>An EU official said the U.S. will not withdraw from the Paris climate deal, contrary to the public statements of President Trump, the Wall Street Journal said.</h4>
-  </div>
-
-
-  <div class="col-xs-12">
-    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
-      <a  href="#"><span
-        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
-      <a  href="widget-youtube.html"><span
-        class="glyphicon glyphicon-cog pull-right glyph-color"></span></a>
-    </div>
-    <div class="custom-responsive-video">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/ah7LYxysuJ8"
-              frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
 </div>
+
+
+      <div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'IMAGE'">
+        <div class="col-xs-12">
+          <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+            <a class="colored-link" href="#"><span
+              class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+            <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]"><span
+              class="glyphicon glyphicon-cog pull-right"></span></a>
+          </div>
+          <img src="{{widget.url}}" [style.width]="widget.width">
+        </div>
+      </div>
+
+
+      <div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'YOUTUBE'">
+        <div class="col-xs-12">
+          <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+            <a class="colored-link" href="#"><span
+              class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+            <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]"><span
+              class="glyphicon glyphicon-cog pull-right"></span></a>
+          </div>
+          <div class="custom-responsive-video">
+          <iframe  [src]="sanitizeUrl(widget.url)" width="560" height="315"
+                   frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fluid">
     <a class="navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding" href="#"><span class="glyphicon glyphicon-play glyph-color"></span></a>
     <a class="navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding" href="#"><span class="glyphicon glyphicon-eye-open glyph-color"></span></a>
-    <a class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding" [routerLink]="['/user/:uid']"><span class="glyphicon glyphicon-user glyph-color"></span></a>
+    <a class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding" [routerLink]="['/user', userId]"><span class="glyphicon glyphicon-user glyph-color"></span></a>
   </div>
 </nav>

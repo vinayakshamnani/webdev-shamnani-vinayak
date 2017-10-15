@@ -2,7 +2,9 @@
 
   <nav class="navbar navbar-fixed-top navbar-custom">
     <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"><span
+      <a class="navbar-brand" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,'widget']"><span
         class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
       <span class="navbar-brand">
               Choose a Widget
@@ -10,16 +12,24 @@
     </div>
   </nav>
   <div class="top-margin">
-    <ul><a href="widget-heading.html">Header</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">Label</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">HTML</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">Text Input</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">Link</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">Button</a></ul>
-    <ul><a href="widget-image.html">Image</a></ul>
-    <ul><a href="widget-youtube.html">YouTube</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">Data Table</a></ul>
-    <ul><a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget/new']">Repeater</a></ul>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a class="colored-link" (click)="add('HEADING')">Header</a>
+      </li>
+      <li class="list-group-item">
+        <a class="colored-link" (click)="add('IMAGE')">Image</a>
+      </li>
+      <li class="list-group-item">
+        <a class="colored-link" (click)="add('YOUTUBE')">Youtube</a>
+      </li>
+    </ul>
   </div>
 
+  <nav class="navbar navbar-fixed-bottom navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding" href="#"><span class="glyphicon glyphicon-play glyph-color"></span></a>
+      <a class="navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding" href="#"><span class="glyphicon glyphicon-eye-open glyph-color"></span></a>
+      <a class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding" [routerLink]="['/user', userId]"><span class="glyphicon glyphicon-user glyph-color"></span></a>
+    </div>
+  </nav>
 </div>

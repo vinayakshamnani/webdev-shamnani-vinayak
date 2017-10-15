@@ -1,12 +1,18 @@
 <nav class="navbar-custom navbar-fixed-top">
   <div class="row">
     <div class="col-xs-12">
-      <a class="navbar-brand" href="widget-list.html"><span
+      <a class="navbar-brand" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']"><span
         class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
       <span class="navbar-brand">
                 <strong>Widget Edit</strong>
             </span>
-      <a class="navbar-brand pull-right" href="widget-list.html"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
+      <a class="navbar-brand pull-right" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
     </div>
   </div>
 </nav>
@@ -25,7 +31,8 @@
             id="name"
             class="form-control"
             placeholder="Name"
-            value="Colbert"
+            [(ngModel)]="widget.name"
+            name="name"
             required autofocus>
         </div>
         <div class="form-group">
@@ -40,7 +47,8 @@
             placeholder="Title"
             data-toggle="tooltip"
             title="Enter Widget Text"
-            value="Colbert Reveals What Letterman Taught Him" required>
+            name="text"
+            [(ngModel)]="widget.text"  required>
         </div>
         <div class="form-group">
           <label for="url" class="c1-text-bold">
@@ -52,7 +60,8 @@
                  placeholder="URL"
                  data-toggle="tooltip"
                  title="Enter Widget URL"
-                 value="https://www.youtube.com/watch?v=Zr22PtGd1So"
+                 [(ngModel)]="widget.url"
+                 name="url"
                  required>
         </div>
         <div class="form-group">
@@ -60,21 +69,19 @@
                  class="c1-text-bold">
             Width
           </label>
-          <select id="width"
+          <input type="text" id="width"
                   class="form-control"
                   data-toggle="tooltip"
-                  title="Enter Widget width" required>
-            <option value="50">
-              50%
-            </option>
+                  name="width"required
+                 [(ngModel)]="widget.width">
 
-            <option value="100" selected>
-              100%
-            </option>
-          </select>
+
         </div>
         <div class="form-group">
-          <a href="widget-list.html"
+          <a (click)="delete()" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']"
              class="btn btn-lg btn-block btn-danger"
              type="submit">
             Delete
@@ -86,7 +93,7 @@
 </div>
 <nav class="navbar navbar-custom navbar-fixed-bottom">
   <div class="container-fuild">
-    <a href="../user/profile.html"
+    <a [routerLink]="['/user',userId]"
        class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
             <span class="glyphicon glyphicon-user glyph-color">
             </span>

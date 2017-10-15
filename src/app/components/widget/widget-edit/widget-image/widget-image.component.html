@@ -1,12 +1,18 @@
 <nav class="navbar-custom navbar-fixed-top">
   <div class="row">
     <div class="col-xs-12">
-      <a class="navbar-brand" href="widget-list.html"><span
+      <a class="navbar-brand" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']"><span
         class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
       <span class="navbar-brand">
                 <strong>Widget Edit</strong>
             </span>
-      <a class="navbar-brand pull-right" href="widget-list.html"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
+      <a class="navbar-brand pull-right" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
     </div>
   </div>
 </nav>
@@ -20,14 +26,19 @@
           <label for="name" class="c1-text-bold font-little-large c1-color-black">Name</label>
           <input type="text" id="name" class="form-control" placeholder="Name" value="Sample Image"
                  data-toggle="tooltip"
-                 title="Enter Widget Name" required autofocus>
+                 title="Enter Widget Name" required autofocus
+          name="name"
+          ngModel [(ngModel)]="widget.name"
+          >
         </div>
         <div class="form-group">
           <label for="text" class="c1-text-bold font-little-large c1-color-black">Text</label>
           <input type="text" id="text" class="form-control" placeholder="Title"
                  data-toggle="tooltip"
                  title="Enter Widget Text"
-                 value="Widget Text Here" required>
+                 value="Widget Text Here" required
+                 name="name"
+                 ngModel [(ngModel)]="widget.text">
         </div>
         <div class="form-group">
           <label for="url" class="c1-text-bold font-little-large c1-color-black">URL</label>
@@ -35,18 +46,17 @@
                  data-toggle="tooltip"
                  title="Enter Widget URL"
                  value="https://thumb1.shutterstock.com/display_pic_with_logo/3973673/602824259/stock-vector-presentation-business-infographic-template-with-options-vector-illustration-602824259.jpg"
-                 required>
+                 required
+                 name="url"
+                 ngModel [(ngModel)]="widget.url">
         </div>
         <div class="form-group">
           <label for="width" class="c1-text-bold font-little-large c1-color-black">Width</label>
-          <select id="width" class="form-control"
+          <input type="text" id="width" class="form-control"
                   data-toggle="tooltip"
-                  title="Enter Widget width" required>
-            <option value="25">25%</option>
-            <option value="50">50%</option>
-            <option value="75">75%</option>
-            <option value="100" selected>100%</option>
-          </select>
+                  title="Enter Widget width" required
+                  name="width"
+                  ngModel [(ngModel)]="widget.width">
         </div>
         <div class="form-group">
           <label for="upload" class="c1-text-bold font-little-large c1-color-black">Upload</label>
@@ -57,7 +67,10 @@
         </div>
 
         <div class="form-group">
-          <a href="widget-list.html" class="btn btn-lg btn-block btn-danger" type="submit">Delete</a>
+          <a [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']" class="btn btn-lg btn-block btn-danger" type="submit">Delete</a>
         </div>
       </form>
     </div>
@@ -66,7 +79,7 @@
 <nav class="navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="../user/profile.html"><span class="glyphicon glyphicon-user pull-right glyph-color"></span></a></li>
+      <li><a [routerLink]="['/user',userId]"><span class="glyphicon glyphicon-user pull-right glyph-color"></span></a></li>
     </ul>
 
   </div>

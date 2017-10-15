@@ -29,7 +29,12 @@ export class WidgetService {
     'deleteWidget'             : this.deleteWidget,
   };
   createWidget(pageId: string, widget: any) {
-    widget._id = Math.random();
+    let id = Math.floor(Math.random() * 10000);
+    // Ids must be unique
+    while (this.findWidgetById(id.toString())) {
+      id = id * 2;
+    }
+    widget._id = id.toString();
     widget.pageId = pageId;
     this.widgets.push(widget);
     return widget;
@@ -44,8 +49,11 @@ export class WidgetService {
 
 
   findWidgetById(widgetId: string) {
+    console.log('Inside find widget');
     for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {return this.widgets[x]; }
+      if (this.widgets[x]._id === widgetId) {
+        console.log('Found widget with Id ' + widgetId);
+        return this.widgets[x]; }
     }
   }
 
@@ -59,10 +67,10 @@ export class WidgetService {
     }
   }
   deleteWidget(widgetId: string) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        delete this.widgets[widgetId];
-      }
+    const widgetIndex = this.widgets.findIndex(i => i._id === widgetId);
+    if (this.widgets[widgetIndex]) {
+      this.widgets.splice(widgetIndex, 1);
     }
+    return this.widgets[widgetIndex];
   }
 }

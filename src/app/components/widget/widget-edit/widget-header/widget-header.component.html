@@ -1,12 +1,15 @@
 <nav class="navbar-custom navbar-fixed-top">
   <div class="row">
     <div class="col-xs-12">
-      <a class="navbar-brand" routerLink]="['/user/:uid/website/:wid/page/:pid/widget']"><span
+      <a class="navbar-brand" [routerLink]="['/user',userId,
+          'website',websiteId,
+          'page',pageId,
+          'widget']"><span
         class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
       <span class="navbar-brand">
                 <strong>Widget Edit</strong>
             </span>
-      <a class="navbar-brand pull-right" href="widget-list.html"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
+      <a class="navbar-brand pull-right" (click)="update()"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
     </div>
   </div>
 </nav>
@@ -17,25 +20,41 @@
       <form>
         <div class="form-group">
           <label for="name" class="c1-text-bold font-little-large c1-color-black">Name</label>
-          <input type="text" id="name" class="form-control" placeholder="Name" value="83 yo ends standoff"
+          <input type="text" id="name" class="form-control" placeholder="Name"
                  data-toggle="tooltip"
-                 title="Enter Widget Name" required autofocus>
+                 title="Enter Widget Name"
+                 name="name"
+                 required autofocus
+                 ngModel
+                 [(ngModel)]="widget.name"
+                 name="name"
+                 #name="ngModel">
         </div>
         <div class="form-group">
           <label for="text" class="c1-text-bold font-little-large c1-color-black">Text</label>
           <input type="text" id="text" class="form-control" placeholder="Text"
                  data-toggle="tooltip"
                  title="Enter Widget Text"
-                 value="83-year-old pushes burglary suspect off roof, ends police standoff" required>
+                 name="text"
+                 id="text"
+                 #text="ngModel"
+                 ngModel required
+                 [(ngModel)]="widget.text"
+          >
         </div>
         <div class="form-group">
           <label for="size" class="c1-text-bold font-little-large c1-color-black">Size</label>
           <input type="number" id="size" class="form-control" placeholder="Size" value="6"
                  data-toggle="tooltip"
-                 title="Enter Widget Size" min="1" max="6" required>
+                 title="Enter Widget Size" min="1" max="6" required
+                 #size="ngModel"
+                  ngModel
+                 name="size"
+                 [(ngModel)]="widget.size"
+              >
         </div>
         <div class="form-group">
-          <a href="widget-list.html" class="btn btn-lg btn-block btn-danger" type="submit">Delete</a>
+          <a (click)="delete()" [routerLink]="['../']"  class="btn btn-lg btn-block btn-danger" type="submit">Delete</a>
         </div>
       </form>
     </div>
@@ -44,7 +63,7 @@
 <nav class="navbar-custom navbar-fixed-bottom">
   <div class="container-fluid">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="../user/profile.html"><span class="glyphicon glyphicon-user pull-right glyph-color"></span></a></li>
+      <li><a [routerLink]="['/user', userId]"><span class="glyphicon glyphicon-user pull-right glyph-color"></span></a></li>
     </ul>
 
   </div>
