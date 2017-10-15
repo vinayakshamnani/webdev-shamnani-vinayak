@@ -27,7 +27,6 @@ export class WidgetHeaderComponent implements OnInit {
       this.pageId = params['pid'];
       this.widgetId = params['wgid'];
       this.widget = this.widgetService.findWidgetById(this.widgetId);
-      console.log('Inside widget header');
     });
   }
 
@@ -41,8 +40,6 @@ export class WidgetHeaderComponent implements OnInit {
 
   delete() {
     this.widgetService.deleteWidget(this.widgetId);
-    console.log('deleted widget id ' + this.widgetId);
-   console.log('New widget array ' + JSON.stringify(this.widgetService.widgets));
   }
 
 }

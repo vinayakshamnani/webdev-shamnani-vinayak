@@ -10,7 +10,7 @@ import {WebsiteService} from '../../../services/website.service.client';
 })
 export class WebsiteListComponent implements OnInit {
   userId: string;
-  websites: {};
+  websites: any[];
 
   constructor(private route: ActivatedRoute, private websiteService: WebsiteService) { }
 

@@ -28,17 +28,13 @@ export class PageNewComponent implements OnInit {
     });
   }
   add() {
-    console.log('Inside add function');
     const page = {};
     this.name = this.newForm.value.name;
     this.descr = this.newForm.value.descr;
-    console.log('Form values ' + this.name + this.descr);
     page['name'] = this.name;
     page['description'] = this.descr;
     this.pageService.createPage(this.websiteId, page);
     this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
-    console.log('Page added with name and descr' + this.name + this.descr);
-    console.log('new JSON array' + JSON.stringify(this.pageService.pages));
   }
 
 }

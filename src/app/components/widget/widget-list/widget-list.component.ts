@@ -10,7 +10,7 @@ import {DomSanitizer} from "@angular/platform-browser";
   styleUrls: ['./widget-list.component.css']
 })
 export class WidgetListComponent implements OnInit {
-  widgets: {};
+  widgets: any[];
   userId: string;
   websiteId: string;
   pageId: string;
@@ -25,7 +25,6 @@ export class WidgetListComponent implements OnInit {
       this.websiteId = params['wid'];
       this.userId = params['uid'];
       this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-      console.log('Widget list is: ' + JSON.stringify(this.widgets));
     });
   }
   sanitizeUrl(url: string) {

@@ -402,7 +402,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\"\n       [routerLink]=\"['/user/',userId, 'website']\">\n            <span\n              class=\"glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color\">\n\n            </span>\n    </a>\n    <span\n      class=\"navbar-brand\">\n                Pages\n        </span>\n    <a class=\"navbar-brand pull-right\"\n       [routerLink]=\"['/user/',userId, 'website', webId, 'page', 'new']\">\n            <span\n              class=\"glyphicon glyphicon-plus glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid overflow center-container top-margin\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n        <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n      </a>\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\"\n       [routerLink]=\"['/user/',userId, 'website']\">\n            <span\n              class=\"glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color\">\n\n            </span>\n    </a>\n    <span\n      class=\"navbar-brand\">\n                Pages\n        </span>\n    <a class=\"navbar-brand pull-right\"\n       [routerLink]=\"['/user/',userId, 'website', webId, 'page', 'new']\">\n            <span\n              class=\"glyphicon glyphicon-plus glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid overflow center-container top-margin\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n        <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n      </a>\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n      </a>\n    </li>\n\n    <!-- if there are no pages for a website-->\n\n\n    <li class=\"colored-link list-unstyled\" *ngIf=\"pages.length == 0\">\n      <i>No Pages Found</i>\n      <hr>\n      <span class=\"glyphicon glyphicon-plus glyph-color left-margin\"></span>\n      <a class=\"colored-link\" [routerLink]=\"['new']\">\n        Create New Page\n      </a>\n\n    </li>\n\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -438,7 +438,6 @@ var PageListComponent = (function () {
             _this.webId = params['wid'];
             _this.pageId = params['pid'];
             _this.pages = _this.pageService.findPageByWebsiteId(_this.webId);
-            console.log('Page List array is ' + JSON.stringify(_this.pages));
         });
     };
     return PageListComponent;
@@ -519,17 +518,13 @@ var PageNewComponent = (function () {
         });
     };
     PageNewComponent.prototype.add = function () {
-        console.log('Inside add function');
         var page = {};
         this.name = this.newForm.value.name;
         this.descr = this.newForm.value.descr;
-        console.log('Form values ' + this.name + this.descr);
         page['name'] = this.name;
         page['description'] = this.descr;
         this.pageService.createPage(this.websiteId, page);
         this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
-        console.log('Page added with name and descr' + this.name + this.descr);
-        console.log('new JSON array' + JSON.stringify(this.pageService.pages));
     };
     return PageNewComponent;
 }());
@@ -879,7 +874,7 @@ var RegisterComponent = (function () {
         this.username = this.registrationForm.value.username;
         this.password = this.registrationForm.value.password;
         this.verifypwd = this.registrationForm.value.verifypwd;
-        var user2 = this.userService.findUserByUsername(user['username']);
+        var user2 = this.userService.findUserByUsername(this.username);
         if (user2) {
             this.userExistsFlag = true;
         }
@@ -1026,7 +1021,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a [routerLink]=\"['/user/',userId]\"\n         class=\"navbar-link font-little-large\">\n                <span class=\"glyphicon glyphicon-chevron-left glyph-color\">\n                </span>\n      </a>\n    </p>\n\n    <span class=\"navbar-brand\">\n            Websites\n        </span>\n\n    <a [routerLink]=\"['/user/',userId,'website','new']\" class=\"navbar-link navbar-text pull-right cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus glyph-color\"></span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid top-margin\">\n  <ul class=\"list-group\" >\n    <li class=\"list-group-item\" *ngFor=\"let x of websites\">\n      <a [routerLink]=\"['/user/',userId,'website',x._id,'page']\"><span class=\"c1-text-bold colored-link\">{{x.name}}</span></a>\n      <a [routerLink]=\"['/user/',userId,'website',x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span></a>\n    </li>\n  </ul>\n</div>\n\n\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/',userId]\" class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-user glyph-color\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a [routerLink]=\"['/user/',userId]\"\n         class=\"navbar-link font-little-large\">\n                <span class=\"glyphicon glyphicon-chevron-left glyph-color\">\n                </span>\n      </a>\n    </p>\n\n    <span class=\"navbar-brand\">\n            Websites\n        </span>\n\n    <a [routerLink]=\"['/user/',userId,'website','new']\" class=\"navbar-link navbar-text pull-right cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus glyph-color\"></span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid top-margin\">\n  <ul class=\"list-group\" >\n    <li class=\"list-group-item\" *ngFor=\"let x of websites\">\n      <a [routerLink]=\"['/user/',userId,'website',x._id,'page']\"><span class=\"c1-text-bold colored-link\">{{x.name}}</span></a>\n      <a [routerLink]=\"['/user/',userId,'website',x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span></a>\n    </li>\n\n    <li class=\"colored-link list-unstyled\" *ngIf=\"websites.length == 0\">\n      <i>No Websites Found</i>\n      <hr>\n      <span class=\"glyphicon glyphicon-plus colored-link left-margin\"></span>\n      <a class=\"no-color \" [routerLink]=\"['new']\">\n        Create New Website\n      </a>\n\n    </li>\n  </ul>\n</div>\n\n\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/',userId]\" class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-user glyph-color\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1225,7 +1220,6 @@ var WidgetChooseComponent = (function () {
         };
         widget = this.widgetService.createWidget(this.pageId, widget);
         this.router.navigate(['../' + widget._id], { relativeTo: this.route });
-        console.log('Created widget with ID ' + widget._id + 'of type ' + widget.widgetType);
     };
     return WidgetChooseComponent;
 }());
@@ -1305,7 +1299,6 @@ var WidgetEditComponent = (function () {
             _this.pageId = params['pid'];
             _this.widgetId = params['wgid'];
             _this.widget = _this.widgetService.findWidgetById(_this.widgetId);
-            console.log('Widget is : ' + _this.widget);
         });
     };
     return WidgetEditComponent;
@@ -1385,7 +1378,6 @@ var WidgetHeaderComponent = (function () {
             _this.pageId = params['pid'];
             _this.widgetId = params['wgid'];
             _this.widget = _this.widgetService.findWidgetById(_this.widgetId);
-            console.log('Inside widget header');
         });
     };
     WidgetHeaderComponent.prototype.update = function () {
@@ -1397,8 +1389,6 @@ var WidgetHeaderComponent = (function () {
     };
     WidgetHeaderComponent.prototype.delete = function () {
         this.widgetService.deleteWidget(this.widgetId);
-        console.log('deleted widget id ' + this.widgetId);
-        console.log('New widget array ' + JSON.stringify(this.widgetService.widgets));
     };
     return WidgetHeaderComponent;
 }());
@@ -1605,7 +1595,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page']\"><span\n      class=\"glyphicon glyphicon-chevron-left pull-left glyph-color\"></span></a>\n    <span class=\"navbar-brand\">\n              Widgets\n            </span>\n    <a class=\"navbar-brand pull-right\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']\"><span\n      class=\"glyphicon glyphicon-plus glyph-color\"></span></a>\n\n\n  </div>\n</nav>\n\n\n\n\n  <div *ngFor=\"let widget of widgets\">\n\n    <div [ngSwitch]=\"widget.widgetType\">\n<div class=\"row custom-widget top-margin bottom-margin\" *ngSwitchCase=\"'HEADING'\">\n  <div class=\"col-xs-12\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n      <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h1>{{widget.text}}</h1>\n  </div>\n</div>\n\n\n      <div class=\"row custom-widget top-margin bottom-margin\" *ngSwitchCase=\"'IMAGE'\">\n        <div class=\"col-xs-12\">\n          <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n            <a class=\"colored-link\" href=\"#\"><span\n              class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n            <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\"><span\n              class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          </div>\n          <img src=\"{{widget.url}}\" [style.width]=\"widget.width\">\n        </div>\n      </div>\n\n\n      <div class=\"row custom-widget top-margin bottom-margin\" *ngSwitchCase=\"'YOUTUBE'\">\n        <div class=\"col-xs-12\">\n          <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n            <a class=\"colored-link\" href=\"#\"><span\n              class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n            <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\"><span\n              class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          </div>\n          <div class=\"custom-responsive-video\">\n          <iframe  [src]=\"sanitizeUrl(widget.url)\" width=\"560\" height=\"315\"\n                   frameborder=\"0\" allowfullscreen></iframe>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding\" href=\"#\"><span class=\"glyphicon glyphicon-play glyph-color\"></span></a>\n    <a class=\"navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding\" href=\"#\"><span class=\"glyphicon glyphicon-eye-open glyph-color\"></span></a>\n    <a class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\" [routerLink]=\"['/user', userId]\"><span class=\"glyphicon glyphicon-user glyph-color\"></span></a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page']\"><span\n      class=\"glyphicon glyphicon-chevron-left pull-left glyph-color\"></span></a>\n    <span class=\"navbar-brand\">\n              Widgets\n            </span>\n    <a class=\"navbar-brand pull-right\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']\"><span\n      class=\"glyphicon glyphicon-plus glyph-color\"></span></a>\n\n\n  </div>\n</nav>\n\n\n\n\n  <div *ngFor=\"let widget of widgets\">\n\n    <div [ngSwitch]=\"widget.widgetType\">\n<div class=\"row custom-widget top-margin bottom-margin\" *ngSwitchCase=\"'HEADING'\" [ngSwitch]=\"widget.size\">\n  <div class=\"col-xs-12\" *ngSwitchCase=\"'1'\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n      <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h1>{{widget.text}}</h1>\n  </div>\n\n  <div class=\"col-xs-12\" *ngSwitchCase=\"'2'\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n        <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h2>{{widget.text}}</h2>\n  </div>\n\n  <div class=\"col-xs-12\" *ngSwitchCase=\"'3'\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n        <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h3>{{widget.text}}</h3>\n  </div>\n\n  <div class=\"col-xs-12\" *ngSwitchCase=\"'4'\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n        <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h4>{{widget.text}}</h4>\n  </div>\n\n  <div class=\"col-xs-12\" *ngSwitchCase=\"'5'\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n        <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h5>{{widget.text}}</h5>\n  </div>\n\n  <div class=\"col-xs-12\" *ngSwitchCase=\"'6'\">\n    <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n      <a class=\"colored-link\" href=\"#\"><span\n        class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n      <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\">\n        <span class= \" glyphicon glyphicon-cog pull-right\"></span></a>\n    </div>\n    <h6>{{widget.text}}</h6>\n  </div>\n</div>\n\n\n      <div class=\"row custom-widget top-margin bottom-margin\" *ngSwitchCase=\"'IMAGE'\">\n        <div class=\"col-xs-12\">\n          <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n            <a class=\"colored-link\" href=\"#\"><span\n              class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n            <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\"><span\n              class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          </div>\n          <img src=\"{{widget.url}}\" [style.width]=\"widget.width\">\n        </div>\n      </div>\n\n\n      <div class=\"row custom-widget top-margin bottom-margin\" *ngSwitchCase=\"'YOUTUBE'\">\n        <div class=\"col-xs-12\">\n          <div class=\"custom-widget-toolbar custom-widget-toolbar-ontop\">\n            <a class=\"colored-link\" href=\"#\"><span\n              class=\"glyphicon glyphicon-menu-hamburger pull-right glyph-color\"></span></a>\n            <a class=\"glyph-color\" [routerLink]=\"['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]\"><span\n              class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          </div>\n          <div class=\"custom-responsive-video\">\n          <iframe  [src]=\"sanitizeUrl(widget.url)\" [style.width]=\"widget.width\" height=\"315\"\n                   frameborder=\"0\" allowfullscreen></iframe>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n<ul class=\"top-margin\">\n<li class=\"colored-link list-unstyled\" *ngIf=\"widgets.length == 0\">\n  <i>No Widgets Found</i>\n  <hr>\n  <span class=\"glyphicon glyphicon-plus glyph-color left-margin\"></span>\n  <a class=\"colored-link\" [routerLink]=\"['new']\">\n    Create New Widget\n  </a>\n\n</li>\n</ul>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding\" href=\"#\"><span class=\"glyphicon glyphicon-play glyph-color\"></span></a>\n    <a class=\"navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding\" href=\"#\"><span class=\"glyphicon glyphicon-eye-open glyph-color\"></span></a>\n    <a class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\" [routerLink]=\"['/user', userId]\"><span class=\"glyphicon glyphicon-user glyph-color\"></span></a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1648,7 +1638,6 @@ var WidgetListComponent = (function () {
             _this.websiteId = params['wid'];
             _this.userId = params['uid'];
             _this.widgets = _this.widgetService.findWidgetsByPageId(_this.pageId);
-            console.log('Widget list is: ' + JSON.stringify(_this.widgets));
         });
     };
     WidgetListComponent.prototype.sanitizeUrl = function (url) {
@@ -1908,7 +1897,6 @@ var UserService = (function () {
         for (var x = 0; x < this.users.length; x++) {
             if (this.users[x]._id === userId) {
                 this.users[x] = user;
-                console.log('Successfully updated. The new JSON is ' + JSON.stringify(this.users));
             }
         }
     };
@@ -2081,10 +2069,8 @@ var WidgetService = (function () {
         return list;
     };
     WidgetService.prototype.findWidgetById = function (widgetId) {
-        console.log('Inside find widget');
         for (var x = 0; x < this.widgets.length; x++) {
             if (this.widgets[x]._id === widgetId) {
-                console.log('Found widget with Id ' + widgetId);
                 return this.widgets[x];
             }
         }

@@ -29,8 +29,7 @@ export class RegisterComponent implements OnInit {
     this.username = this.registrationForm.value.username;
     this.password = this.registrationForm.value.password;
     this.verifypwd = this.registrationForm.value.verifypwd;
-
-    const user2 = this.userService.findUserByUsername(user['username']);
+    const user2 = this.userService.findUserByUsername(this.username);
     if (user2) {
       this.userExistsFlag = true;
     } else if (this.password !== this.verifypwd) {

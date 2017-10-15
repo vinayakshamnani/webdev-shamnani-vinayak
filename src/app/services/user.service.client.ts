@@ -53,8 +53,7 @@ findUserByCredentials(username: string, password: string) {
 
 updateUser(userId: string, user: any) {
   for (let x = 0; x < this.users.length; x++) {
-    if (this.users[x]._id === userId) { this.users[x] = user;
-      console.log('Successfully updated. The new JSON is ' + JSON.stringify(this.users));}
+    if (this.users[x]._id === userId) { this.users[x] = user;}
   }
   }
 

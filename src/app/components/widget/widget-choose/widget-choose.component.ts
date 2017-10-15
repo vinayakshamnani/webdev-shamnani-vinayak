@@ -31,7 +31,6 @@ export class WidgetChooseComponent implements OnInit {
     }
     widget = this.widgetService.createWidget(this.pageId, widget);
     this.router.navigate(['../' + widget._id], {relativeTo: this.route});
-    console.log('Created widget with ID ' + widget._id + 'of type ' + widget.widgetType);
   }
 
 }

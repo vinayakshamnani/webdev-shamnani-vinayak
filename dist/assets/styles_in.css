@@ -152,3 +152,14 @@ ul
 {
   margin-bottom: 70px;
 }
+
+.no-color
+{
+  color: black;
+  font-weight: normal;
+}
+
+.left-margin
+{
+  margin-left: 10px;
+}

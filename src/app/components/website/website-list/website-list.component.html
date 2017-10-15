@@ -26,6 +26,16 @@
       <a [routerLink]="['/user/',userId,'website',x._id]">
         <span class="glyphicon glyphicon-cog pull-right colored-link"></span></a>
     </li>
+
+    <li class="colored-link list-unstyled" *ngIf="websites.length == 0">
+      <i>No Websites Found</i>
+      <hr>
+      <span class="glyphicon glyphicon-plus colored-link left-margin"></span>
+      <a class="no-color " [routerLink]="['new']">
+        Create New Website
+      </a>
+
+    </li>
   </ul>
 </div>
 

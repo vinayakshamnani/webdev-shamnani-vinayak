@@ -18,8 +18,8 @@
   <div *ngFor="let widget of widgets">
 
     <div [ngSwitch]="widget.widgetType">
-<div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'HEADING'">
-  <div class="col-xs-12">
+<div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'HEADING'" [ngSwitch]="widget.size">
+  <div class="col-xs-12" *ngSwitchCase="'1'">
     <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
       <a class="colored-link" href="#"><span
         class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
@@ -27,6 +27,56 @@
       <span class= " glyphicon glyphicon-cog pull-right"></span></a>
     </div>
     <h1>{{widget.text}}</h1>
+  </div>
+
+  <div class="col-xs-12" *ngSwitchCase="'2'">
+    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+      <a class="colored-link" href="#"><span
+        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+      <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+        <span class= " glyphicon glyphicon-cog pull-right"></span></a>
+    </div>
+    <h2>{{widget.text}}</h2>
+  </div>
+
+  <div class="col-xs-12" *ngSwitchCase="'3'">
+    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+      <a class="colored-link" href="#"><span
+        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+      <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+        <span class= " glyphicon glyphicon-cog pull-right"></span></a>
+    </div>
+    <h3>{{widget.text}}</h3>
+  </div>
+
+  <div class="col-xs-12" *ngSwitchCase="'4'">
+    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+      <a class="colored-link" href="#"><span
+        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+      <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+        <span class= " glyphicon glyphicon-cog pull-right"></span></a>
+    </div>
+    <h4>{{widget.text}}</h4>
+  </div>
+
+  <div class="col-xs-12" *ngSwitchCase="'5'">
+    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+      <a class="colored-link" href="#"><span
+        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+      <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+        <span class= " glyphicon glyphicon-cog pull-right"></span></a>
+    </div>
+    <h5>{{widget.text}}</h5>
+  </div>
+
+  <div class="col-xs-12" *ngSwitchCase="'6'">
+    <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+      <a class="colored-link" href="#"><span
+        class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+      <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+        <span class= " glyphicon glyphicon-cog pull-right"></span></a>
+    </div>
+    <h6>{{widget.text}}</h6>
   </div>
 </div>
 
@@ -53,7 +103,7 @@
               class="glyphicon glyphicon-cog pull-right"></span></a>
           </div>
           <div class="custom-responsive-video">
-          <iframe  [src]="sanitizeUrl(widget.url)" width="560" height="315"
+          <iframe  [src]="sanitizeUrl(widget.url)" [style.width]="widget.width" height="315"
                    frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
@@ -61,8 +111,17 @@
     </div>
   </div>
 
+<ul class="top-margin">
+<li class="colored-link list-unstyled" *ngIf="widgets.length == 0">
+  <i>No Widgets Found</i>
+  <hr>
+  <span class="glyphicon glyphicon-plus glyph-color left-margin"></span>
+  <a class="colored-link" [routerLink]="['new']">
+    Create New Widget
+  </a>
 
-
+</li>
+</ul>
 
 <nav class="navbar navbar-fixed-bottom navbar-custom">
   <div class="container-fluid">

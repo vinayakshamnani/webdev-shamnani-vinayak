@@ -11,7 +11,7 @@ export class PageListComponent implements OnInit {
 
   userId: string;
   webId: string;
-  pages: {};
+  pages: any[];
   pageId: string;
 
   constructor(private route: ActivatedRoute, private pageService: PageService) { }
@@ -22,7 +22,6 @@ export class PageListComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.pages = this.pageService.findPageByWebsiteId(this.webId);
-      console.log('Page List array is ' + JSON.stringify(this.pages));
     });
 
   }

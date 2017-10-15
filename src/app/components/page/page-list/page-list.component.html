@@ -32,11 +32,25 @@
         <span class="glyphicon glyphicon-cog pull-right colored-link"></span>
       </a>
     </li>
+
+    <!-- if there are no pages for a website-->
+
+
+    <li class="colored-link list-unstyled" *ngIf="pages.length == 0">
+      <i>No Pages Found</i>
+      <hr>
+      <span class="glyphicon glyphicon-plus glyph-color left-margin"></span>
+      <a class="colored-link" [routerLink]="['new']">
+        Create New Page
+      </a>
+
+    </li>
+
   </ul>
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-custom">
-  <div class="container-fuild">
+  <div class="container-fluid">
     <a [routerLink]="['/user/', userId]"
        class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding">
             <span class="glyphicon glyphicon-user glyph-color">

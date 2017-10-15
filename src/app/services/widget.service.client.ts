@@ -49,10 +49,8 @@ export class WidgetService {
 
 
   findWidgetById(widgetId: string) {
-    console.log('Inside find widget');
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x]._id === widgetId) {
-        console.log('Found widget with Id ' + widgetId);
         return this.widgets[x]; }
     }
   }
