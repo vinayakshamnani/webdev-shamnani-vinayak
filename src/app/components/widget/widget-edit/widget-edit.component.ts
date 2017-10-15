@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {WidgetType} from '../../../model/widgettype.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-widget-edit',
@@ -17,7 +18,10 @@ export class WidgetEditComponent implements OnInit {
   header = 'HEADING';
   image = 'IMAGE';
   youtube = 'YOUTUBE';
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private widgetService: WidgetService,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -27,6 +31,7 @@ export class WidgetEditComponent implements OnInit {
       this.widgetId = params['wgid'];
       this.widget = this.widgetService.findWidgetById(this.widgetId);
     });
+    this.titleService.setTitle('Edit Widget');
   }
 
 }

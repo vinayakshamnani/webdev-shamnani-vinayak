@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-widget-header',
@@ -18,7 +19,10 @@ export class WidgetHeaderComponent implements OnInit {
   widgetId: string;
   @ViewChild('f') editForm: NgForm;
 
-  constructor( private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
+  constructor( private activatedRoute: ActivatedRoute,
+               private widgetService: WidgetService,
+               private router: Router,
+               private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -28,6 +32,7 @@ export class WidgetHeaderComponent implements OnInit {
       this.widgetId = params['wgid'];
       this.widget = this.widgetService.findWidgetById(this.widgetId);
     });
+    this.titleService.setTitle('Header Widget');
   }
 
   update() {

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {NgForm} from '@angular/forms';
+import {Title} from "@angular/platform-browser";
 
 
 
@@ -19,9 +20,10 @@ export class RegisterComponent implements OnInit {
   errorMessage = 'Passwords do not match';
   userExistsMessage = 'Username not available. Choose a different username.';
   @ViewChild('f') registrationForm: NgForm;
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Register');
   }
 
   register() {

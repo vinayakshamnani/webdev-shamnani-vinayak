@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PageService} from '../../../services/page.service.client';
 import {NgForm} from '@angular/forms';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-page-new',
@@ -18,13 +19,17 @@ export class PageNewComponent implements OnInit {
   @ViewChild('f') newForm: NgForm;
   pages: {};
 
-  constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute,
+              private pageService: PageService,
+              private router: Router,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
+      this.titleService.setTitle('New Page');
     });
   }
   add() {

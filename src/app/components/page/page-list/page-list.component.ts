@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PageService} from '../../../services/page.service.client';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-page-list',
@@ -14,7 +15,7 @@ export class PageListComponent implements OnInit {
   pages: any[];
   pageId: string;
 
-  constructor(private route: ActivatedRoute, private pageService: PageService) { }
+  constructor(private route: ActivatedRoute, private pageService: PageService, private titleService: Title) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -22,6 +23,7 @@ export class PageListComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.pages = this.pageService.findPageByWebsiteId(this.webId);
+      this.titleService.setTitle('Page List');
     });
 
   }

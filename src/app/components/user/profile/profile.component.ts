@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute} from '@angular/router';
 import {NgForm} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +15,10 @@ export class ProfileComponent implements OnInit {
   username: string;
   @ViewChild('f') profileForm: NgForm;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('User Profile');
     this.activatedRoute.params.subscribe(params => {
       this.userId = params['uid'];
       this.user = this.userService.findUserById(this.userId);

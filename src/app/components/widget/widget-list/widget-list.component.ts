@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
 import {WidgetType} from '../../../model/widgettype.model';
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-widget-list',
@@ -16,8 +16,11 @@ export class WidgetListComponent implements OnInit {
   pageId: string;
   widgetType = WidgetType;
 
-  constructor(private router: Router, private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer
-  ) { }
+  constructor(private router: Router,
+              private widgetService: WidgetService,
+              private activatedRoute: ActivatedRoute,
+              private sanitizer: DomSanitizer,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -26,6 +29,7 @@ export class WidgetListComponent implements OnInit {
       this.userId = params['uid'];
       this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
     });
+    this.titleService.setTitle('Widget List');
   }
   sanitizeUrl(url: string) {
     const videoId = url.split('/');

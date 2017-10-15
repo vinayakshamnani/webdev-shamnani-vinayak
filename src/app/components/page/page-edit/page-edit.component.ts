@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import {ActivatedRoute} from "@angular/router";
 import {PageService} from "../../../services/page.service.client";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-page-edit',
@@ -18,7 +19,7 @@ export class PageEditComponent implements OnInit {
   pages: {};
   @ViewChild('f') editForm: NgForm;
 
-  constructor(private activatedRoute: ActivatedRoute, private pageService: PageService) { }
+  constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -27,6 +28,7 @@ export class PageEditComponent implements OnInit {
       this.pageId = params['pid'];
       this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
       this.page = this.pageService.findPageById(this.pageId);
+      this.titleService.setTitle('Edit Page');
     });
   }
 

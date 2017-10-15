@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
 import {NgForm} from '@angular/forms';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-website-edit',
@@ -17,7 +18,7 @@ export class WebsiteEditComponent implements OnInit {
   @ViewChild('f') editForm: NgForm;
   website = {};
 
-  constructor(private route: ActivatedRoute, private websiteService: WebsiteService) { }
+  constructor(private route: ActivatedRoute, private websiteService: WebsiteService, private titleService: Title) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -28,6 +29,7 @@ export class WebsiteEditComponent implements OnInit {
       this.descr = this.websiteService.findWebsiteById(this.websiteId).description;
       this.name = this.websiteService.findWebsiteById(this.websiteId).name;
     });
+    this.titleService.setTitle('Edit Website');
   }
 
   update() {

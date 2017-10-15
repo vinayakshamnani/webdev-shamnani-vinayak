@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WidgetService} from '../../../../services/widget.service.client';
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-widget-image',
   templateUrl: './widget-image.component.html',
@@ -13,7 +14,10 @@ export class WidgetImageComponent implements OnInit {
   widgetId: string;
   widget;
 
-  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private widgetService: WidgetService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -23,13 +27,10 @@ export class WidgetImageComponent implements OnInit {
       this.widgetId = params['wgid'];
       this.widget = this.widgetService.findWidgetById(this.widgetId);
     });
+    this.titleService.setTitle('Image Widget');
   }
 
   delete() {
     this.widgetService.deleteWidget(this.widgetId);
-    this.router.navigate(['/user', this.userId,
-      'website', this.websiteId,
-      'page', this.pageId,
-      'widget']);
   }
 }

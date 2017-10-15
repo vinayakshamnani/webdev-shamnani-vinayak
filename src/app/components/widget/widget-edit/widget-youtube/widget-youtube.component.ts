@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WidgetService} from '../../../../services/widget.service.client';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-widget-youtube',
@@ -14,7 +15,7 @@ export class WidgetYoutubeComponent implements OnInit {
   widgetId: string;
   widget = {};
 
-  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
+  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -24,6 +25,7 @@ export class WidgetYoutubeComponent implements OnInit {
       this.widgetId = params['wgid'];
       this.widget = this.widgetService.findWidgetById(this.widgetId);
     });
+    this.titleService.setTitle('Youtube Widget');
   }
   delete() {
     this.widgetService.deleteWidget(this.widgetId);
