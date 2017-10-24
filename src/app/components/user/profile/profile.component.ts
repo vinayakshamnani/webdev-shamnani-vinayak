@@ -13,6 +13,9 @@ export class ProfileComponent implements OnInit {
   userId: string;
   user = {};
   username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
   @ViewChild('f') profileForm: NgForm;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private titleService: Title) { }
@@ -21,8 +24,20 @@ export class ProfileComponent implements OnInit {
     this.titleService.setTitle('User Profile');
     this.activatedRoute.params.subscribe(params => {
       this.userId = params['uid'];
-      this.user = this.userService.findUserById(this.userId);
-      this.username = this.user['username'];
+      this.user = this.userService.findUserById(this.userId).subscribe(
+        (user:any) => {
+          this.user = user;
+          this.username = this.user['username'];
+          this.email = this.user['email'];
+          this.firstName = this.user['firstName'];
+          this.lastName = this.user['lastName'];
+          console.log('FirstName is ' + this.firstName);
+        },
+        (error: any) => {
+          console.log(error);
+
+        }
+      );
     });
 
 
@@ -32,7 +47,15 @@ export class ProfileComponent implements OnInit {
       this.user['email'] = this.profileForm.value.email;
       this.user['firstName'] = this.profileForm.value.firstName;
       this.user['lastName'] = this.profileForm.value.lastName;
-      this.userService.updateUser(this.userId, this.user);
+      this.userService.updateUser(this.userId, this.user)
+        .subscribe(
+          (updatedUser) => {
+            if (updatedUser) {
+              this.user = updatedUser;
+            } },
+          (err) => {
+          }
+        );
 
     }
   }

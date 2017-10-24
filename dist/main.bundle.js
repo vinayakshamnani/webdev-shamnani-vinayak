@@ -711,15 +711,16 @@ var LoginComponent = (function () {
         this.titleService.setTitle('Login');
     };
     LoginComponent.prototype.login = function () {
+        var _this = this;
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
-        var user = this.userService.findUserByCredentials(this.username, this.password);
-        if (user) {
-            this.router.navigate(['user', user._id]);
-        }
-        else {
-            this.errorFlag = true;
-        }
+        this.userService.findUserByCredentials(this.username, this.password)
+            .subscribe(function (user) {
+            _this.errorFlag = false;
+            _this.router.navigate(['/user', user._id]);
+        }, function (error) {
+            _this.errorFlag = true;
+        });
     };
     return LoginComponent;
 }());
@@ -762,7 +763,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom \">\n  <div class=\"container-fluid\">\n\n\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand glyph-color\">\n        <b>Profile</b>\n      </a>\n    </p>\n\n    <p class=\"navbar-text pull-right\">\n      <a (click) = \"update()\" [routerLink]=\"['/user', userId]\" class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-ok glyph-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n<div class=\"container top-margin\">\n  <form #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"user['username']\" name=\"username\" type=\"text\" class=\"form-control bottom-buffer\" id=\"username\" placeholder=\"vshamnani\" readonly>\n    </div>\n\n\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input name=\"email\" type=\"email\" class=\"form-control bottom-buffer\" id=\"email\" placeholder=\"shamnani.v@husky.neu.edu\">\n    </div>\n\n\n\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input [(ngModel)]=\"user['firstName']\" name=\"firstName\" type=\"text\" class=\"form-control bottom-buffer\" id=\"first-name\" placeholder=\"Vinayak\">\n    </div>\n\n\n\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input [(ngModel)]=\"user['lastName']\" name=\"lastName\"type=\"text\" class=\"form-control bottom-buffer\" id=\"last-name\" placeholder=\"Shamnani\">\n    </div>\n\n  <a class=\"btn btn-primary btn-block\"\n     [routerLink]=\"['/user/',userId,'website']\">Websites</a>\n  <a class=\"btn btn-danger btn-block bottom-margin\"\n     [routerLink]=\"['/login']\" >Logout</a>\n  </form>\n</div>\n\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user/',userId]\" class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user glyph-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom \">\n  <div class=\"container-fluid\">\n\n\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand glyph-color\">\n        <b>Profile</b>\n      </a>\n    </p>\n\n    <p class=\"navbar-text pull-right\">\n      <a (click) = \"update()\" [routerLink]=\"['/user', userId]\" class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-ok glyph-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n<div class=\"container top-margin\">\n  <form #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"username\" name=\"username\" type=\"text\" class=\"form-control bottom-buffer\" id=\"username\" placeholder=\"vshamnani\" readonly>\n    </div>\n\n\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input name=\"email\" type=\"email\" class=\"form-control bottom-buffer\" id=\"email\" placeholder=\"shamnani.v@husky.neu.edu\">\n    </div>\n\n\n\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input [(ngModel)]=\"firstName\" name=\"firstName\" type=\"text\" class=\"form-control bottom-buffer\" id=\"first-name\" placeholder=\"Vinayak\">\n    </div>\n\n\n\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input [(ngModel)]=\"lastName\" name=\"lastName\"type=\"text\" class=\"form-control bottom-buffer\" id=\"last-name\" placeholder=\"Shamnani\">\n    </div>\n\n  <a class=\"btn btn-primary btn-block\"\n     [routerLink]=\"['/user/',userId,'website']\">Websites</a>\n  <a class=\"btn btn-danger btn-block bottom-margin\"\n     [routerLink]=\"['/login']\" >Logout</a>\n  </form>\n</div>\n\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user/',userId]\" class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user glyph-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n"
 
 /***/ }),
 
@@ -802,16 +803,31 @@ var ProfileComponent = (function () {
         this.titleService.setTitle('User Profile');
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
-            _this.user = _this.userService.findUserById(_this.userId);
-            _this.username = _this.user['username'];
+            _this.user = _this.userService.findUserById(_this.userId).subscribe(function (user) {
+                _this.user = user;
+                _this.username = _this.user['username'];
+                _this.email = _this.user['email'];
+                _this.firstName = _this.user['firstName'];
+                _this.lastName = _this.user['lastName'];
+                console.log('FirstName is ' + _this.firstName);
+            }, function (error) {
+                console.log(error);
+            });
         });
     };
     ProfileComponent.prototype.update = function () {
+        var _this = this;
         this.user['username'] = this.profileForm.value.username;
         this.user['email'] = this.profileForm.value.email;
         this.user['firstName'] = this.profileForm.value.firstName;
         this.user['lastName'] = this.profileForm.value.lastName;
-        this.userService.updateUser(this.userId, this.user);
+        this.userService.updateUser(this.userId, this.user)
+            .subscribe(function (updatedUser) {
+            if (updatedUser) {
+                _this.user = updatedUser;
+            }
+        }, function (err) {
+        });
     };
     return ProfileComponent;
 }());
@@ -894,23 +910,29 @@ var RegisterComponent = (function () {
         this.titleService.setTitle('Register');
     };
     RegisterComponent.prototype.register = function () {
+        var _this = this;
         var user = {};
         this.username = this.registrationForm.value.username;
         this.password = this.registrationForm.value.password;
         this.verifypwd = this.registrationForm.value.verifypwd;
-        var user2 = this.userService.findUserByUsername(this.username);
-        if (user2) {
-            this.userExistsFlag = true;
-        }
-        else if (this.password !== this.verifypwd) {
-            this.errorFlag = true;
-        }
-        else {
-            user['username'] = this.username;
-            user['password'] = this.password;
-            user = this.userService.createUser(user);
-            this.router.navigate(['user', user['_id']]);
-        }
+        var user2 = this.userService.findUserByUsername(this.username)
+            .subscribe(function (user) {
+            _this.userExistsFlag = true;
+        }, function (error) {
+            if (_this.password === _this.verifypwd) {
+                var user_1 = { _id: '', username: _this.username, password: _this.password, firstName: '', lastName: '' };
+                _this.userService.createUser(user_1)
+                    .subscribe(function (user2) {
+                    _this.router.navigate(['/user', user2._id]);
+                }, function (error) {
+                    _this.errorFlag = true;
+                    _this.errorMessage = 'Error registering';
+                });
+            }
+            else {
+                _this.errorFlag = true;
+            }
+        });
     };
     return RegisterComponent;
 }());
@@ -1882,8 +1904,10 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1895,75 +1919,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var UserService = (function () {
-    function UserService() {
-        this.users = [
-            { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder' },
-            { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley' },
-            { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' },
-            { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi' }
-        ];
-        this.api = {
-            'createUser': this.createUser,
-            'findUserById': this.findUserById,
-            'findUserByUsername': this.findUserByUsername,
-            'findUserByCredentials': this.findUserByCredentials,
-            'updateUser': this.updateUser,
-            'deleteUser': this.deleteUser,
-        };
+    function UserService(_http) {
+        this._http = _http;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
     UserService.prototype.createUser = function (user) {
-        var id = Math.floor(Math.random() * 10000);
-        // Ids must be unique
-        while (this.findUserById(id.toString())) {
-            id = id * 2;
-        }
-        user._id = id.toString();
-        this.users.push(user);
-        return user;
+        return this._http.post(this.baseUrl + '/api/user', { user: user })
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     UserService.prototype.findUserById = function (userId) {
-        for (var x = 0; x < this.users.length; x++) {
-            if (this.users[x]._id === userId) {
-                return this.users[x];
-            }
-        }
+        return this._http.get(this.baseUrl + '/api/user/' + userId)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     UserService.prototype.findUserByUsername = function (username) {
-        for (var x = 0; x < this.users.length; x++) {
-            if (this.users[x].username === username) {
-                return this.users[x];
-            }
-        }
+        return this._http.get(this.baseUrl + '/api/user?username=' + username)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     UserService.prototype.findUserByCredentials = function (username, password) {
-        for (var x = 0; x < this.users.length; x++) {
-            if (this.users[x].username === username && this.users[x].password === password) {
-                return this.users[x];
-            }
-        }
+        return this._http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     UserService.prototype.updateUser = function (userId, user) {
-        for (var x = 0; x < this.users.length; x++) {
-            if (this.users[x]._id === userId) {
-                this.users[x] = user;
-            }
-        }
+        console.log('User to be updated : ' + JSON.stringify(user));
+        return this._http.put(this.baseUrl + '/api/user/' + userId, { user: user });
     };
     UserService.prototype.deleteUser = function (userId) {
-        var userIndex = this.users.findIndex(function (i) { return i._id === userId; });
-        if (this.users[userIndex]) {
-            this.users.splice(userIndex, 1);
-        }
-        return this.users[userIndex];
+        return this._http.delete(this.baseUrl + '/api/user/' + userId).map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     return UserService;
 }());
 UserService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], UserService);
 
+var _a;
 //# sourceMappingURL=user.service.client.js.map
 
 /***/ }),

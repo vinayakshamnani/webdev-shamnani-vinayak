@@ -6,63 +6,64 @@ import {Router} from '@angular/router';
 @Injectable()
 
 export class UserService {
-  constructor() { }
-  users = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder' },
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley' },
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia' },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi'}
-  ];
-  api = {
-    'createUser'             : this.createUser,
-    'findUserById'           : this.findUserById,
-    'findUserByUsername'     : this.findUserByUsername,
-    'findUserByCredentials'  : this.findUserByCredentials,
-    'updateUser'             : this.updateUser,
-    'deleteUser'             : this.deleteUser,
-  };
+  constructor(private _http: Http) {
+  }
+
+  baseUrl = environment.baseUrl;
+
   createUser(user: any) {
-    let id = Math.floor(Math.random() * 10000);
-    // Ids must be unique
-    while (this.findUserById(id.toString())) {
-      id = id * 2;
-    }
-    user._id = id.toString();
-    this.users.push(user);
-    return user;
+    return this._http.post(this.baseUrl + '/api/user', {user: user})
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
-  findUserById(userId: string){
-    for(let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {return this.users[x]; }
-    }
+  findUserById(userId: string) {
+    return this._http.get(this.baseUrl + '/api/user/' + userId)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
 
-findUserByUsername(username: string) {
-  for (let x = 0; x < this.users.length; x++) {
-    if (this.users[x].username === username) {return this.users[x]; }
+  findUserByUsername(username: string) {
+    return this._http.get(this.baseUrl + '/api/user?username=' + username)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
-}
 
-findUserByCredentials(username: string, password: string) {
-  for (let x = 0; x < this.users.length; x++) {
-    if (this.users[x].username === username && this.users[x].password === password) {return this.users[x]; }
+  findUserByCredentials(username: string, password: string) {
+    return this._http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
-}
 
-updateUser(userId: string, user: any) {
-  for (let x = 0; x < this.users.length; x++) {
-    if (this.users[x]._id === userId) { this.users[x] = user;}
-  }
+  updateUser(userId: string, user: any) {
+    console.log('User to be updated : ' + JSON.stringify(user));
+    return this._http.put(this.baseUrl + '/api/user/' + userId, {user: user});
   }
 
   deleteUser(userId: string) {
-    const userIndex = this.users.findIndex(i => i._id === userId);
-    if (this.users[userIndex]) {
-      this.users.splice(userIndex, 1);
-    }
-    return this.users[userIndex];
+    return this._http.delete(this.baseUrl + '/api/user/' + userId).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
   }
 }
 

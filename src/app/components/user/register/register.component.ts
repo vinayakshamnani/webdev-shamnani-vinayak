@@ -31,17 +31,29 @@ export class RegisterComponent implements OnInit {
     this.username = this.registrationForm.value.username;
     this.password = this.registrationForm.value.password;
     this.verifypwd = this.registrationForm.value.verifypwd;
-    const user2 = this.userService.findUserByUsername(this.username);
-    if (user2) {
-      this.userExistsFlag = true;
-    } else if (this.password !== this.verifypwd) {
-      this.errorFlag = true;
-    } else {
-      user['username'] = this.username;
-      user['password'] = this.password;
-      user = this.userService.createUser(user);
-      this.router.navigate(['user', user['_id']]);
-    }
+    const user2 = this.userService.findUserByUsername(this.username)
+      .subscribe(
+        (user: any)=> {
+          this.userExistsFlag = true;
+        },
+        (error:any)=>{
+          if (this.password === this.verifypwd){
+            let user = {_id: '', username: this.username, password: this.password, firstName: '', lastName: ''};
+            this.userService.createUser(user)
+              .subscribe(
+                (user2: any) => {
+                  this.router.navigate(['/user', user2._id]);
+                },
+                (error: any) => {
+                  this.errorFlag = true;
+                  this.errorMessage = 'Error registering';
+                }
+              );
+          } else{
+            this.errorFlag = true;
+          }
+        }
+      );
   }
 
 }
