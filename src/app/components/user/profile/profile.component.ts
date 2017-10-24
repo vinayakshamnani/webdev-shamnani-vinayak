@@ -11,7 +11,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class ProfileComponent implements OnInit {
   userId: string;
-  user = {};
+  user : any;
   username: string;
   email: string;
   firstName: string;
