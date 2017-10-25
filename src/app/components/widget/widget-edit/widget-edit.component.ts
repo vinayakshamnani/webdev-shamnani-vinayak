@@ -24,13 +24,24 @@ export class WidgetEditComponent implements OnInit {
               private titleService: Title) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.userId = params['uid'];
-      this.websiteId = params['wid'];
-      this.pageId = params['pid'];
-      this.widgetId = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
-    });
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = params['uid'];
+          this.websiteId = params['wid'];
+          this.pageId = params['pid'];
+          this.widgetId = params['wgid'];
+        }
+      );
+    this.widgetService.findWidgetById(this.widgetId)
+      .subscribe(
+        (widget: any) => {
+          this.widget = widget;
+        },
+        (error:any) => {
+          console.log(error);
+        }
+      );
     this.titleService.setTitle('Edit Widget');
   }
 

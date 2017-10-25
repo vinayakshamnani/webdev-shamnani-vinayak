@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { WidgetService} from '../../../../services/widget.service.client';
-import {Title} from "@angular/platform-browser";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {Router,ActivatedRoute} from '@angular/router';
+import {WidgetService} from '../../../../services/widget.service.client';
+import {SafeResourceUrl, SafeUrl} from '@angular/platform-browser'
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-widget-youtube',
@@ -10,25 +11,56 @@ import {Title} from "@angular/platform-browser";
 })
 export class WidgetYoutubeComponent implements OnInit {
   userId: string;
-  websiteId: string;
   pageId: string;
+  websiteId: string;
   widgetId: string;
-  widget = {};
-
-  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private titleService: Title) { }
+  widget: any;
+  widgetName: string;
+  widgetTitle: string;
+  widgetUrl: SafeResourceUrl;
+  widgetWidth: string;
+  @ViewChild('f') youtubeForm: NgForm;
+  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.userId = params['uid'];
-      this.websiteId = params['wid'];
-      this.pageId = params['pid'];
-      this.widgetId = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
-    });
-    this.titleService.setTitle('Youtube Widget');
+    this.activatedRoute.params
+      .subscribe(
+        (params:  any)  =>  {
+          this.userId = params['uid'];
+          this.pageId = params['pid'];
+          this.websiteId = params['wid'];
+          this.widgetId = params['wgid'];
+        }
+      );
+    this.widgetService.findWidgetById(this.widgetId).subscribe(
+      (widget: any) => {
+        this.widget = widget;
+        this.widgetName = this.widget['name'];
+        this.widgetTitle = this.widget['title'];
+        this.widgetUrl = this.widget['url'];
+        this.widgetWidth = this.widget['width'];
+      }
+    );
+
   }
-  delete() {
-    this.widgetService.deleteWidget(this.widgetId);
+  update() {
+    this.widget['name'] = this.youtubeForm.value.name;
+    this.widget['title'] = this.youtubeForm.value.title;
+    this.widget['width'] = this.youtubeForm.value.width;
+    this.widget['url'] = this.youtubeForm.value.url;
+    this.widgetService.updateWidget(this.widgetId, this.widget)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+        }
+      );
+  }
+  delete(){
+    this.widgetService.deleteWidget(this.widgetId).subscribe(
+      (data: any) => {
+        this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+      }
+    );
   }
 
 }

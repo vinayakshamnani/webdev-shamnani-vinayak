@@ -65,7 +65,6 @@ export class WebsiteEditComponent implements OnInit {
         .subscribe(
           (data: any) => {
             this.router.navigate(['../'], {relativeTo: this.activatedRoute})
-            console.log('Updated website');
           },
           (error: any) => {
             console.log(error);

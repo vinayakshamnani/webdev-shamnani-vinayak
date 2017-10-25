@@ -76,7 +76,6 @@ module.exports=function(app){
       }
 
     }
-    console.log('Updated website. New website is ' + JSON.stringify(websites));
     if(!flag)
       res.status(404).send("Website Not Found");
   }

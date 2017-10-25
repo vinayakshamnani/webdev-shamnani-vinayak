@@ -9,10 +9,7 @@
       <span class="navbar-brand">
                 <strong>Widget Edit</strong>
             </span>
-      <a class="navbar-brand pull-right" [routerLink]="['/user',userId,
-          'website',websiteId,
-          'page',pageId,
-          'widget']"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
+      <a class="navbar-brand pull-right" (click)="update()"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
     </div>
   </div>
 </nav>
@@ -21,7 +18,7 @@
 <div class="container-fluid custom-center-container top-margin">
   <div class="row">
     <div class="col-xs-12">
-      <form>
+      <form #f="ngForm" action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="name" class="c1-text-bold font-little-large c1-color-black">Name</label>
           <input type="text" id="name" class="form-control" placeholder="Name" value="Sample Image"
@@ -37,7 +34,7 @@
                  data-toggle="tooltip"
                  title="Enter Widget Text"
                  value="Widget Text Here" required
-                 name="name"
+                 name="text"
                  ngModel [(ngModel)]="widget.text">
         </div>
         <div class="form-group">
@@ -60,18 +57,15 @@
         </div>
         <div class="form-group">
           <label for="upload" class="c1-text-bold font-little-large c1-color-black">Upload</label>
-          <input type="file" id="upload" multiple class="form-control"
+          <input type="file" id="upload" class="form-control"
                  data-toggle="tooltip"
                  title="Select Widget image"
+                 name="upload"
                  required>
         </div>
 
         <div class="form-group">
           <a (click)="delete()"
-             [routerLink]="['/user',userId,
-                            'website',websiteId,
-                            'page',pageId,
-                            'widget']"
              class="btn btn-lg btn-block btn-danger"
              type="submit">Delete</a>
         </div>

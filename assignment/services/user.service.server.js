@@ -75,7 +75,6 @@ module.exports=function(app) {
       }
 
     }
-    console.log('Updated the user page, new list is ' + JSON.stringify(users));
     res.status(404);
   }
 

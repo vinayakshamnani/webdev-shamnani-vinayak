@@ -36,7 +36,6 @@ export class PageNewComponent implements OnInit {
       .subscribe(
         (pages: any) => {
           this.pages = pages;
-          console.log('Pages here is ' + JSON.stringify(this.pages));
         },
         (error: any) => {
           console.log(error);
@@ -44,7 +43,6 @@ export class PageNewComponent implements OnInit {
       );
   }
   add() {
-    console.log('inside add');
     let page = {};
     this.name = this.newForm.value.name;
     this.descr = this.newForm.value.descr;

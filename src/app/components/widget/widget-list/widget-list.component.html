@@ -89,7 +89,7 @@
             <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]"><span
               class="glyphicon glyphicon-cog pull-right"></span></a>
           </div>
-          <img src="{{widget.url}}" [style.width]="widget.width">
+          <img [src]="widget.url" [style.width]="widget.width">
         </div>
       </div>
 
@@ -103,7 +103,7 @@
               class="glyphicon glyphicon-cog pull-right"></span></a>
           </div>
           <div class="custom-responsive-video">
-          <iframe  [src]="sanitizeUrl(widget.url)" [style.width]="widget.width" height="315"
+          <iframe  [src]="widget.url" [style.width]="widget.width" height="315"
                    frameborder="0" allowfullscreen></iframe>
           </div>
         </div>

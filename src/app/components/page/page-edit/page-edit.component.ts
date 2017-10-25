@@ -50,7 +50,6 @@ export class PageEditComponent implements OnInit {
   update() {
     this.page['name'] = this.editForm.value.name;
     this.page['description'] = this.editForm.value.descr;
-    console.log('From the update form ' + this.editForm.value.name + ' ' + this.editForm.value.description);
     this.pageService.updatePage(this.pageId, this.page)
       .subscribe(
         (data: any) => {

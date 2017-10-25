@@ -31,7 +31,6 @@ export class ProfileComponent implements OnInit {
           this.email = this.user['email'];
           this.firstName = this.user['firstName'];
           this.lastName = this.user['lastName'];
-          console.log('FirstName is ' + this.firstName);
         },
         (error: any) => {
           console.log(error);

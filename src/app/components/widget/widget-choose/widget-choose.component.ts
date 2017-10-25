@@ -13,15 +13,18 @@ export class WidgetChooseComponent implements OnInit {
   websiteId: string;
   pageId: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private widgetService: WidgetService, private titleService: Title) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,
+              private widgetService: WidgetService, private titleService: Title) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.userId = params['uid'];
-      this.websiteId = params['wid'];
-      this.pageId = params['pid'];
-      this.titleService.setTitle('Choose a Widget');
-    });
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.pageId = params['pid'];
+          this.userId = params['uid'];
+          this.websiteId = params['wid'];
+        }
+      );
   }
 
   add(wType: string) {
@@ -29,8 +32,12 @@ export class WidgetChooseComponent implements OnInit {
       widgetType: wType,
       _id: '0',
     }
-    widget = this.widgetService.createWidget(this.pageId, widget);
-    this.router.navigate(['../' + widget._id], {relativeTo: this.route});
+    this.widgetService.createWidget(this.pageId, widget).subscribe(
+      (widget: any) => {
+        this.router.navigate(['..', widget._id],{relativeTo: this.activatedRoute});
+      }
+    )
+
   }
 
 }

@@ -10,7 +10,7 @@ import {DomSanitizer, Title} from "@angular/platform-browser";
   styleUrls: ['./widget-list.component.css']
 })
 export class WidgetListComponent implements OnInit {
-  widgets: any[];
+  widgets: [{}];
   userId: string;
   websiteId: string;
   pageId: string;
@@ -23,17 +23,25 @@ export class WidgetListComponent implements OnInit {
               private titleService: Title) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.pageId = params['pid'];
-      this.websiteId = params['wid'];
-      this.userId = params['uid'];
-      this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-    });
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.pageId = params['pid'];
+          this.userId = params['uid'];
+          this.websiteId = params['wid'];
+        }
+      );
     this.titleService.setTitle('Widget List');
-  }
-  sanitizeUrl(url: string) {
-    const videoId = url.split('/');
-    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + videoId[videoId.length - 1]);
+    this.widgetService.findWidgetsByPageId(this.pageId)
+      .subscribe(
+        (widgets: any) => {
+          this.widgets = widgets;
+          for (let x = 0; x < this.widgets.length; x++) {
+            // For youtube widgets, bypass security for URL
+            this.widgets[x]['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.widgets[x]['url']);
+          }
+        }
+      );
 }
 
 }
