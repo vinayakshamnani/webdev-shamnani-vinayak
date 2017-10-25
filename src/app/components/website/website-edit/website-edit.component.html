@@ -32,8 +32,7 @@
         class="navbar-brand ">
                New Website
             </span>
-      <a class="navbar-brand pull-right" (click)="update()"
-         [routerLink]="['/user/',userId,'website']">
+      <a class="navbar-brand pull-right" (click)="update()">
                 <span class="glyphicon glyphicon-ok glyph-color">
                 </span>
       </a>
@@ -55,16 +54,16 @@
     <form #f = "ngForm">
       <div class="form-group">
         <label for="inputName">Name</label>
-        <input [(ngModel)]='name' name ="name"
+        <input [(ngModel)]='websiteName' name ="name"
                type="text" class="form-control" id="inputName" placeholder="Website Name" ngModel #nameng = "ngModel">
       </div>
 
       <div class="form-group">
         <label for="desc">Description</label>
-        <textarea [(ngModel)]='descr' name ="desc"
-                  class="form-control" rows="5" id="desc" placeholder="Website Description" ngModel #description = "ngModel"></textarea>
+        <textarea [(ngModel)]='description' name ="desc"
+                  class="form-control" rows="5" id="desc" placeholder="Website Description" ngModel ></textarea>
       </div>
-      <a (click)="delete()"  [routerLink]="['/user/',userId,'website']" class="btn btn-danger btn-block">Delete</a>
+      <a (click)="delete()" class="btn btn-danger btn-block">Delete</a>
     </form>
   </div>
 </div>

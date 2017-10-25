@@ -14,7 +14,7 @@ module.exports=function(app) {
   app.delete("/api/user/:userId", deleteUser);
 
   function createUser(req, res) {
-    let user = req.body;
+    let user = req.body.user;
     let id = Math.floor(Math.random() * 10000);
     // Ids must be unique
       id = id * 2;

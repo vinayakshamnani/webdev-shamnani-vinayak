@@ -1,8 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
-import {NgForm} from '@angular/forms';
-import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-website-edit',
@@ -10,35 +8,69 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./website-edit.component.css']
 })
 export class WebsiteEditComponent implements OnInit {
-  userId: string;
-  websiteId: string;
-  descr: string;
-  websites: {};
-  name: string;
-  @ViewChild('f') editForm: NgForm;
-  website = {};
 
-  constructor(private route: ActivatedRoute, private websiteService: WebsiteService, private titleService: Title) { }
+  userId: string;
+  website: any;
+  websiteId: string;
+  websiteName: string;
+  description: string;
+  websites: any[] = [{}];
+  constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.userId = params['uid'];
-      this.websiteId = params['wid'];
-      this.website = this.websiteService.findWebsiteById(this.websiteId);
-      this.websites = this.websiteService.findWebsiteByUser(this.userId);
-      this.descr = this.websiteService.findWebsiteById(this.websiteId).description;
-      this.name = this.websiteService.findWebsiteById(this.websiteId).name;
-    });
-    this.titleService.setTitle('Edit Website');
-  }
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = params['uid'];
+          this.websiteId = params['wid'];
+        }
+      );
+    this.websiteService.findWebsiteById(this.websiteId)
+      .subscribe(
+        (website: any) => {
+          this.website = website;
+          this.websiteName  = this.website['name'];
+          this.description = this.website['description'];
+        },
+        (error:any) => {
+          console.log(error);
+        }
 
-  update() {
-    this.website['name'] = this.editForm.value.name;
-    this.website['description'] = this.editForm.value.desc;
-    this.websiteService.updateWebsite(this.websiteId, this.website);
+      );
+    this.websiteService.findWebsiteByUser(this.userId).
+    subscribe(
+      (websites: any) => {
+        this.websites = websites;
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    );
   }
   delete() {
-    this.websiteService.deleteWebsite(this.websiteId);
+    this.websiteService.deleteWebsite(this.websiteId)
+      .subscribe(
+      (res: any) => {
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+      },
+      (error: any) => {
+        console.log('Error is ' + error);
+      }
+    );
+  }
+  update() {
+      this.website['name'] = this.websiteName;
+      this.website['description'] = this.description;
+      this.websiteService.updateWebsite(this.websiteId, this.website)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+            console.log('Updated website');
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
   }
 
 }
