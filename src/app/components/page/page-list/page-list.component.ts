@@ -12,7 +12,7 @@ export class PageListComponent implements OnInit {
 
   userId: string;
   webId: string;
-  pages: any[];
+  pages: any = [];
   pageId: string;
 
   constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private titleService: Title) { }

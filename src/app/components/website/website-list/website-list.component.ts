@@ -11,7 +11,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class WebsiteListComponent implements OnInit {
   userId: string;
-  websites: any[];
+  websites: any = [];
 
   constructor(private route: ActivatedRoute, private websiteService: WebsiteService, private titleService: Title) { }
 

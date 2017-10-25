@@ -458,6 +458,7 @@ var PageListComponent = (function () {
         this.activatedRoute = activatedRoute;
         this.pageService = pageService;
         this.titleService = titleService;
+        this.pages = [];
     }
     PageListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1148,6 +1149,7 @@ var WebsiteListComponent = (function () {
         this.route = route;
         this.websiteService = websiteService;
         this.titleService = titleService;
+        this.websites = [];
     }
     WebsiteListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1837,6 +1839,7 @@ var WidgetListComponent = (function () {
         this.activatedRoute = activatedRoute;
         this.sanitizer = sanitizer;
         this.titleService = titleService;
+        this.widgets = [];
         this.widgetType = __WEBPACK_IMPORTED_MODULE_3__model_widgettype_model__["a" /* WidgetType */];
     }
     WidgetListComponent.prototype.ngOnInit = function () {
