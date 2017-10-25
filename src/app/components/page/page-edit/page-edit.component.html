@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-4 hidden-xs">
       <a class="navbar-brand"
-         [routerLink]="['/user/',userId, 'website', websiteId, 'page']">
+         [routerLink]="['../']">
                 <span
                   class="glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color">
                 </span>
@@ -11,18 +11,11 @@
         class="navbar-brand c1-text-bold font-little-large c1-color-black">
                 Pages
             </span>
-      <a class="navbar-brand c1-text-bold font-little-large c1-color-black pull-right"
-         [routerLink]="['/user/',userId, 'website', websiteId, 'page', 'new']">
-                <span
-                  class="glyphicon glyphicon-plus glyph-color">
-
-                </span>
-      </a>
     </div>
 
     <div class="col-xs-12 col-sm-8">
       <a class="navbar-brand visible-xs"
-         [routerLink]="['/user/',userId, 'website', websiteId, 'page']">
+         [routerLink]="['../']">
                 <span
                   class="glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left">
                 </span>
@@ -33,7 +26,7 @@
             </span>
 
       <a class="navbar-brand pull-right c1-text-bold font-little-large c1-color-black"
-         [routerLink]="['/user/',userId, 'website', websiteId, 'page']" (click)="update()">
+         (click)="update()">
                 <span class="glyphicon glyphicon-ok glyph-color">
                 </span>
       </a>
@@ -46,10 +39,10 @@
     <div class="col-xs-4 hidden-xs overflow right-border full-height">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let x of pages">
-          <a [routerLink]="['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']">
+          <a [routerLink]="[x._id,'widget']">
             <span class="c1-text-bold colored-link">{{x.name}}</span>
           </a>
-          <a [routerLink]="['/user', userId,'website', x.websiteId, 'page', x._id]">
+          <a [routerLink]="[x._id,'widget']">
             <span class="glyphicon glyphicon-cog pull-right colored-link"></span>
           </a>
         </li>
@@ -99,8 +92,7 @@
                  required>
         </div>
         <div class="form-group">
-          <a [routerLink]="['/user/',userId, 'website', websiteId, 'page']"
-             class="btn btn-lg btn-block btn-danger"
+          <a class="btn btn-lg btn-block btn-danger"
              type="submit" (click) = "delete()">
             Delete
           </a>

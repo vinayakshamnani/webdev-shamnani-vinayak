@@ -15,17 +15,25 @@ export class PageListComponent implements OnInit {
   pages: any[];
   pageId: string;
 
-  constructor(private route: ActivatedRoute, private pageService: PageService, private titleService: Title) { }
+  constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private titleService: Title) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.activatedRoute.params
+    .subscribe(
+(params: any) => {
       this.userId = params['uid'];
       this.webId = params['wid'];
-      this.pageId = params['pid'];
-      this.pages = this.pageService.findPageByWebsiteId(this.webId);
-      this.titleService.setTitle('Page List');
-    });
-
-  }
+}
+);
+this.pageService.findPageByWebsiteId(this.webId)
+  .subscribe(
+    (pages: any) => {
+      this.pages = pages;
+    },
+    (error: any) => {
+      console.log(error);
+    }
+  );
+}
 
 }

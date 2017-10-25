@@ -312,7 +312,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page', 'new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\" (click)=\"update()\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n            <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n          </a>\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n            <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n          </a>\n        </li>\n        </ul>\n\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\" #f=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"\n                 name=\"name\"\n                 value=\"Blog Post\"\n                 [(ngModel)]=\"page['name']\" required autofocus>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\"\n          >\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 name=\"title\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\"\n          >\n            Description\n          </label>\n          <input type=\"text\"\n                 id=\"descr\"\n                 class=\"form-control\"\n                 placeholder=\"Description\"\n                 name=\"descr\"\n                 [(ngModel)]=\"page['description']\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <a [routerLink]=\"['/user/',userId, 'website', websiteId, 'page']\"\n             class=\"btn btn-lg btn-block btn-danger\"\n             type=\"submit\" (click) = \"delete()\">\n            Delete\n          </a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/',userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['../']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['../']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         (click)=\"update()\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n          <a [routerLink]=\"[x._id,'widget']\">\n            <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n          </a>\n          <a [routerLink]=\"[x._id,'widget']\">\n            <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n          </a>\n        </li>\n        </ul>\n\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\" #f=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"\n                 name=\"name\"\n                 value=\"Blog Post\"\n                 [(ngModel)]=\"page['name']\" required autofocus>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\"\n          >\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 name=\"title\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\"\n          >\n            Description\n          </label>\n          <input type=\"text\"\n                 id=\"descr\"\n                 class=\"form-control\"\n                 placeholder=\"Description\"\n                 name=\"descr\"\n                 [(ngModel)]=\"page['description']\"\n                 required>\n        </div>\n        <div class=\"form-group\">\n          <a class=\"btn btn-lg btn-block btn-danger\"\n             type=\"submit\" (click) = \"delete()\">\n            Delete\n          </a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/',userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -341,29 +341,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var PageEditComponent = (function () {
-    function PageEditComponent(activatedRoute, pageService, titleService) {
+    function PageEditComponent(activatedRoute, pageService, titleService, router) {
         this.activatedRoute = activatedRoute;
         this.pageService = pageService;
         this.titleService = titleService;
+        this.router = router;
     }
     PageEditComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.activatedRoute.params.subscribe(function (params) {
-            _this.userId = params['uid'];
-            _this.websiteId = params['wid'];
+        this.activatedRoute.params
+            .subscribe(function (params) {
             _this.pageId = params['pid'];
-            _this.pages = _this.pageService.findPageByWebsiteId(_this.websiteId);
-            _this.page = _this.pageService.findPageById(_this.pageId);
-            _this.titleService.setTitle('Edit Page');
+            _this.websiteId = params['wid'];
+        });
+        this.pageService.findPageById(this.pageId)
+            .subscribe(function (page) {
+            _this.page = page;
+        }, function (error) {
+            console.log(error);
+        });
+        this.pageService.findPageByWebsiteId(this.websiteId)
+            .subscribe(function (pages) {
+            _this.pages = pages;
+        }, function (error) {
+            console.log(error);
         });
     };
     PageEditComponent.prototype.update = function () {
+        var _this = this;
         this.page['name'] = this.editForm.value.name;
         this.page['description'] = this.editForm.value.descr;
-        this.pageService.updatePage(this.pageId, this.page);
+        console.log('From the update form ' + this.editForm.value.name + ' ' + this.editForm.value.description);
+        this.pageService.updatePage(this.pageId, this.page)
+            .subscribe(function (data) {
+            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+        }, function (error) {
+            console.log(error);
+        });
     };
     PageEditComponent.prototype.delete = function () {
-        this.pageService.deletePage(this.pageId);
+        var _this = this;
+        this.pageService.deletePage(this.pageId)
+            .subscribe(function (res) {
+            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+        }, function (error) {
+        });
     };
     return PageEditComponent;
 }());
@@ -377,10 +399,10 @@ PageEditComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _e || Object])
 ], PageEditComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=page-edit.component.js.map
 
 /***/ }),
@@ -406,7 +428,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\"\n       [routerLink]=\"['/user/',userId, 'website']\">\n            <span\n              class=\"glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color\">\n\n            </span>\n    </a>\n    <span\n      class=\"navbar-brand\">\n                Pages\n        </span>\n    <a class=\"navbar-brand pull-right\"\n       [routerLink]=\"['/user/',userId, 'website', webId, 'page', 'new']\">\n            <span\n              class=\"glyphicon glyphicon-plus glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid overflow center-container top-margin\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n        <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n      </a>\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n      </a>\n    </li>\n\n    <!-- if there are no pages for a website-->\n\n\n    <li class=\"colored-link list-unstyled\" *ngIf=\"pages.length == 0\">\n      <i>No Pages Found</i>\n      <hr>\n      <span class=\"glyphicon glyphicon-plus glyph-color left-margin\"></span>\n      <a class=\"colored-link\" [routerLink]=\"['new']\">\n        Create New Page\n      </a>\n\n    </li>\n\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\"\n       [routerLink]=\"['../']\">\n            <span\n              class=\"glyphicon c1-color-black glyphicon-chevron-left pull-left glyph-color\">\n\n            </span>\n    </a>\n    <span\n      class=\"navbar-brand\">\n                Pages\n        </span>\n    <a class=\"navbar-brand pull-right\"\n       [routerLink]=\"['new']\">\n            <span\n              class=\"glyphicon glyphicon-plus glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid overflow center-container top-margin\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n        <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n      </a>\n      <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n        <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n      </a>\n    </li>\n\n    <!-- if there are no pages for a website-->\n\n\n    <li class=\"colored-link list-unstyled\" *ngIf=\"pages.length == 0\">\n      <i>No Pages Found</i>\n      <hr>\n      <span class=\"glyphicon glyphicon-plus glyph-color left-margin\"></span>\n      <a class=\"colored-link\" [routerLink]=\"['new']\">\n        Create New Page\n      </a>\n\n    </li>\n\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fluid\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -433,19 +455,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var PageListComponent = (function () {
-    function PageListComponent(route, pageService, titleService) {
-        this.route = route;
+    function PageListComponent(activatedRoute, pageService, titleService) {
+        this.activatedRoute = activatedRoute;
         this.pageService = pageService;
         this.titleService = titleService;
     }
     PageListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params.subscribe(function (params) {
+        this.activatedRoute.params
+            .subscribe(function (params) {
             _this.userId = params['uid'];
             _this.webId = params['wid'];
-            _this.pageId = params['pid'];
-            _this.pages = _this.pageService.findPageByWebsiteId(_this.webId);
-            _this.titleService.setTitle('Page List');
+        });
+        this.pageService.findPageByWebsiteId(this.webId)
+            .subscribe(function (pages) {
+            _this.pages = pages;
+        }, function (error) {
+            console.log(error);
         });
     };
     return PageListComponent;
@@ -485,7 +511,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page', 'new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a (click)=\"add()\" class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n            <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n          </a>\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n            <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\" #f=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"\n                 name=\"name\"\n                 #name=\"\"\n                 required autofocus\n          ngModel>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 name=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 required\n          ngModel>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"descr\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Description\n          </label>\n          <input type=\"text\"\n                 id=\"descr\"\n                 name=\"descr\"\n                 class=\"form-control\"\n                 placeholder=\"Description\"\n                 required\n          ngModel>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <a class=\"navbar-brand\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon glyphicon-chevron-left c1-text-bold font-little-large c1-color-black pull-left glyph-color\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n                Pages\n            </span>\n      <a class=\"navbar-brand c1-text-bold font-little-large c1-color-black pull-right\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page', 'new']\">\n                <span\n                  class=\"glyphicon glyphicon-plus glyph-color\">\n\n                </span>\n      </a>\n    </div>\n\n    <div class=\"col-xs-12 col-sm-8\">\n      <a class=\"navbar-brand visible-xs\"\n         [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\n                <span\n                  class=\"glyphicon c1-text-bold font-little-large c1-color-black glyphicon-chevron-left pull-left\">\n                </span>\n      </a>\n      <span\n        class=\"navbar-brand c1-text-bold font-little-large c1-color-black\">\n               New Page\n            </span>\n\n      <a (click)=\"add()\" class=\"navbar-brand pull-right c1-text-bold font-little-large c1-color-black\">\n                <span class=\"glyphicon glyphicon-ok glyph-color\">\n                </span>\n      </a>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid top-margin full-height\">\n  <div class=\"row full-height\">\n    <div class=\"col-xs-4 hidden-xs overflow right-border full-height\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let x of pages\">\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']\">\n            <span class=\"c1-text-bold colored-link\">{{x.name}}</span>\n          </a>\n          <a [routerLink]=\"['/user', userId,'website', x.websiteId, 'page', x._id]\">\n            <span class=\"glyphicon glyphicon-cog pull-right colored-link\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 overflow full-height\">\n      <form class=\"form-signin\" #f=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Name\n          </label>\n          <input type=\"text\"\n                 id=\"name\"\n                 class=\"form-control\"\n                 placeholder=\"Name\"\n                 name=\"name\"\n                 #name=\"\"\n                 required autofocus\n          ngModel>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"title\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Title\n          </label>\n          <input type=\"text\"\n                 id=\"title\"\n                 name=\"title\"\n                 class=\"form-control\"\n                 placeholder=\"Title\"\n                 required\n          ngModel>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"descr\"\n                 class=\"c1-text-bold font-little-large c1-color-black\">\n            Description\n          </label>\n          <input type=\"text\"\n                 id=\"descr\"\n                 name=\"descr\"\n                 class=\"form-control\"\n                 placeholder=\"Description\"\n                 required\n          ngModel>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom navbar-custom\">\n  <div class=\"container-fuild\">\n    <a [routerLink]=\"['/user/', userId]\"\n       class=\"navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding\">\n            <span class=\"glyphicon glyphicon-user glyph-color\">\n\n            </span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -522,21 +548,31 @@ var PageNewComponent = (function () {
     }
     PageNewComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.activatedRoute.params.subscribe(function (params) {
+        this.activatedRoute.params
+            .subscribe(function (params) {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
-            _this.pages = _this.pageService.findPageByWebsiteId(_this.websiteId);
-            _this.titleService.setTitle('New Page');
+        });
+        this.pageService.findPageByWebsiteId(this.websiteId)
+            .subscribe(function (pages) {
+            _this.pages = pages;
+            console.log('Pages here is ' + JSON.stringify(_this.pages));
+        }, function (error) {
+            console.log(error);
         });
     };
     PageNewComponent.prototype.add = function () {
+        var _this = this;
+        console.log('inside add');
         var page = {};
         this.name = this.newForm.value.name;
         this.descr = this.newForm.value.descr;
         page['name'] = this.name;
         page['description'] = this.descr;
-        this.pageService.createPage(this.websiteId, page);
-        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
+        this.pageService.createPage(this.websiteId, page)
+            .subscribe(function (page) {
+            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+        });
     };
     return PageNewComponent;
 }());
@@ -1792,8 +1828,10 @@ var WidgetType;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1805,69 +1843,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var PageService = (function () {
-    function PageService() {
-        this.pages = [
-            { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
-        ];
-        this.api = {
-            'createPage': this.createPage,
-            'findPageByWebsiteId': this.findPageByWebsiteId,
-            'findPageById': this.findPageById,
-            'updatePage': this.updatePage,
-            'deletePage': this.deletePage,
-        };
+    function PageService(_http) {
+        this._http = _http;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
     PageService.prototype.createPage = function (websiteId, page) {
-        var id = Math.floor(Math.random() * 10000);
-        // Ids must be unique
-        while (this.findPageById(id.toString())) {
-            id = id * 2;
-        }
-        page._id = id.toString();
-        page.websiteId = websiteId;
-        this.pages.push(page);
-        return page;
-    };
-    PageService.prototype.findPageByWebsiteId = function (websiteId) {
-        var list = [];
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x].websiteId === websiteId) {
-                list.push(this.pages[x]);
-            }
-        }
-        return list;
+        return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', { page: page })
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     PageService.prototype.findPageById = function (pageId) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x]._id === pageId) {
-                return this.pages[x];
-            }
-        }
+        return this._http.get(this.baseUrl + '/api/page/' + pageId)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
+    };
+    PageService.prototype.findPageByWebsiteId = function (websiteId) {
+        return this._http.get(this.baseUrl + '/api/website/' + websiteId + '/page')
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     PageService.prototype.updatePage = function (pageId, page) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x]._id === pageId) {
-                this.pages[x] = page;
-            }
-        }
+        return this._http.put(this.baseUrl + '/api/page/' + pageId, { page: page })
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     PageService.prototype.deletePage = function (pageId) {
-        var pageIndex = this.pages.findIndex(function (i) { return i._id === pageId; });
-        if (this.pages[pageIndex]) {
-            this.pages.splice(pageIndex, 1);
-        }
-        return this.pages[pageIndex];
+        return this._http.delete(this.baseUrl + '/api/page/' + pageId)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
     };
     return PageService;
 }());
 PageService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], PageService);
 
+var _a;
 //# sourceMappingURL=page.service.client.js.map
 
 /***/ }),
@@ -1994,7 +2019,6 @@ var UserService = (function () {
         });
     };
     UserService.prototype.updateUser = function (userId, user) {
-        console.log('User to be updated : ' + JSON.stringify(user));
         return this._http.put(this.baseUrl + '/api/user/' + userId, { user: user });
     };
     UserService.prototype.deleteUser = function (userId) {

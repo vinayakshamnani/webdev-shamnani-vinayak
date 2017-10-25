@@ -53,7 +53,6 @@ export class UserService {
   }
 
   updateUser(userId: string, user: any) {
-    console.log('User to be updated : ' + JSON.stringify(user));
     return this._http.put(this.baseUrl + '/api/user/' + userId, {user: user});
   }
 

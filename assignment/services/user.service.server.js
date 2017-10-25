@@ -62,7 +62,7 @@ module.exports=function(app) {
   }
 
   function updateUser(req, res) {
-    let user = req.body;
+    let user = req.body.user;
     let userId = req.params.userId;
     let flag = false;
     for (let x = 0; x < users.length; x++) {
@@ -70,11 +70,12 @@ module.exports=function(app) {
         users[x] = user;
         flag = true;
         res.send({
-          "Status" : "Updated Successfully"
-        });
+          flag: true
+        })
       }
 
     }
+    console.log('Updated the user page, new list is ' + JSON.stringify(users));
     res.status(404);
   }
 
