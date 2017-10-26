@@ -108,11 +108,11 @@ module.exports=function(app) {
   function uploadImage(req, res) {
     let widgetId = req.body.widgetId;
     let flag = false;
+    let widget = {};
     if(!widgetId){
       widgetId = (Math.random()*10000).toString();
       flag = true;
     }
-    console.log('widgetId ' + widgetId);
     let width = req.body.width;
     let myFile        = req.file;
 
@@ -127,13 +127,13 @@ module.exports=function(app) {
     let size          = myFile.size;
     let mimetype      = myFile.mimetype;
 
-    let widget = {
-      '_id':widgetId,
-      'widgetType': 'IMAGE',
-      'pageId': pageId,
-      'width': '100%',
-      'url' : 'assets/uploads/'+filename
-    }
+
+    widget['_id'] = widgetId;
+    widget['widgetType'] = 'IMAGE';
+    widget['pageId'] = pageId;
+    widget['width'] = width;
+    widget['url'] = 'assets/uploads/'+filename;
+    console.log('Widget is ' + JSON.stringify(widget));
 
     if(flag){
       widgets.push(widget);
@@ -146,11 +146,9 @@ module.exports=function(app) {
         }
       }
     }
-    console.log('After pushing ' + JSON.stringify(widgets));
 
     let callbackUrl   = "/user/" + userId +"/website/"+websiteId+"/page/"+pageId+"/widget";
     res.redirect(callbackUrl);
-    console.log('At the last line');
   }
 
   function sortWidgets(req, res) {

@@ -49,9 +49,9 @@
         </div>
         <div class="form-group">
           <label for="width" class="c1-text-bold font-little-large c1-color-black">Width</label>
-          <input type="text" id="width" class="form-control"
+          <input type="text" id="width" class="form-control" placeholder=" (e.g. 100%) "
                   data-toggle="tooltip"
-                  title="Enter Widget width"
+                  title="Enter Widget width" required
                   name="width"
                   ngModel [(ngModel)]="widget.width">
         </div>
@@ -69,7 +69,7 @@
         <input  name="userId" value="{{userId}}"   style="display: none"/>
 
         <div class="form-group">
-          <button class="btn btn-block btn-success" type="submit">Upload</button>
+          <button class="btn btn-block btn-lg btn-success" type="submit">Upload</button>
         </div>
         <div class="form-group">
           <a (click)="delete()"
