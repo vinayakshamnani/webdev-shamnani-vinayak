@@ -8,7 +8,7 @@ module.exports=function(app) {
     {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
     {
       '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
-      'url': 'http://lorempixel.com/400/200/'
+      'url': 'http://lorempixel.com/400/200/', 'position': 2
     },
     {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
     {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
@@ -25,7 +25,8 @@ module.exports=function(app) {
     'findWidgetById': findWidgetById,
     'updateWidget': updateWidget,
     'deleteWidget': deleteWidget,
-    'uploadImage':uploadImage
+    'uploadImage': uploadImage,
+    'sortWidgets': sortWidgets
   };
 
   app.post('/api/page/:pageId/widget',api.createWidget);
@@ -34,6 +35,7 @@ module.exports=function(app) {
   app.put('/api/widget/:widgetId',api.updateWidget);
   app.delete('/api/widget/:widgetId',api.deleteWidget);
   app.post ("/api/upload", upload.single('myFile'), api.uploadImage);
+  app.put("/api/page/:pageId/widget", api.sortWidgets);
 
   function createWidget(req,res){
     let pageId = req.params.pageId;
@@ -134,4 +136,26 @@ module.exports=function(app) {
     res.redirect(callbackUrl);
   }
 
-}
+
+
+
+  function sortWidgets(req, res) {
+    let initial = req.query.initial;
+    let final = req.query.final;
+    let pageId = req.params.pageId;
+    console.log('Initial ' + initial + ' and final ' + final);
+    if (initial && final) {
+      const allWidgets = widgets.filter(w => w.pageId === pageId);
+      const beforeReordering = allWidgets[initial];
+      const afterReordering = allWidgets[final];
+      widgets.splice(widgets.indexOf(beforeReordering), 1);
+      widgets.splice(widgets.indexOf(afterReordering), 0, beforeReordering);
+      res.json(allWidgets);
+    }
+    }
+
+
+
+  }
+
+

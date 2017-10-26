@@ -15,6 +15,7 @@ export class WidgetListComponent implements OnInit {
   websiteId: string;
   pageId: string;
   widgetType = WidgetType;
+  updated: boolean;
 
   constructor(private router: Router,
               private widgetService: WidgetService,
@@ -43,5 +44,19 @@ export class WidgetListComponent implements OnInit {
         }
       );
 }
+
+  sortWidgets(event: Object) {
+    console.log('Initial and Final: ' + event['initial'] + ' ' + event['final']);
+    this.widgetService.sortWidgets(this.pageId, this.widgets[event['initial']], event['initial'], event['final'])
+      .subscribe(
+        (widgets) => {
+          this.updated = true;
+        },
+        (err) => {
+          console.log('Error reordering widgets' + err);
+        }
+      );
+  }
+
 
 }

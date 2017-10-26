@@ -107,6 +107,10 @@ a:hover
   width: 100%;
 }
 
+#reorder-alert {
+  text-align: center;
+}
+
 .custom-responsive-video {
   position: relative;
   padding-bottom: 56.25%;
