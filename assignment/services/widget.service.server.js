@@ -1,7 +1,7 @@
 module.exports=function(app) {
 
   let multer = require('multer');
-  let upload = multer({dest: __dirname + '/../../src/uploads'});
+  let upload = multer({ dest: __dirname + '/../../dist/assets/uploads' });
 
   widgets = [
     {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
@@ -34,7 +34,7 @@ module.exports=function(app) {
   app.get('/api/widget/:widgetId',api.findWidgetById);
   app.put('/api/widget/:widgetId',api.updateWidget);
   app.delete('/api/widget/:widgetId',api.deleteWidget);
-  app.post ("/api/upload", upload.single('myFile'), api.uploadImage);
+  app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.put("/api/page/:pageId/widget", api.sortWidgets);
 
   function createWidget(req,res){
@@ -106,8 +106,14 @@ module.exports=function(app) {
   }
 
   function uploadImage(req, res) {
-    let widget;
-    let widgetId      = req.body.widgetId;
+    let widgetId = req.body.widgetId;
+    let flag = false;
+    if(!widgetId){
+      widgetId = (Math.random()*10000).toString();
+      flag = true;
+    }
+    console.log('widgetId ' + widgetId);
+    let width = req.body.width;
     let myFile        = req.file;
 
     let userId = req.body.userId;
@@ -121,23 +127,31 @@ module.exports=function(app) {
     let size          = myFile.size;
     let mimetype      = myFile.mimetype;
 
-    for (let x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === widgetId) {
-        widget = widgets[x];
+    let widget = {
+      '_id':widgetId,
+      'widgetType': 'IMAGE',
+      'pageId': pageId,
+      'width': '100%',
+      'url' : 'assets/uploads/'+filename
+    }
+
+    if(flag){
+      widgets.push(widget);
+    }
+    else {
+      for ( x in widgets){
+        if(widgets[x]._id === widgetId){
+          widgets[x] = widget;
+          break;
+        }
       }
     }
-    widget.url = '/uploads/'+filename;
-    widget.name = req.body.widgetName;
-    widget.text = req.body.widgetText;
-    widget.width = req.body.widgetWidth;
+    console.log('After pushing ' + JSON.stringify(widgets));
 
-    let callbackUrl   = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-
+    let callbackUrl   = "/user/" + userId +"/website/"+websiteId+"/page/"+pageId+"/widget";
     res.redirect(callbackUrl);
+    console.log('At the last line');
   }
-
-
-
 
   function sortWidgets(req, res) {
     let initial = req.query.initial;
