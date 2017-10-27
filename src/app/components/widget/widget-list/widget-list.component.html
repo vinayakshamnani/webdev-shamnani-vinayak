@@ -12,9 +12,10 @@
   </div>
 </nav>
 
-<div *ngIf="updated" class="alert alert-success top-margin" id="reorder-alert">Successfully reordered the widgets</div>
 
-  <ul appSortable (newIndexes)="sortWidgets($event)">
+<div class="container-fluid top-margin">
+  <div class="row">
+  <ul class="list-group" appSortable (newIndexes)="sortWidgets($event)">
   <li class="list-group-item" *ngFor="let widget of widgets">
 
     <div [ngSwitch]="widget.widgetType">
@@ -111,6 +112,8 @@
     </div>
   </li>
   </ul>
+  </div>
+</div>
 <ul class="top-margin">
 <li class="colored-link list-unstyled" *ngIf="widgets.length == 0">
   <i>No Widgets Found</i>

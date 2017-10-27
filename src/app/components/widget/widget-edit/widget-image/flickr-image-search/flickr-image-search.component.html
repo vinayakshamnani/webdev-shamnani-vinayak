@@ -1,20 +1,42 @@
-<div class="input-group">
-  <input [(ngModel)]="searchText" type="text" class="form-control">
+<nav class="navbar navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['../']"><span
+      class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
+    <span class="navbar-brand">
+              Search on Flickr
+            </span>
+
+
+  </div>
+</nav>
+<div class="input-group top-margin">
+  <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Enter search text" autofocus>
   <span class="input-group-btn">
          <a (click)="searchPhotos()" class="btn btn-default" type="button">
              <span class="glyphicon glyphicon-search"></span>
          </a>
  </span>
 </div>
+<br>
+<div class="container">
+  <div class="row" *ngIf="search">
+    <h5>Found the following images for <i><u>{{searchText}}</u></i></h5>
+    <div *ngFor = "let pic of photos['photo']"
+         class="col-xs-4">
+      <img    (click)="selectPhoto(pic)"
+              width="100%"
+              [src] = "['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']"/>
 
-<div class="row">
-  <div *ngFor = "let pic of photos['photo']"
-       class="col-xs-4">
-    <img    (click)="selectPhoto(pic)"
-            width="100%"
-            [src] = "['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']"/>
-
-    <p></p>
+      <p></p>
+    </div>
   </div>
 </div>
+
+<nav class="navbar navbar-fixed-bottom navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding" href="#"><span class="glyphicon glyphicon-play glyph-color"></span></a>
+    <a class="navbar-link navbar-text c1-color-black c1-text-bold cl-icon-padding" href="#"><span class="glyphicon glyphicon-eye-open glyph-color"></span></a>
+    <a class="navbar-link navbar-text pull-right c1-color-black c1-text-bold cl-icon-padding" [routerLink]="['/user', userId]"><span class="glyphicon glyphicon-user glyph-color"></span></a>
+  </div>
+</nav>
 

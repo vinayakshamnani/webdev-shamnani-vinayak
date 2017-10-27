@@ -14,7 +14,8 @@ export class FlickrImageSearchComponent implements OnInit {
   photos: any;
   widget: any;
   widgetId: string;
-
+  userId: string;
+  search: boolean;
   constructor(private flickrService: FlickrService, private widgetService: WidgetService,
               private router: Router, private activatedRoute: ActivatedRoute) {
   }
@@ -23,6 +24,7 @@ export class FlickrImageSearchComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.widgetId = params['wgid'];
+        this.userId = params['uid'];
       });
     this.widgetService.findWidgetById(this.widgetId).subscribe(
       (widget: any) => {
@@ -44,6 +46,7 @@ export class FlickrImageSearchComponent implements OnInit {
           val = JSON.parse(val);
           console.log(val);
           this.photos = val.photos;
+          this.search = true;
         }
       );
   }
