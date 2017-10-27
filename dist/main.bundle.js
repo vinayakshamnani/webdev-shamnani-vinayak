@@ -160,13 +160,17 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__assignment_directives_sortable_directive__ = __webpack_require__("../../../../../assignment/directives/sortable.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_flickr_service_client__ = __webpack_require__("../../../../../src/app/services/flickr.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__assignment_directives_sortable_directive__ = __webpack_require__("../../../../../assignment/directives/sortable.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -222,7 +226,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_20__components_widget_widget_edit_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */],
             __WEBPACK_IMPORTED_MODULE_21__components_widget_widget_edit_widget_image_widget_image_component__["a" /* WidgetImageComponent */],
             __WEBPACK_IMPORTED_MODULE_22__components_widget_widget_edit_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
-            __WEBPACK_IMPORTED_MODULE_27__assignment_directives_sortable_directive__["a" /* SortableDirective */]
+            __WEBPACK_IMPORTED_MODULE_28__assignment_directives_sortable_directive__["a" /* SortableDirective */],
+            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -231,7 +236,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__app_routing__["a" /* Routing */]
         ],
         // Client Side services here
-        providers: [__WEBPACK_IMPORTED_MODULE_23__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_24__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_25__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_26__services_widget_service_client__["a" /* WidgetService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_23__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_24__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_25__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_26__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_27__services_flickr_service_client__["a" /* FlickrService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -258,9 +263,11 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_widget_widget_choose_widget_choose_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-choose/widget-choose.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_widget_widget_edit_widget_edit_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-edit.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_widget_widget_list_widget_list_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
 /**
  * Created by sesha on 7/26/17.
  */
+
 
 
 
@@ -287,7 +294,8 @@ var APP_ROUTES = [
     { path: 'user/:uid/website/:wid/page/:pid', component: __WEBPACK_IMPORTED_MODULE_4__components_page_page_edit_page_edit_component__["a" /* PageEditComponent */] },
     { path: 'user/:uid/website/:wid/page/:pid/widget', component: __WEBPACK_IMPORTED_MODULE_12__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */] },
     { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: __WEBPACK_IMPORTED_MODULE_10__components_widget_widget_choose_widget_choose_component__["a" /* WidgetChooseComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: __WEBPACK_IMPORTED_MODULE_11__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */] }
+    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: __WEBPACK_IMPORTED_MODULE_11__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */] },
+    { path: 'user/:userId/website/:wid/page/:pid/widget/:wgid/search', component: __WEBPACK_IMPORTED_MODULE_13__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */] }
 ];
 // Export the routes as module providers
 var Routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(APP_ROUTES);
@@ -1627,6 +1635,108 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"input-group\">\n  <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\">\n  <span class=\"input-group-btn\">\n         <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n             <span class=\"glyphicon glyphicon-search\"></span>\n         </a>\n </span>\n</div>\n\n<div class=\"row\">\n  <div *ngFor = \"let pic of photos['photo']\"\n       class=\"col-xs-4\">\n    <img    (click)=\"selectPhoto(pic)\"\n            width=\"100%\"\n            [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n    <p></p>\n  </div>\n</div>\n\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlickrImageSearchComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_flickr_service_client__ = __webpack_require__("../../../../../src/app/services/flickr.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var FlickrImageSearchComponent = (function () {
+    function FlickrImageSearchComponent(flickrService, widgetService, router, activatedRoute) {
+        this.flickrService = flickrService;
+        this.widgetService = widgetService;
+        this.router = router;
+        this.activatedRoute = activatedRoute;
+    }
+    FlickrImageSearchComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.widgetId = params['wgid'];
+        });
+        this.widgetService.findWidgetById(this.widgetId).subscribe(function (widget) {
+            _this.widget = widget;
+        });
+    };
+    FlickrImageSearchComponent.prototype.searchPhotos = function () {
+        var _this = this;
+        this.flickrService
+            .searchPhotos(this.searchText)
+            .subscribe(function (data) {
+            console.log(data);
+            var val = data._body;
+            val = val.replace('jsonFlickrApi(', '');
+            val = val.substring(0, val.length - 1);
+            val = JSON.parse(val);
+            console.log(val);
+            _this.photos = val.photos;
+        });
+    };
+    FlickrImageSearchComponent.prototype.selectPhoto = function (photo) {
+        var _this = this;
+        var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
+        url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
+        this.widget['url'] = url;
+        this.widgetService.updateWidget(this.widgetId, this.widget).subscribe(function (res) {
+            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+        });
+    };
+    return FlickrImageSearchComponent;
+}());
+FlickrImageSearchComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-flickr-image-search',
+        template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_flickr_service_client__["a" /* FlickrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_flickr_service_client__["a" /* FlickrService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_widget_service_client__["a" /* WidgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object])
+], FlickrImageSearchComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=flickr-image-search.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1648,7 +1758,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar-custom navbar-fixed-top\">\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <a class=\"navbar-brand\" [routerLink]=\"['/user',userId,\n          'website',websiteId,\n          'page',pageId,\n          'widget']\"><span\n        class=\"glyphicon glyphicon-chevron-left pull-left glyph-color\"></span></a>\n      <span class=\"navbar-brand\">\n                <strong>Widget Edit</strong>\n            </span>\n      <a class=\"navbar-brand pull-right\" (click)=\"update()\"><span class=\"glyphicon glyphicon-ok glyph-color\"></span></a>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid custom-center-container top-margin\">\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <form ngNoForm action=\"{{baseUrl}}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n        <div class=\"form-group\">\n          <label for=\"name\" class=\"c1-text-bold font-little-large c1-color-black\">Name</label>\n          <input type=\"text\" id=\"name\" class=\"form-control\" placeholder=\"Name\" value=\"Sample Image\"\n                 data-toggle=\"tooltip\"\n                 title=\"Enter Widget Name\"  autofocus\n          name=\"name\"\n          ngModel [(ngModel)]=\"widget.name\"\n          >\n        </div>\n        <div class=\"form-group\">\n          <label for=\"text\" class=\"c1-text-bold font-little-large c1-color-black\">Text</label>\n          <input type=\"text\" id=\"text\" class=\"form-control\" placeholder=\"Title\"\n                 data-toggle=\"tooltip\"\n                 title=\"Enter Widget Text\"\n                 value=\"Widget Text Here\"\n                 name=\"text\"\n                 ngModel [(ngModel)]=\"widget.text\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"url\" class=\"c1-text-bold font-little-large c1-color-black\">URL</label>\n          <input type=\"text\" id=\"url\" class=\"form-control\" placeholder=\"URL\"\n                 data-toggle=\"tooltip\"\n                 title=\"Enter Widget URL\"\n                 value=\"https://thumb1.shutterstock.com/display_pic_with_logo/3973673/602824259/stock-vector-presentation-business-infographic-template-with-options-vector-illustration-602824259.jpg\"\n\n                 name=\"url\"\n                 ngModel [(ngModel)]=\"widget.url\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"width\" class=\"c1-text-bold font-little-large c1-color-black\">Width</label>\n          <input type=\"text\" id=\"width\" class=\"form-control\" placeholder=\" (e.g. 100%) \"\n                  data-toggle=\"tooltip\"\n                  title=\"Enter Widget width\" required\n                  name=\"width\"\n                  ngModel [(ngModel)]=\"widget.width\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"upload\" class=\"c1-text-bold font-little-large c1-color-black\">Upload</label>\n          <input type=\"file\" id=\"upload\" class=\"form-control\"\n                 data-toggle=\"tooltip\"\n                 title=\"Select Widget image\"\n                 name=\"myFile\"\n                 >\n        </div>\n        <input  name=\"widgetId\" value=\"{{widgetId}}\"   style=\"display: none\"/>\n        <input  name=\"websiteId\" value=\"{{websiteId}}\"   style=\"display: none\"/>\n        <input  name=\"pageId\" value=\"{{pageId}}\"   style=\"display: none\"/>\n        <input  name=\"userId\" value=\"{{userId}}\"   style=\"display: none\"/>\n\n        <div class=\"form-group\">\n          <button class=\"btn btn-block btn-lg btn-success\" type=\"submit\">Upload</button>\n        </div>\n        <div class=\"form-group\">\n          <a (click)=\"delete()\"\n             class=\"btn btn-lg btn-block btn-danger\">Delete</a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<nav class=\"navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li><a [routerLink]=\"['/user',userId]\"><span class=\"glyphicon glyphicon-user pull-right glyph-color\"></span></a></li>\n    </ul>\n\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar-custom navbar-fixed-top\">\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <a class=\"navbar-brand\" [routerLink]=\"['/user',userId,\n          'website',websiteId,\n          'page',pageId,\n          'widget']\"><span\n        class=\"glyphicon glyphicon-chevron-left pull-left glyph-color\"></span></a>\n      <span class=\"navbar-brand\">\n                <strong>Widget Edit</strong>\n            </span>\n      <a class=\"navbar-brand pull-right\" (click)=\"update()\"><span class=\"glyphicon glyphicon-ok glyph-color\"></span></a>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid custom-center-container top-margin\">\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <form #f=\"ngForm\" action=\"{{baseUrl}}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n        <div class=\"form-group\">\n          <label for=\"name\" class=\"c1-text-bold font-little-large c1-color-black\">Name</label>\n          <input type=\"text\" id=\"name\" class=\"form-control\" placeholder=\"Name\" value=\"Sample Image\"\n                 data-toggle=\"tooltip\"\n                 title=\"Enter Widget Name\"  autofocus\n          name=\"name\"\n          ngModel [(ngModel)]=\"widget.name\"\n          >\n        </div>\n        <div class=\"form-group\">\n          <label for=\"text\" class=\"c1-text-bold font-little-large c1-color-black\">Text</label>\n          <input type=\"text\" id=\"text\" class=\"form-control\" placeholder=\"Title\"\n                 data-toggle=\"tooltip\"\n                 title=\"Enter Widget Text\"\n                 value=\"Widget Text Here\"\n                 name=\"text\"\n                 ngModel [(ngModel)]=\"widget.text\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"url\" class=\"c1-text-bold font-little-large c1-color-black\">URL</label>\n          <input type=\"text\" id=\"url\" class=\"form-control\" placeholder=\"URL\"\n                 data-toggle=\"tooltip\"\n                 title=\"Enter Widget URL\"\n                 value=\"https://thumb1.shutterstock.com/display_pic_with_logo/3973673/602824259/stock-vector-presentation-business-infographic-template-with-options-vector-illustration-602824259.jpg\"\n\n                 name=\"url\"\n                 ngModel [(ngModel)]=\"widget.url\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"width\" class=\"c1-text-bold font-little-large c1-color-black\">Width</label>\n          <input type=\"text\" id=\"width\" class=\"form-control\" placeholder=\" (e.g. 100%) \"\n                  data-toggle=\"tooltip\"\n                  title=\"Enter Widget width\" required\n                  name=\"width\"\n                  ngModel [(ngModel)]=\"widget.width\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"upload\" class=\"c1-text-bold font-little-large c1-color-black\">Upload</label>\n          <input type=\"file\" id=\"upload\" class=\"form-control\"\n                 data-toggle=\"tooltip\"\n                 title=\"Select Widget image\"\n                 name=\"myFile\"\n                 >\n        </div>\n        <input  name=\"widgetId\" value=\"{{widgetId}}\"   style=\"display: none\"/>\n        <input  name=\"websiteId\" value=\"{{websiteId}}\"   style=\"display: none\"/>\n        <input  name=\"pageId\" value=\"{{pageId}}\"   style=\"display: none\"/>\n        <input  name=\"userId\" value=\"{{userId}}\"   style=\"display: none\"/>\n\n        <div class=\"form-group\">\n          <button class=\"btn btn-block btn-lg btn-success\" type=\"submit\">Upload</button>\n        </div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-block btn-lg btn-info\" (click)=\"search()\">Search on Flickr</button>\n        </div>\n        <div class=\"form-group\">\n          <a (click)=\"delete()\"\n             class=\"btn btn-lg btn-block btn-danger\">Delete</a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<nav class=\"navbar-custom navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li><a [routerLink]=\"['/user',userId]\"><span class=\"glyphicon glyphicon-user pull-right glyph-color\"></span></a></li>\n    </ul>\n\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1716,6 +1826,10 @@ var WidgetImageComponent = (function () {
         this.widgetService.deleteWidget(this.widgetId).subscribe(function (data) {
             _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
         });
+    };
+    WidgetImageComponent.prototype.search = function () {
+        console.log('Inside search');
+        this.router.navigate(['./search'], { relativeTo: this.activatedRoute });
     };
     return WidgetImageComponent;
 }());
@@ -1963,6 +2077,53 @@ var WidgetType;
     WidgetType[WidgetType["YouTube"] = 2] = "YouTube";
 })(WidgetType || (WidgetType = {}));
 //# sourceMappingURL=widgettype.model.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/flickr.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlickrService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var FlickrService = (function () {
+    function FlickrService(_http) {
+        this._http = _http;
+        this.key = 'f7a247b059585168ece267ff9e43eeab';
+        this.secret = '86e384a7f7164b57';
+        this.urlBase = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT';
+    }
+    FlickrService.prototype.searchPhotos = function (searchTerm) {
+        var url = this.urlBase
+            .replace('API_KEY', this.key)
+            .replace('TEXT', searchTerm);
+        console.log('URL is ' + url);
+        return this._http.get(url);
+    };
+    return FlickrService;
+}());
+FlickrService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], FlickrService);
+
+var _a;
+//# sourceMappingURL=flickr.service.client.js.map
 
 /***/ }),
 

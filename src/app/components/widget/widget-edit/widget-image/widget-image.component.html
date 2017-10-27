@@ -18,7 +18,7 @@
 <div class="container-fluid custom-center-container top-margin">
   <div class="row">
     <div class="col-xs-12">
-      <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+      <form #f="ngForm" action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="name" class="c1-text-bold font-little-large c1-color-black">Name</label>
           <input type="text" id="name" class="form-control" placeholder="Name" value="Sample Image"
@@ -70,6 +70,9 @@
 
         <div class="form-group">
           <button class="btn btn-block btn-lg btn-success" type="submit">Upload</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block btn-lg btn-info" (click)="search()">Search on Flickr</button>
         </div>
         <div class="form-group">
           <a (click)="delete()"

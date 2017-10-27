@@ -20,6 +20,7 @@ import {WidgetHeaderComponent} from './components/widget/widget-edit/widget-head
 import {WidgetImageComponent} from './components/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import {WidgetListComponent} from './components/widget/widget-list/widget-list.component';
+import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 
 const APP_ROUTES: Routes = [
@@ -35,7 +36,8 @@ const APP_ROUTES: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooseComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
+  {path : 'user/:userId/website/:wid/page/:pid/widget/:wgid/search' , component: FlickrImageSearchComponent}
 
 ];
 
