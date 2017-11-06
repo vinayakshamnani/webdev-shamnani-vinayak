@@ -25,10 +25,10 @@
 <div class="container-fluid overflow center-container top-margin">
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let x of pages">
-      <a [routerLink]="['/user', userId,'website', x.websiteId, 'page', x._id, 'widget']">
+      <a [routerLink]="[x._id, 'widget']">
         <span class="c1-text-bold colored-link">{{x.name}}</span>
       </a>
-      <a [routerLink]="['/user', userId,'website', x.websiteId, 'page', x._id]">
+      <a [routerLink]="[x._id]">
         <span class="glyphicon glyphicon-cog pull-right colored-link"></span>
       </a>
     </li>
