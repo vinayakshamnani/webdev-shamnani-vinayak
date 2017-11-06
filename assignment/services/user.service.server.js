@@ -1,12 +1,12 @@
-module.exports=function(app) {
+module.exports=function(app, userModel) {
 
-  users = [
+  /*users = [
     {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder'},
     {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley'},
     {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia'},
     {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi'}
   ];
-
+*/
   app.post("/api/user", createUser);
   app.get('/api/user', findUser);
   app.get("/api/user/:userId", findUserById);
@@ -15,12 +15,15 @@ module.exports=function(app) {
 
   function createUser(req, res) {
     let user = req.body.user;
-    let id = Math.floor(Math.random() * 10000);
-    // Ids must be unique
-      id = id * 2;
-    user._id = id.toString();
-    users.push(user);
-    res.send(user);
+    userModel.createUser(user)
+      .then(
+        function (result) {
+          res.send(result);
+        },
+        function (err) {
+          res.status(400);
+        }
+      );
   }
 
   function findUser(req, res) {
@@ -28,65 +31,70 @@ module.exports=function(app) {
     let username = req.query.username;
     let password = req.query.password;
     let user = {};
-    if(password==undefined){
-      user = findUserByUsername(username);
-    }else{
-      user = findUserByCredentials(username,password);
+    if (password === undefined) {
+      userModel.findUserByUsername(username)
+        .then(
+          function (user) {
+            res.send(user);
+          },
+          function (err) {
+            res.status(404);
+          }
+        )
     }
-    if(user!=undefined)
-      res.send(user);
-    else
-      res.status(404).send('User Not found');
-  }
+    else {
+      userModel.findUserByCredentials(username, password)
+        .then(
+          function (user) {
+            res.send(user);
+          },
+          function (err) {
+            res.status(404);
+          }
+        )
+    }
 
+  }
 
 
   function findUserById(req, res) {
     const userId = req.params.userId;
-    for(let x = 0; x < users.length; x++) {
-      if (users[x]._id === userId) {res.send(users[x]); }
-    }
-    res.status(404);
-  }
-
-  function findUserByCredentials(username, password) {
-    for (let x = 0; x < users.length; x++) {
-      if (users[x].username === username && users[x].password === password) {return users[x]; }
-    }
-  }
-
-  function findUserByUsername(username) {
-    for (let x = 0; x < users.length; x++) {
-      if (users[x].username === username) {return users[x]; }
-    }
+    userModel.findUserById(userId)
+      .then(
+        function (user) {
+          res.send(user);
+        },
+        function (err) {
+          res.status(404);
+        }
+      )
   }
 
   function updateUser(req, res) {
     let user = req.body.user;
     let userId = req.params.userId;
-    let flag = false;
-    for (let x = 0; x < users.length; x++) {
-      if (users[x]._id === userId) {
-        users[x] = user;
-        flag = true;
-        res.send({
-          flag: true
-        })
-      }
-
-    }
-    res.status(404);
+    userModel.updateUser(userId, user)
+      .then(
+        function (user) {
+          res.send(user);
+        },
+        function (err) {
+          res.status(404);
+        }
+      )
   }
 
   function deleteUser(req, res) {
     let userId = req.params.userId;
-    const userIndex = this.users.findIndex(i => i._id === userId);
-    if (this.users[userIndex]) {
-      this.users.splice(userIndex, 1);
-      res.send(true);
-    }
-    res.status(404).send('User Not Found');
+    userModel.deleteUser(userId)
+      .then(
+        function (result) {
+          res.send({flag: true});
+        },
+        function (err) {
+          res.status(404);
+        })
   }
-}
 
+}
 

@@ -42,8 +42,9 @@ const server = http.createServer(app);
 // var serverSide = require("./server/test-mongodb/app");
 // serverSide(app);
 
+var models = require('./assignment/model/models.server')(app);
 
-require("./assignment/app")(app);
+require("./assignment/app")(app, models);
 
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {

@@ -1,0 +1,73 @@
+public class Solution {
+
+    public void mergesort(int[] A, int[] B, int[] a1, int[] a2, int start, int high) {
+        if(start < high) {
+            int mid = (start + high)/2;
+            mergesort(A, B, a1, a2, start, mid);
+            mergesort(A, B, a1, a2, mid+1, high);
+            merge(A, B, a1, a2, start, mid+1, high);
+        }
+    }
+
+    public void merge(int[] A, int B[], int[] a, int[] a2, int start, int mid, int end) {
+        int tmp = mid - 1;
+        int left = start;
+        int size = end - start + 1;
+        int k = start;
+
+        while(left <= tmp && mid <= end) {
+            if(A[left] <= A[mid]) {
+                a[k] = A[left];
+                a2[k] = B[left];
+                k++; left++;
+            }
+            else {
+                a[k] = A[mid];
+                a2[k] = B[mid];
+                k++; mid++;
+            }
+        }
+        while(left <= tmp) {
+            a[k] = A[left];
+            a2[k] = B[left];
+            left++; k++;
+        }
+        while(mid <= end) {
+            a[k] = A[mid];
+            a2[k] = B[mid];
+            mid++; k++;
+        }
+        for(int i = 0; i < size; i++) {
+            A[end] = a[end];
+            B[end] = a2[end];
+            end--;
+        }
+    }
+
+    public int evaluateList(int[] A, int[] B)
+    {
+        int count = 1;
+        int maxB  = B[0];
+
+        for (int i = 1; i < A.length; i++)
+        {
+            if (A[i] <= maxB)
+            {
+                maxB = maxB > B[i] ? maxB : B[i];
+            }
+            else
+            {
+                count++;
+                maxB = B[i];
+            }
+        }
+    return count;
+    }
+
+    public int solution(int[] A, int[] B) {
+        int[] a = new int[A.length];
+        int[] a2 = new int[A.length];
+        mergesort(A, B, a, a2, 0, A.length-1);
+        return evaluateList(A, B);
+    }
+}
