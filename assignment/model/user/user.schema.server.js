@@ -6,7 +6,7 @@ module.exports = function(app, mongoose) {
       firstName: String,
       lastName: String,
       email: String,
-      websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
+      websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'website'}],
       dateCreated: Date
     }, {collection: 'users'}
   );
