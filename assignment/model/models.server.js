@@ -18,12 +18,12 @@ module.exports = function (app) {
   var userModel = require('./user/user.model.server')(app, mongoose);
   var websiteModel = require('./website/website.model.server')(app,mongoose,userModel);
   var pageModel = require('./page/page.model.server')(app,mongoose,websiteModel)
-
+  var widgetModel = require('./widget/widget.model.server')(app,mongoose,pageModel);
   return {
     userModel: userModel,
     websiteModel: websiteModel,
-    pageModel: pageModel
-
+    pageModel: pageModel,
+    widgetModel: widgetModel
   }
   }
 
