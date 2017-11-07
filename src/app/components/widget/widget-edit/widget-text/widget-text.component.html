@@ -1,3 +1,54 @@
-<p>
-  widget-text works!
-</p>
+<nav class="navbar-custom navbar-fixed-top">
+  <div class="row">
+    <div class="col-xs-12">
+      <a class="navbar-brand" [routerLink]="['../']"><span
+        class="glyphicon glyphicon-chevron-left pull-left glyph-color"></span></a>
+      <span class="navbar-brand">
+                <strong>Widget Edit</strong>
+            </span>
+      <a class="navbar-brand pull-right" (click)="update()"><span class="glyphicon glyphicon-ok glyph-color"></span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="container top-margin">
+
+  <form #f="ngForm">
+    <div class="form-group">
+          <label for="title">Text</label>
+          <input type="text" class="form-control" [(ngModel)]="widgetText" name="widgetText" id="title" placeholder="Text">
+        </div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name"  [(ngModel)]="widgetName" name="widgetName"  placeholder="Name">
+      </div>
+
+      <div class="form-group">
+        <label for="rows">Rows</label>
+        <input type="number" class="form-control" [(ngModel)]="rows" name="widgetRows" id="rows" min="0"
+                           placeholder="Rows"/>
+      </div>
+
+      <div class="form-group">
+        <label for="placeholder">Placeholder</label>
+        <input type="text" class="form-control" [(ngModel)]="placeholder" name="placeholder" id="placeholder"
+                           placeholder="placeholder"/>
+      </div>
+      <div class="input-group">
+    	<input type="text"
+              	    readonly
+              	    value="Formatted"
+              	    class="form-control"/>
+    	<span class="input-group-addon">
+	 <input [(ngModel)]="formatted" name="formatted"
+           	        type="checkbox" class="bottom-buffer"/>
+	</span>
+      </div>
+
+
+      <a class="btn btn-danger btn-block"
+              (click)="delete()" >Delete</a>
+
+  </form>
+    </div>

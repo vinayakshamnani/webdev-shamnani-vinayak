@@ -106,6 +106,28 @@
         </div>
       </div>
 
+      <div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'TEXT'">
+        <div class="col-xs-12">
+          <div class="custom-widget-toolbar custom-widget-toolbar-ontop">
+            <a class="colored-link" href="#"><span
+              class="glyphicon glyphicon-menu-hamburger pull-right glyph-color"></span></a>
+            <a class="glyph-color" [routerLink]="['/user/', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]"><span
+              class="glyphicon glyphicon-cog pull-right"></span></a>
+          </div>
+          <div *ngIf="widget.formatted">
+            <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+          </div>
+
+          <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"
+                 placeholder="{{widget.placeholder}}" class="form-control"/>
+
+          <textarea *ngIf="!widget.formatted && (widget.rows > 1)"
+                    rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                    class="form-control">{{widget.text}}</textarea>
+
+        </div>
+      </div>
+
 
       <div class="row custom-widget top-margin bottom-margin" *ngSwitchCase="'YOUTUBE'">
         <div class="col-xs-12">
