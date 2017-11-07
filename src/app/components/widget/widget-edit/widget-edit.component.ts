@@ -18,6 +18,8 @@ export class WidgetEditComponent implements OnInit {
   header = 'HEADING';
   image = 'IMAGE';
   youtube = 'YOUTUBE';
+  html = 'HTML';
+  text = 'TEXT';
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private widgetService: WidgetService,

@@ -34,9 +34,10 @@ export class WidgetChooseComponent implements OnInit {
     }
     this.widgetService.createWidget(this.pageId, widget).subscribe(
       (widget: any) => {
+        console.log('Widget here in choose is ' + JSON.stringify(widget));
         this.router.navigate(['..', widget._id],{relativeTo: this.activatedRoute});
       }
-    )
+    );
 
   }
 
