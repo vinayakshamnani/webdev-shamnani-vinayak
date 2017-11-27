@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import { UserService} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
 import {Title} from "@angular/platform-browser";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorFlag: boolean;
   errorMsg = 'Invalid credentials!';
 
-  constructor(private router: Router, private userService: UserService, private titleService: Title) { }
+  constructor(private router: Router, private userService: UserService, private titleService: Title, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.titleService.setTitle('Login');
@@ -25,17 +26,14 @@ export class LoginComponent implements OnInit {
   login() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    this.userService.findUserByCredentials(this.username, this.password)
-      .subscribe(
-        (user: any) => {
-          this.errorFlag = false;
-          this.router.navigate(['/user', user._id]);
-        },
-        (error: any) => {
-          this.errorFlag = true;
-          console.log(error);
-        }
-      );
-  }
+    this.userService.login(this.username, this.password)
+             .subscribe(
+                 (data: any) => {
+                     this.sharedService.user = data;
+                     this.router.navigate(['/profile'])},
+               (error: any) => {
+                     console.log(error);
+                 }
+             );}
 
 }

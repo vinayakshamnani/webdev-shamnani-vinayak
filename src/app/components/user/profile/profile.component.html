@@ -48,8 +48,8 @@
 
   <a class="btn btn-primary btn-block"
      [routerLink]="['/user/',userId,'website']">Websites</a>
-  <a class="btn btn-danger btn-block bottom-margin"
-     [routerLink]="['/login']" >Logout</a>
+  <button class="btn btn-danger btn-block bottom-margin"
+     (click)="logout()" >Logout</button>
   </form>
 </div>
 

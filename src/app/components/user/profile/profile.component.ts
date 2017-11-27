@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
 
@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   lastName: string;
   @ViewChild('f') profileForm: NgForm;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private titleService: Title) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private titleService: Title, private router: Router) { }
 
   ngOnInit() {
     this.titleService.setTitle('User Profile');
@@ -41,6 +41,13 @@ export class ProfileComponent implements OnInit {
 
 
   }
+
+  logout() {
+      this.userService.logout()
+         .subscribe(
+             (data: any) => this.router.navigate(['/login'])
+         );
+    }
     update() {
       this.user['username'] = this.profileForm.value.username;
       this.user['email'] = this.profileForm.value.email;

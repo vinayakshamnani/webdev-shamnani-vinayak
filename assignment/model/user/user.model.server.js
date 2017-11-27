@@ -9,10 +9,15 @@ module.exports = function (app, mongoose) {
     'findUserByUsername': findUserByUsername,
     'findUserByCredentials': findUserByCredentials,
     'updateUser': updateUser,
-    'deleteUser': deleteUser
+    'deleteUser': deleteUser,
+    'findUserByFaceBookId': findUserByFacebookId
   }
 
   return api;
+
+  function findUserByFacebookId(facebookId) {
+    return userModel.findOne({'facebook.id': facebookId});
+  }
 
   function createUser(user) {
     user._id = mongoose.Types.ObjectId();
