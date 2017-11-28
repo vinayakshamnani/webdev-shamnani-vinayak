@@ -828,18 +828,30 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.titleService.setTitle('Login');
+        if (this.userService.loggedIn()) {
+            this.router.navigate(['/profile']);
+        }
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
-        this.userService.login(this.username, this.password)
-            .subscribe(function (data) {
-            _this.sharedService.user = data;
-            _this.router.navigate(['/profile']);
-        }, function (error) {
-            console.log(error);
-        });
+        if (this.username === '' || this.password === '') {
+            this.errorFlag = true;
+            this.errorMsg = 'username and password are mandatory';
+        }
+        else {
+            this.errorFlag = false;
+            this.userService.login(this.username, this.password)
+                .subscribe(function (data) {
+                _this.sharedService.user = data;
+                _this.router.navigate(['/profile']);
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Invalid credentials';
+                console.log(error);
+            });
+        }
     };
     return LoginComponent;
 }());
@@ -896,6 +908,7 @@ module.exports = "<nav class=\"navbar navbar-fixed-top navbar-custom \">\n  <div
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -910,28 +923,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileComponent = (function () {
-    function ProfileComponent(userService, activatedRoute, titleService, router) {
+    function ProfileComponent(userService, activatedRoute, titleService, router, sharedService) {
         this.userService = userService;
         this.activatedRoute = activatedRoute;
         this.titleService = titleService;
         this.router = router;
+        this.sharedService = sharedService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.titleService.setTitle('User Profile');
-        this.activatedRoute.params.subscribe(function (params) {
-            _this.userId = params['uid'];
-            _this.user = _this.userService.findUserById(_this.userId).subscribe(function (user) {
-                _this.user = user;
-                _this.username = _this.user['username'];
-                _this.email = _this.user['email'];
-                _this.firstName = _this.user['firstName'];
-                _this.lastName = _this.user['lastName'];
-            }, function (error) {
-                console.log(error);
-            });
-        });
+        this.user = this.sharedService.user;
+        this.userId = this.user['_id'];
+        this.username = this.user['username'];
+        this.email = this.user['email'];
+        this.firstName = this.user['firstName'];
+        this.lastName = this.user['lastName'];
     };
     ProfileComponent.prototype.logout = function () {
         var _this = this;
@@ -964,10 +972,10 @@ ProfileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* Title */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_shared_service__["a" /* SharedService */]) === "function" && _f || Object])
 ], ProfileComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
@@ -2531,6 +2539,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2544,9 +2554,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var UserService = (function () {
-    function UserService(_http) {
+    function UserService(_http, sharedService, router) {
         this._http = _http;
+        this.sharedService = sharedService;
+        this.router = router;
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]();
     }
@@ -2567,6 +2581,34 @@ var UserService = (function () {
         return this._http.post(this.baseUrl + '/api/logout', '', this.options)
             .map(function (res) {
             var data = res;
+        });
+    };
+    UserService.prototype.register = function (username, password) {
+        this.options.withCredentials = true;
+        var user = {
+            username: username,
+            password: password
+        };
+        return this._http.post(this.baseUrl + '/api/register', user, this.options)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
+    };
+    UserService.prototype.loggedIn = function () {
+        var _this = this;
+        this.options.withCredentials = true;
+        return this._http.post(this.baseUrl + '/api/loggedIn', '', this.options)
+            .map(function (res) {
+            var user = res.json();
+            if (user !== 0) {
+                _this.sharedService.user = user; // setting user so as to share with all components
+                return true;
+            }
+            else {
+                _this.router.navigate(['/login']);
+                return false;
+            }
         });
     };
     UserService.prototype.createUser = function (user) {
@@ -2610,10 +2652,10 @@ var UserService = (function () {
 }());
 UserService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_service__["a" /* SharedService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], UserService);
 
-var _a;
+var _a, _b, _c;
 //# sourceMappingURL=user.service.client.js.map
 
 /***/ }),

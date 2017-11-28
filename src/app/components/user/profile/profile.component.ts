@@ -3,6 +3,7 @@ import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-profile',
@@ -11,33 +12,25 @@ import {Title} from "@angular/platform-browser";
 })
 export class ProfileComponent implements OnInit {
   userId: string;
-  user : any;
+  user: any;
   username: string;
   email: string;
   firstName: string;
   lastName: string;
   @ViewChild('f') profileForm: NgForm;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private titleService: Title, private router: Router) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,
+              private titleService: Title, private router: Router,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
     this.titleService.setTitle('User Profile');
-    this.activatedRoute.params.subscribe(params => {
-      this.userId = params['uid'];
-      this.user = this.userService.findUserById(this.userId).subscribe(
-        (user:any) => {
-          this.user = user;
-          this.username = this.user['username'];
-          this.email = this.user['email'];
-          this.firstName = this.user['firstName'];
-          this.lastName = this.user['lastName'];
-        },
-        (error: any) => {
-          console.log(error);
-
-        }
-      );
-    });
+    this.user = this.sharedService.user;
+    this.userId = this.user['_id'];
+    this.username = this.user['username'];
+    this.email = this.user['email'];
+    this.firstName = this.user['firstName'];
+    this.lastName = this.user['lastName'];
 
 
   }

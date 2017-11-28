@@ -14,9 +14,9 @@ module.exports=function(app, userModel) {
   var bcrypt = require('bcrypt-nodejs');
   passport.use(new LocalStrategy(localStrategy));
   var facebookConfig = {
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    clientID     : process.env.FACEBOOK_CLIENT_ID || '1749747678660601',
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET || '6a3f3decacbed2c41a123885da3131df',
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3100/auth/facebook/callback'
   };
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
@@ -114,8 +114,8 @@ module.exports=function(app, userModel) {
   }
 
   function logout(req, res) {
-    req.logOut();
-    res.sendStatus(200);
+    req.logout();
+    res.send(200);
   }
 
   function register (req, res) {

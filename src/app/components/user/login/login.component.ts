@@ -22,18 +22,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Login');
+    if (this.userService.loggedIn()) {
+      this.router.navigate(['/profile']);
+    }
   }
   login() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    this.userService.login(this.username, this.password)
-             .subscribe(
-                 (data: any) => {
-                     this.sharedService.user = data;
-                     this.router.navigate(['/profile'])},
-               (error: any) => {
-                     console.log(error);
-                 }
-             );}
+    if (this.username === '' || this.password === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'username and password are mandatory';
+    } else {
+      this.errorFlag = false;
+      this.userService.login(this.username, this.password)
+        .subscribe(
+          (data: any) => {
+            this.sharedService.user = data;
+            this.router.navigate(['/profile'])},
+          (error: any) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Invalid credentials'
+            console.log(error);
+          }
+        );
+    }
 
+  }
 }

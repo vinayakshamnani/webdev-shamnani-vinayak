@@ -7,7 +7,11 @@ module.exports = function(app, mongoose) {
       lastName: String,
       email: String,
       websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'website'}],
-      dateCreated: Date
+      dateCreated: Date,
+      facebook: {
+        id:    String,
+        token: String
+     	}
     }, {collection: 'users'}
   );
   return userSchema;
