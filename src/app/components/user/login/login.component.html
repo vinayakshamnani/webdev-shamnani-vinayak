@@ -21,6 +21,10 @@
          #password="ngModel" required/>
     <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password! </span>
   <button class="btn btn-primary btn-block bottom-buffer" type="submit" [disabled]="!f.valid">Login</button>
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+      <span class="fa fa-facebook"></span>
+      Facebook
+    </a>
   <button class="btn btn-success btn-block bottom-buffer" [routerLink]="['/register']" >Register</button>
 </form>
 </div>

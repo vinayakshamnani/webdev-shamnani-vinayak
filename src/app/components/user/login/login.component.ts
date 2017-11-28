@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.value.password;
     if (this.username === '' || this.password === '') {
       this.errorFlag = true;
-      this.errorMsg = 'username and password are mandatory';
+      this.errorMsg = 'Both credentials are required!';
     } else {
       this.errorFlag = false;
       this.userService.login(this.username, this.password)
