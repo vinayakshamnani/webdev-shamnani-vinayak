@@ -19,4 +19,5 @@ Heroku app : https://webdev-shamnani-vinayak.herokuapp.com/
 [Assignment 2](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment2)  
 [Assignment 3](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment3)  
 [Assignment 4](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment4)  
-[Assignment 5](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment5)
+[Assignment 5](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment5)  
+[Assignment 6](https://github.com/vinayakshamnani/webdev-shamnani-vinayak/tree/assignment6)  
