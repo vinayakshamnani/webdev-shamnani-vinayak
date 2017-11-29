@@ -52,6 +52,7 @@
     <div class="col-xs-12 col-sm-8 overflow full-height">
       <form class="form-signin" #f="ngForm">
         <div class="form-group">
+              <div *ngIf="errorFlag" class="alert alert-danger">{{errorMsg}}</div>
           <label for="name"
                  class="c1-text-bold font-little-large c1-color-black">
             Name
@@ -62,7 +63,11 @@
                  placeholder="Name"
                  name="name"
                  value="Blog Post"
-                 [(ngModel)]="page['name']" required autofocus>
+                 [(ngModel)]="page['name']"
+                 [ngClass]="{'alert-danger': page['name']=='' && updated}">
+             <span class="help-block" *ngIf="page['name']=='' && updated">
+     Page name can't be blank
+    </span>>
         </div>
         <div class="form-group">
           <label for="title"

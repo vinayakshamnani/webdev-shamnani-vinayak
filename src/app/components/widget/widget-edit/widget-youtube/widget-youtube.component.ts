@@ -19,6 +19,9 @@ export class WidgetYoutubeComponent implements OnInit {
   widgetTitle: string;
   widgetUrl: SafeResourceUrl;
   widgetWidth: string;
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
   @ViewChild('f') youtubeForm: NgForm;
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,private router:Router) { }
 
@@ -44,16 +47,22 @@ export class WidgetYoutubeComponent implements OnInit {
 
   }
   update() {
+    this.updated = true;
     this.widget['name'] = this.youtubeForm.value.name;
     this.widget['title'] = this.youtubeForm.value.title;
     this.widget['width'] = this.youtubeForm.value.width;
     this.widget['url'] = this.youtubeForm.value.url;
-    this.widgetService.updateWidget(this.widgetId, this.widget)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
-        }
-      );
+    if (this.widget['name'] === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Widget name is required';
+    } else {
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          }
+        );
+    }
   }
   delete(){
     this.widgetService.deleteWidget(this.widgetId).subscribe(

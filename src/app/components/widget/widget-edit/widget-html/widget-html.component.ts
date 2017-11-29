@@ -14,6 +14,9 @@ export class WidgetHtmlComponent implements OnInit {
   widgetName: string;
   widgetText: string;
   userId: string;
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
   @ViewChild('f') htmlForm: NgForm;
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -38,15 +41,21 @@ export class WidgetHtmlComponent implements OnInit {
   }
 
   update() {
+    this.updated = true;
     this.widget['name'] = this.htmlForm.value.widgetName;
     this.widget['text'] = this.htmlForm.value.widgetText;
     console.log('Widget inside Update ' + JSON.stringify(this.widget));
-    this.widgetService.updateWidget(this.widgetId, this.widget)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-        }
-      );
+    if (this.widget['name'] === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Widget name is required';
+    } else {
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          }
+        );
+    }
   }
 
   delete() {

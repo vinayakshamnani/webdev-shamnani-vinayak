@@ -11,14 +11,16 @@
          type="text"
          class="form-control bottom-buffer"
          ngModel required autofocus
-         #username="ngModel"/>
+         #username="ngModel"
+         [ngClass]="{'alert': !username.valid && username.touched, 'alert-danger': !username.valid && username.touched}"/>
     <span class="help-block" *ngIf="!username.valid && username.touched">Please enter a username! </span>
   <input placeholder="password"
          type="password"
          name="password"
          ngModel
          class="form-control bottom-buffer"
-         #password="ngModel" required/>
+         #password="ngModel"
+         [ngClass]="{'alert': !password.valid && password.touched, 'alert-danger': !password.valid && password.touched}"/>
     <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password! </span>
   <button class="btn btn-primary btn-block bottom-buffer" type="submit" [disabled]="!f.valid">Login</button>
     <a href="/auth/facebook" class="btn btn-primary btn-block">

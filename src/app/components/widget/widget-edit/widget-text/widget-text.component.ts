@@ -16,7 +16,9 @@ export class WidgetTextComponent implements OnInit {
   rows: number;
   placeholder: string;
   formatted: boolean;
-
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -35,20 +37,26 @@ export class WidgetTextComponent implements OnInit {
       );
   }
 
-  update(){
-    this.widget['name'] = this.widgetName ;
+  update() {
+    this.updated = true;
+    this.widget['name'] = this.widgetName;
     this.widget['text'] = this.widgetText;
     this.widget['rows'] = this.rows;
     this.widget['placeholder'] = this.placeholder;
     this.widget['formatted'] = this.formatted;
-    console.log('Widget at 44 is ' + JSON.stringify(this.widget));
-    this.widgetService.updateWidget(this.widgetId, this.widget)
-      .subscribe(
-        (widget: any) => {
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
-        }
-      );
-       }
+    // console.log('Widget at 44 is ' + JSON.stringify(this.widget));
+    if (this.widget['name'] === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Widget name is required';
+    } else {
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (widget: any) => {
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          }
+        );
+    }
+  }
   delete() {
       this.widgetService.deleteWidget(this.widgetId).subscribe(
             (res: any) => {

@@ -19,6 +19,7 @@
     <div class="col-xs-12">
       <form #f="ngForm">
         <div class="form-group">
+          <div *ngIf="errorFlag" class="alert alert-danger">{{errorMsg}}</div>
           <label for="name" class="c1-text-bold font-little-large c1-color-black">Name</label>
           <input type="text" id="name" class="form-control" placeholder="Name"
                  data-toggle="tooltip"
@@ -27,7 +28,11 @@
                  required autofocus
                  ngModel
                  [(ngModel)]="widget.name"
-                 name="name">
+                 name="name"
+                 [ngClass]="{'alert-danger': widgetName==undefined && updated}">
+              <span class="help-block" *ngIf="widgetName==undefined && updated">
+      Please enter widget name!
+    </span>
         </div>
         <div class="form-group">
           <label for="text" class="c1-text-bold font-little-large c1-color-black">Text</label>

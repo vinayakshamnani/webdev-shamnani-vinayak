@@ -14,6 +14,9 @@ export class PageEditComponent implements OnInit {
   page: {};
   pages: {};
   websiteId: string;
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
   @ViewChild('f') editForm: NgForm;
 
   constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private titleService: Title,
@@ -48,17 +51,24 @@ export class PageEditComponent implements OnInit {
   }
 
   update() {
+    this.updated = true;
+    this.errorFlag = false;
     this.page['name'] = this.editForm.value.name;
     this.page['description'] = this.editForm.value.descr;
+    if (this.page['name'] === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Page name cannot be blank';
+    } else {
     this.pageService.updatePage(this.pageId, this.page)
       .subscribe(
         (data: any) => {
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
         },
         (error: any) => {
           console.log(error);
         }
       );
+  }
   }
   delete() {
     this.pageService.deletePage(this.pageId)

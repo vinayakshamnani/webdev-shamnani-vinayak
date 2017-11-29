@@ -20,6 +20,9 @@ export class WidgetHeaderComponent implements OnInit {
   widgetName: string;
   widgetText: string;
   widgetSize: number;
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
   @ViewChild('f') headingForm: NgForm;
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -46,15 +49,21 @@ export class WidgetHeaderComponent implements OnInit {
   }
 
   update() {
+    this.updated = true;
     this.widget['name'] = this.headingForm.value.name;
     this.widget['text'] = this.headingForm.value.text;
     this.widget['size'] = this.headingForm.value.size;
-    this.widgetService.updateWidget(this.widgetId,this.widget)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
-        }
-      );
+    if (this.widget['name'] === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Widget name is required';
+    } else {
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          }
+        );
+    }
   }
   delete() {
     this.widgetService.deleteWidget(this.widgetId).subscribe(

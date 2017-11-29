@@ -15,7 +15,8 @@
          class="form-control bottom-buffer"
          ngModel
          required
-         #username="ngModel"/>
+         #username="ngModel"
+         [ngClass]="{'alert-danger': !username.valid && submitted}"/>
     <span class="help-block" *ngIf="!username.valid && username.touched">
       Username cannot be blank!
     </span>
@@ -26,7 +27,7 @@
          ngModel
          required
          #password="ngModel"
-         />
+         [ngClass]="{'alert-danger': !password.valid && submitted}"/>
     <span class="help-block" *ngIf="!password.valid && password.touched">
       Please enter a valid password!
    </span>
@@ -37,7 +38,7 @@
          required
          #verifypwd="ngModel"
          class="form-control bottom-buffer"
-  />
+         [ngClass]="{'alert-danger': !pwdconfirmation.valid && submitted}"/>
     <span class="help-block" *ngIf="!verifypwd.valid && verifypwd.touched">
       Please re-enter your password!
    </span>

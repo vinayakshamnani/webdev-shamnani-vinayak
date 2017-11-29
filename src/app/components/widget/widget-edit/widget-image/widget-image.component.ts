@@ -22,6 +22,9 @@ export class WidgetImageComponent implements OnInit {
   widgetText: string;
   widgetUrl: SafeResourceUrl;
   widgetWidth: string;
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
   @ViewChild('f') imageForm: NgForm;
   @ViewChild('upload') upload;
   baseUrl = environment.baseUrl;
@@ -50,16 +53,22 @@ export class WidgetImageComponent implements OnInit {
     );
   }
   update() {
+    this.updated = true;
     this.widget['name'] = this.imageForm.value.name;
     this.widget['text'] = this.imageForm.value.text;
     this.widget['width'] = this.imageForm.value.width;
     this.widget['url'] = this.imageForm.value.url;
-    this.widgetService.updateWidget(this.widgetId,this.widget)
-      .subscribe(
-        (data: any) => {
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
-        }
-      );
+    if (this.widget['name'] === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Widget name is required';
+    } else {
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          }
+        );
+    }
   }
   delete() {
     this.widgetService.deleteWidget(this.widgetId).subscribe(

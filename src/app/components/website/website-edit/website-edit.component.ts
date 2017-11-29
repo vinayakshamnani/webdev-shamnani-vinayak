@@ -15,6 +15,9 @@ export class WebsiteEditComponent implements OnInit {
   websiteName: string;
   description: string;
   websites: any[] = [{}];
+  updated: boolean;
+  errorFlag: boolean;
+  errorMsg: string;
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -59,17 +62,24 @@ export class WebsiteEditComponent implements OnInit {
     );
   }
   update() {
-      this.website['name'] = this.websiteName;
-      this.website['description'] = this.description;
-      this.websiteService.updateWebsite(this.websiteId, this.website)
-        .subscribe(
-          (data: any) => {
-            this.router.navigate(['../'], {relativeTo: this.activatedRoute})
-          },
-          (error: any) => {
-            console.log(error);
-          }
-        );
+    this.updated = true;
+    this.errorFlag = false;
+    if (this.websiteName === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Please enter a website name';
+    } else {
+    this.website['name'] = this.websiteName;
+    this.website['description'] = this.description;
+    this.websiteService.updateWebsite(this.websiteId, this.website)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+  }
   }
 
 }

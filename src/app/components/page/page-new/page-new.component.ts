@@ -18,6 +18,9 @@ export class PageNewComponent implements OnInit {
   pageId: string;
   @ViewChild('f') newForm: NgForm;
   pages: {};
+  errorFlag: boolean;
+  errorMsg: string;
+  updated: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private pageService: PageService,
@@ -48,12 +51,17 @@ export class PageNewComponent implements OnInit {
     this.descr = this.newForm.value.descr;
     page['name'] = this.name;
     page['description'] = this.descr;
+    if (this.name === '') {
+      this.errorFlag = true;
+      this.errorMsg = 'Page name cannot be blank';
+    } else {
     this.pageService.createPage(this.websiteId, page)
       .subscribe(
         (page: any) => {
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
         }
       );
+  }
   }
 
 }

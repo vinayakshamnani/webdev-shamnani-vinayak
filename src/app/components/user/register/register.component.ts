@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   verifypwd: string;
   errorFlag: boolean;
   userExistsFlag: boolean;
+  submitted: boolean;
   errorMessage = 'Passwords do not match';
   userExistsMessage = 'Username not available. Choose a different username.';
   @ViewChild('f') registrationForm: NgForm;
@@ -27,10 +28,15 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.submitted = true;
     this.username = this.registrationForm.value.username;
     this.password = this.registrationForm.value.password;
     this.verifypwd = this.registrationForm.value.verifypwd;
-      if (this.password === this.verifypwd){
+    if (this.username === '' || this.password === '' || this.verifypwd === '') {
+      this.errorFlag = true;
+      this.errorMessage = 'Enter all values';
+    } else {
+      if (this.password === this.verifypwd) {
         this.userService.register(this.username, this.password)
           .subscribe(
             (data: any) => {
@@ -44,5 +50,6 @@ export class RegisterComponent implements OnInit {
       } else {
         this.errorFlag = true;
       }
+    }
   }
 }

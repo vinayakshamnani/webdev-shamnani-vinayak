@@ -15,6 +15,9 @@ export class WebsiteNewComponent implements OnInit {
   websiteName: string;
   description: string;
   websites: any[] = [{}];
+  submitted: boolean;
+  errorFlag: boolean;
+  errorMsg: string;
   constructor(private websiteService: WebsiteService, private route: ActivatedRoute,
               private router: Router) { }
 
@@ -39,17 +42,20 @@ export class WebsiteNewComponent implements OnInit {
 
     this.websiteName = this.websiteForm.value.websiteName;
     this.description = this.websiteForm.value.description;
-    let website = { _id: '', name: this.websiteName, developerId: this.userId, description: this.description };
+    if (this.websiteName === '') {
+      this.errorFlag = true;
+    } else {
+    let website = {_id: '', name: this.websiteName, developerId: this.userId, description: this.description};
 
     this.websiteService.createWebsite(this.userId, website).subscribe(
       (website: any) => {
-        this.router.navigate(['../'],{relativeTo: this.route});
+        this.router.navigate(['../'], {relativeTo: this.route});
       },
       (error: any) => {
         console.log(error);
       }
     );
-
+  }
   }
 
 }
