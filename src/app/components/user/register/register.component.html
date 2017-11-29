@@ -3,10 +3,7 @@
        class="alert alert-danger">
     {{userExistsMessage}}
   </div>
-  <div *ngIf="errorFlag"
-       class="alert alert-danger">
-    {{errorMessage}}
-  </div>
+
   <h1>User Registration</h1>
   <form (ngSubmit) = "register()" #f="ngForm">
   <input placeholder="Username"
@@ -15,9 +12,8 @@
          class="form-control bottom-buffer"
          ngModel
          required
-         #username="ngModel"
-         [ngClass]="{'alert-danger': !username.valid && submitted}"/>
-    <span class="help-block" *ngIf="!username.valid && username.touched">
+         #username="ngModel">
+    <span class="help-block" *ngIf="!username.valid && username.touched && submitted">
       Username cannot be blank!
     </span>
   <input placeholder="password"
@@ -26,9 +22,8 @@
          class="form-control bottom-buffer"
          ngModel
          required
-         #password="ngModel"
-         [ngClass]="{'alert-danger': !password.valid && submitted}"/>
-    <span class="help-block" *ngIf="!password.valid && password.touched">
+         #password="ngModel"/>
+    <span class="help-block" *ngIf="!password.valid && password.touched && submitted">
       Please enter a valid password!
    </span>
   <input placeholder="Verify Password"
@@ -37,9 +32,8 @@
          ngModel
          required
          #verifypwd="ngModel"
-         class="form-control bottom-buffer"
-         [ngClass]="{'alert-danger': !pwdconfirmation.valid && submitted}"/>
-    <span class="help-block" *ngIf="!verifypwd.valid && verifypwd.touched">
+         class="form-control bottom-buffer"/>
+    <span class="help-block" *ngIf="!verifypwd.valid && verifypwd.touched && submitted">
       Please re-enter your password!
    </span>
   <button class="btn btn-primary btn-block bottom-buffer" type="submit" [disabled]="!f.valid">Register</button>

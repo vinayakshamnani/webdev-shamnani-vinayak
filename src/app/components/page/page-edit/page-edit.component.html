@@ -63,11 +63,10 @@
                  placeholder="Name"
                  name="name"
                  value="Blog Post"
-                 [(ngModel)]="page['name']"
-                 [ngClass]="{'alert-danger': page['name']=='' && updated}">
+                 [(ngModel)]="page['name']">
              <span class="help-block" *ngIf="page['name']=='' && updated">
      Page name can't be blank
-    </span>>
+    </span>
         </div>
         <div class="form-group">
           <label for="title"

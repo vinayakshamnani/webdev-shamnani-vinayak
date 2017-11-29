@@ -21,6 +21,7 @@ export class PageNewComponent implements OnInit {
   errorFlag: boolean;
   errorMsg: string;
   updated: boolean;
+  page: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private pageService: PageService,

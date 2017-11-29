@@ -26,8 +26,7 @@
                  data-toggle="tooltip"
                  title="Enter Widget Name"  autofocus
           name="name"
-          ngModel [(ngModel)]="widget.name"
-                 [ngClass]="{'alert-danger': widgetName==undefined && updated}">
+          ngModel [(ngModel)]="widget.name">
           <span class="help-block" *ngIf="widgetName==undefined && updated">
       Please enter widget name!
     </span>

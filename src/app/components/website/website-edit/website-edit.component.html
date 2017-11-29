@@ -56,8 +56,7 @@
         <div *ngIf="errorFlag" class="alert alert-danger">{{errorMsg}}</div>
         <label for="inputName">Name</label>
         <input [(ngModel)]='websiteName' name ="name"
-               type="text" class="form-control" id="inputName" placeholder="Website Name" ngModel #nameng = "ngModel"
-               [ngClass]="{'alert-danger': websiteName=='' && updated}">
+               type="text" class="form-control" id="inputName" placeholder="Website Name" ngModel #nameng = "ngModel">
             <span class="help-block" *ngIf="websiteName=='' && updated">
       Website name cannot be blank.
     </span>

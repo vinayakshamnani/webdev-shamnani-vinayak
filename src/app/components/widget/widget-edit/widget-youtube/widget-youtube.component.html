@@ -29,8 +29,7 @@
             class="form-control"
             placeholder="Name"
             [(ngModel)]="widget.name"
-            name="name"
-            [ngClass]="{'alert-danger': widgetName==undefined && updated}">
+            name="name">
           <span class="help-block" *ngIf="widgetName==undefined && updated">
       Please enter widget name!
     </span>

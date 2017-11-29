@@ -58,8 +58,7 @@
     <div class="form-group">
       <div *ngIf="errorFlag" class="alert alert-danger">{{errorMsg}}</div>
       <label for="inputName">Name</label>
-      <input [(ngModel)]='websiteName' type="text" name="websiteName" class="form-control" id="inputName" placeholder="Website Name" ngModel
-             [ngClass]="{'alert-danger': !websiteName.valid && submitted}"/>
+      <input [(ngModel)]='websiteName' type="text" name="websiteName" class="form-control" id="inputName" placeholder="Website Name" ngModel/>
           <span class="help-block" *ngIf="!websiteName.valid && submitted">
       Website name cannot be blank.
     </span>
