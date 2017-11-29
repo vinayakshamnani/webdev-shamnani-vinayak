@@ -27,33 +27,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    let user = {};
     this.username = this.registrationForm.value.username;
     this.password = this.registrationForm.value.password;
     this.verifypwd = this.registrationForm.value.verifypwd;
-    const user2 = this.userService.findUserByUsername(this.username)
-      .subscribe(
-        (user: any)=> {
-          this.userExistsFlag = true;
-        },
-        (error:any)=>{
-          if (this.password === this.verifypwd){
-            let user = {_id: '', username: this.username, password: this.password, firstName: '', lastName: ''};
-            this.userService.createUser(user)
-              .subscribe(
-                (user2: any) => {
-                  this.router.navigate(['/user', user2._id]);
-                },
-                (error: any) => {
-                  this.errorFlag = true;
-                  this.errorMessage = 'Error registering';
-                }
-              );
-          } else{
-            this.errorFlag = true;
-          }
-        }
-      );
-  }
+      if (this.password === this.verifypwd){
+        this.userService.register(this.username, this.password)
+          .subscribe(
+            (data: any) => {
+              this.router.navigate(['/profile']);
+            },
+            (error: any) => {
+              console.log(error);
+            }
+          );
 
+      } else {
+        this.errorFlag = true;
+      }
+  }
 }

@@ -115,7 +115,7 @@ module.exports=function(app, userModel) {
 
   function logout(req, res) {
     req.logout();
-    res.send(200);
+    res.sendStatus(200);
   }
 
   function register (req, res) {

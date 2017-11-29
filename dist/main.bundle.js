@@ -1049,28 +1049,20 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.register = function () {
         var _this = this;
-        var user = {};
         this.username = this.registrationForm.value.username;
         this.password = this.registrationForm.value.password;
         this.verifypwd = this.registrationForm.value.verifypwd;
-        var user2 = this.userService.findUserByUsername(this.username)
-            .subscribe(function (user) {
-            _this.userExistsFlag = true;
-        }, function (error) {
-            if (_this.password === _this.verifypwd) {
-                var user_1 = { _id: '', username: _this.username, password: _this.password, firstName: '', lastName: '' };
-                _this.userService.createUser(user_1)
-                    .subscribe(function (user2) {
-                    _this.router.navigate(['/user', user2._id]);
-                }, function (error) {
-                    _this.errorFlag = true;
-                    _this.errorMessage = 'Error registering';
-                });
-            }
-            else {
-                _this.errorFlag = true;
-            }
-        });
+        if (this.password === this.verifypwd) {
+            this.userService.register(this.username, this.password)
+                .subscribe(function (data) {
+                _this.router.navigate(['/profile']);
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            this.errorFlag = true;
+        }
     };
     return RegisterComponent;
 }());
